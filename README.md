@@ -1,6 +1,7 @@
 #KMSFroalaEditorBundle
 
 [![Build Status](https://travis-ci.org/samarhxc/KMSFroalaEditorBundle.svg)](https://travis-ci.org/samarhxc/KMSFroalaEditorBundle)
+[![knpbundles.com](http://knpbundles.com/samarhxc/KMSFroalaEditorBundle/badge)](http://knpbundles.com/samarhxc/KMSFroalaEditorBundle)
 
 ###Licence
 
