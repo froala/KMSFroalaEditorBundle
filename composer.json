@@ -1,0 +1,30 @@
+{
+    "name": "kms/froala-bundle",
+    "type": "symfony-bundle",
+    "description": "Provides a Froala editor integration for Symfony 2.",
+    "keywords": [ "froala, editor, wysiwyg" ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon GUIONNIERE",
+            "email": "simon.guionniere@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.2",
+        "symfony/form": "~2.2",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "twig/twig": "~1.12",
+    },
+    "autoload": {
+        "psr-4": { "KMS\\FroalaEditorBundle\\": "" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
