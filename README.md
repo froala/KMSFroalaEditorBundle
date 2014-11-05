@@ -47,7 +47,7 @@ $builder->add( "yourField", "froala", array(
 ```
 
 ###TODO...
-[] configurations
-[] tests
-[] custom file uploader
-[] ... any idea ?
+* configurations
+* tests
+* custom file uploader
+* ... any idea ?
