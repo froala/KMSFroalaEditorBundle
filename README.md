@@ -12,7 +12,7 @@
 
 ###Step 2 : Add the bundle to your AppKernel.php
 
-```
+``` php
 // app/AppKernel.php
 
 public function registerBundles()
@@ -34,6 +34,8 @@ No configuration yet.
 
 ###Step 5 : Add Froala to your form
 
-```
-$builder->add( "yourField", "froala" );
+``` php
+$builder->add( "yourField", "froala", array(
+    "inlineMode" => true // Default value is FALSE.
+) );
 ```
