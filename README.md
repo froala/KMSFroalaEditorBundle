@@ -1,6 +1,6 @@
 #KMSFroalaEditorBundle
 
-###Readme before
+###Licence
 
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
 For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
