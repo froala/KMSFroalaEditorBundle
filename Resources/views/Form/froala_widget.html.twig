@@ -1,0 +1,43 @@
+{% block froala_widget %}
+
+    <textarea {{ block( "widget_attributes" ) }} >{{ value }}</textarea>
+
+    <!-- Include CSS files. -->
+    <script type="text/javascript">
+        function loadCSS( p_path )
+        {
+            var $ = document;
+            var head  = $.getElementsByTagName( "head" )[0];
+            var link  = $.createElement( "link" );
+            link.rel  = "stylesheet";
+            link.type = "text/css";
+            link.href = p_path;
+            link.media = "all";
+            head.appendChild( link );
+        }  
+    
+        $( function() {
+            loadCSS( "{{ asset( base_path ~ "/css/font-awesome.min.css" ) }}" );
+            loadCSS( "{{ asset( base_path ~ "/css/froala_editor.min.css" ) }}" );
+            loadCSS( "{{ asset( base_path ~ "/css/froala_style.min.css" ) }}" );
+        } );  
+    </script>
+    
+    <!-- Include JS files. -->
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/froala_editor.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/block_styles.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/char_counter.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/colors.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/file_upload.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/font_family.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/font_size.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/lists.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/media_manager.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/tables.min.js" ) }}"></script>
+    <script type="text/javascript" src="{{ asset( base_path ~ "/js/plugins/video.min.js" ) }}"></script>
+    
+    <!-- Initialize the editor. -->
+    <script type="text/javascript">
+        {{ froala_editable( id, inlineMode ) }}
+    </script>
+{% endblock %}

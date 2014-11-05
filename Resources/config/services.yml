@@ -1,0 +1,14 @@
+services:
+
+# Form type.
+    kms_froala_editor.form.type:
+        class: "KMS\FroalaEditorBundle\Form\Type\FroalaEditorType"
+        arguments: [ @service_container ]
+        tags:
+            - { name: "form.type", alias: "froala" }
+           
+# Twig extension.            
+    kms_froala_editor.twig_extension:
+        class: "KMS\FroalaEditorBundle\Twig\FroalaEditorExtension"
+        tags:
+            - { name: "twig.extension" }
