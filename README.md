@@ -45,3 +45,9 @@ $builder->add( "yourField", "froala", array(
     "inlineMode" => true // Default value is FALSE.
 ) );
 ```
+
+###TODO...
+[] configurations
+[] tests
+[] custom file uploader
+[] ... any idea ?
