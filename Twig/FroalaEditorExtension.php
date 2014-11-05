@@ -29,7 +29,7 @@ class FroalaEditorExtension extends \Twig_Extension
     {
         //------------------------- DECLARE ---------------------------//
     
-        return sprintf( "$( function() { $( \"#%s\" ).editable( { inlineMode : %s } ) } );", $p_id, $p_inlineMode );
+        return sprintf( "$( function() { $( \"#%s\" ).editable( { inlineMode : %s } ) } );", $p_id, $p_inlineMode ? "true" : "false" );
     }
     
     //-------------------------------------------------------------//
