@@ -73,7 +73,7 @@ class FroalaEditorType extends AbstractType
         $p_resolver
             ->setDefaults( array(
                     "base_path"     => $this->m_container->getParameter( "kms_froala_editor.base_path" ),
-                    "inlineMode"    => true,                    
+                    "inlineMode"    => false,                    
             ))
             ->addAllowedTypes( array(
                     "inlineMode"    => "bool"
