@@ -1,5 +1,7 @@
 #KMSFroalaEditorBundle
 
+[![Build Status](https://travis-ci.org/samarhxc/KMSFroalaEditorBundle.svg)](https://travis-ci.org/samarhxc/KMSFroalaEditorBundle)
+
 ###Licence
 
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
