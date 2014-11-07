@@ -25,11 +25,10 @@ class FroalaEditorExtension extends \Twig_Extension
      * Render the main Froala command (used to start the plugin).
      * @param $p_id is the textarea ID.
      */
-    public function twigRenderEditable( $p_id, $p_inlineMode )
+    public function twigRenderEditable( $p_id, $p_inlineMode, $p_language )
     {
         //------------------------- DECLARE ---------------------------//
-    
-        return sprintf( "$( function() { $( \"#%s\" ).editable( { inlineMode : %s } ) } );", $p_id, $p_inlineMode ? "true" : "false" );
+        return sprintf( "$( function() { $( \"#%s\" ).editable( { inlineMode : %s, language: '%s' } ) } );", $p_id, $p_inlineMode ? "true" : "false", $p_language);
     }
     
     //-------------------------------------------------------------//

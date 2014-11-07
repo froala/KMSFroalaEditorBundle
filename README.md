@@ -40,7 +40,12 @@ public function registerBundles()
 
 ###Step 4 : Configure the bundle (optional)
 
-No configuration yet.
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    language: nl # See Resources/public/js/langs for all languages
+```
 
 ###Step 5 : Add Froala to your form
 
