@@ -34,6 +34,10 @@ class Configuration implements ConfigurationInterface
                 ->defaultValue( "/bundles/kmsfroalaeditor/" )
                 ->info( "The base URL path used to load Froala files from." )
                 ->end()
+                ->scalarNode( "language" )
+                ->defaultValue( "en_us" )
+                ->info( "Editor's language" )
+                ->end()
             ->end();
         
         return $treeBuilder;
