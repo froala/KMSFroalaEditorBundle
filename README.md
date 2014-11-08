@@ -54,9 +54,9 @@ kms_froala_editor:
     # More : see Resources/public/js/langs for all languages.
     language: "nl"
     
-    ##############################################################################################
-    # See Froala documentation (https://editor.froala.com/options) to all configurations bellow. #
-    ##############################################################################################
+    #######################################################################
+    # See https://editor.froala.com/options to all configurations bellow. #
+    #######################################################################
     
     # The inline mode.
     # Default: false.
