@@ -44,14 +44,41 @@ public function registerBundles()
 // app/config.yml
 
 kms_froala_editor:
-    language: nl # See Resources/public/js/langs for all languages
+
+    # The Froala editor path.
+    # Default: the editor version included in the bundle.
+    basePath: "/yourCustomFroalaEditorPath"
+    
+    # The editor language.
+    # Default: "en_us".
+    # More : see Resources/public/js/langs for all languages.
+    language: "nl"
+    
+    ##############################################################################################
+    # See Froala documentation (https://editor.froala.com/options) to all configurations bellow. #
+    ##############################################################################################
+    
+    # The inline mode.
+    # Default: false.
+    inlineMode: true
+    
+    # More to come ...
 ```
 
 ###Step 5 : Add Froala to your form
 
+Just add a froala type in your form:
+
+``` php
+$builder->add( "yourField", "froala" );
+```
+
+All configuration items can be overridden:
+
 ``` php
 $builder->add( "yourField", "froala", array(
-    "inlineMode" => true // Default value is FALSE.
+    "language" => "fr",
+    "inlineMode" => true
 ) );
 ```
 
