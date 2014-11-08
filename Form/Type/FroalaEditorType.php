@@ -48,9 +48,9 @@ class FroalaEditorType extends AbstractType
     {
         //------------------------- DECLARE ---------------------------//
         
-        $p_builder->setAttribute( "base_path",  $p_options[ "base_path" ] );
-        $p_builder->setAttribute( "inlineMode", $p_options[ "inlineMode" ] );
-        $p_builder->setAttribute( "language",  $p_options[ "language" ] );
+        $p_builder->setAttribute( "basePath",           $p_options[ "basePath" ] );
+        $p_builder->setAttribute( "language",           $p_options[ "language" ] );
+        $p_builder->setAttribute( "inlineMode",         $p_options[ "inlineMode" ] );
     }
 
     /**
@@ -60,9 +60,9 @@ class FroalaEditorType extends AbstractType
     {
      //------------------------- DECLARE ---------------------------//
      
-        $p_view->vars[ "base_path" ]    = $p_options[ "base_path" ];
-        $p_view->vars[ "inlineMode" ]   = $p_options[ "inlineMode" ];
-        $p_view->vars[ "language" ]   = $p_options[ "language" ];
+        $p_view->vars[ "basePath" ]         = $p_options[ "basePath" ];
+        $p_view->vars[ "language" ]         = $p_options[ "language" ];
+        $p_view->vars[ "inlineMode" ]       = $p_options[ "inlineMode" ];
     }
 
     /**
@@ -74,9 +74,9 @@ class FroalaEditorType extends AbstractType
         
         $p_resolver
             ->setDefaults( array(
-                    "base_path"     => $this->m_container->getParameter( "kms_froala_editor.base_path" ),
-                    "inlineMode"    => false,
-                    "language"      => $this->m_container->getParameter( "kms_froala_editor.language" ),
+                    "basePath"          => $this->m_container->getParameter( "kms_froala_editor.basePath" ),
+                    "language"          => $this->m_container->getParameter( "kms_froala_editor.language" ),
+                    "inlineMode"        => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
             ))
             ->addAllowedTypes( array(
                     "inlineMode"    => "bool"

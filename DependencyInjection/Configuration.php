@@ -30,14 +30,25 @@ class Configuration implements ConfigurationInterface
         
         $rootNode
             ->children()
-                ->scalarNode( "base_path" )
-                ->defaultValue( "/bundles/kmsfroalaeditor/" )
-                ->info( "The base URL path used to load Froala files from." )
+            
+                // Froala base path.
+                ->scalarNode( "basePath" )
+                    ->defaultValue( "/bundles/kmsfroalaeditor/" )
+                    ->info( "URL path used to load Froala files from." )
                 ->end()
+                
+                // Language.
                 ->scalarNode( "language" )
-                ->defaultValue( "en_us" )
-                ->info( "Editor's language" )
+                    ->defaultValue( "en_us" )
+                    ->info( "Editor's language." )
                 ->end()
+                
+                // Inline mode.
+                ->booleanNode( "inlineMode" )
+                    ->defaultFalse()
+                    ->info( "Enable/disable inline mode." )
+                ->end()
+                
             ->end();
         
         return $treeBuilder;

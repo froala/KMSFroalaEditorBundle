@@ -43,13 +43,10 @@ class KMSFroalaEditorExtension extends Extension
     {
         //------------------------- DECLARE ---------------------------//
     
-        $p_config[ "base_path" ] = ltrim( $p_config[ "base_path" ], '/' );
-        
-        $p_container->setParameter( "kms_froala_editor.base_path", $p_config[ "base_path" ] );
-
-        $p_config[ "language" ] = ltrim( $p_config[ "language" ], '/' );
-
-        $p_container->setParameter( "kms_froala_editor.language", $p_config[ "language" ] );
+        $p_config[ "basePath" ] = ltrim( $p_config[ "basePath" ], '/' );
+        $p_container->setParameter( "kms_froala_editor.basePath",   $p_config[ "basePath" ] );
+        $p_container->setParameter( "kms_froala_editor.language",   $p_config[ "language" ] );
+        $p_container->setParameter( "kms_froala_editor.inlineMode", $p_config[ "inlineMode" ] );
     }
     
     //-------------------------------------------------------------//
