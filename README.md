@@ -92,7 +92,7 @@ $builder->add( "yourField", "froala", array(
     "language" => "fr",
     "inlineMode" => true, 
     "usePluginCharCounter" => false, 
-    "usePlugin<pluginNameInConfiguration>" => false
+    "usePlugin<PluginNameInConfiguration>" => false
 ) );
 ```
 
