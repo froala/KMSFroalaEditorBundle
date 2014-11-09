@@ -47,7 +47,7 @@ kms_froala_editor:
 
     # The Froala editor path.
     # Default: the editor version included in the bundle.
-    basePath: "/yourCustomFroalaEditorPath"
+    basePath: "/yourCustomFroalaEditorPath/"
     
     # The editor language.
     # Default: "en_us".
@@ -62,7 +62,19 @@ kms_froala_editor:
     # Default: false.
     inlineMode: true
     
-    # More to come ...
+    # Plugins.
+    # All plugins are enabled by default, just disable if not needed.
+    plugins:
+        blockStyles: false
+        colors: false
+        charCounter: false
+        fileUpload: false
+        fontFamily: false
+        fontSize: false
+        lists: false
+        mediaManager: false
+        table: false
+        video: false
 ```
 
 ###Step 5 : Add Froala to your form
@@ -78,12 +90,15 @@ All configuration items can be overridden:
 ``` php
 $builder->add( "yourField", "froala", array(
     "language" => "fr",
-    "inlineMode" => true
+    "inlineMode" => true, 
+    "usePluginCharCounter" => false, 
+    ...,
+    "usePlugin<pluginNameInConfiguration>" => false
 ) );
 ```
 
 ###TODO...
-* configurations
+* more configurations
 * tests
 * custom file uploader
 * ... any idea ?
