@@ -47,6 +47,30 @@ class KMSFroalaEditorExtension extends Extension
         $p_container->setParameter( "kms_froala_editor.basePath",   $p_config[ "basePath" ] );
         $p_container->setParameter( "kms_froala_editor.language",   $p_config[ "language" ] );
         $p_container->setParameter( "kms_froala_editor.inlineMode", $p_config[ "inlineMode" ] );
+        
+        // Load plugins.
+        $this->loadPlugins( $p_container, $p_config );
+    }
+    
+    /**
+     * Load plugins.
+     */
+    private function loadPlugins( ContainerBuilder $p_container, $p_config )
+    {
+        //------------------------- DECLARE ---------------------------//
+        
+        $pluginsNode = $p_config[ "plugins" ];
+        
+        $p_container->setParameter( "kms_froala_editor.plugins.blockStyles",    $pluginsNode[ "blockStyles" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.colors",         $pluginsNode[ "colors" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.charCounter",    $pluginsNode[ "charCounter" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.fileUpload",     $pluginsNode[ "fileUpload" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.fontFamily",     $pluginsNode[ "fontFamily" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.fontSize",       $pluginsNode[ "fontSize" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.lists",          $pluginsNode[ "lists" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.mediaManager",   $pluginsNode[ "mediaManager" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.table",          $pluginsNode[ "table" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.video",          $pluginsNode[ "video" ] );
     }
     
     //-------------------------------------------------------------//
@@ -67,7 +91,6 @@ class KMSFroalaEditorExtension extends Extension
         
         $this->loadResources( $p_container );
         $this->loadConfig( $p_container, $config );
-        
     }
     
 }

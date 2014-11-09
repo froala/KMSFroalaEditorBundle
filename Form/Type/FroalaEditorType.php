@@ -48,9 +48,22 @@ class FroalaEditorType extends AbstractType
     {
         //------------------------- DECLARE ---------------------------//
         
-        $p_builder->setAttribute( "basePath",           $p_options[ "basePath" ] );
-        $p_builder->setAttribute( "language",           $p_options[ "language" ] );
-        $p_builder->setAttribute( "inlineMode",         $p_options[ "inlineMode" ] );
+        // Config.
+        $p_builder->setAttribute( "basePath",               $p_options[ "basePath" ] );
+        $p_builder->setAttribute( "language",               $p_options[ "language" ] );
+        $p_builder->setAttribute( "inlineMode",             $p_options[ "inlineMode" ] );
+        
+        // Plugins.
+        $p_builder->setAttribute( "usePluginBlockStyles",   $p_options[ "usePluginBlockStyles" ] );
+        $p_builder->setAttribute( "usePluginColors",        $p_options[ "usePluginColors" ] );
+        $p_builder->setAttribute( "usePluginCharCounter",   $p_options[ "usePluginCharCounter" ] );
+        $p_builder->setAttribute( "usePluginFileUpload",    $p_options[ "usePluginFileUpload" ] );
+        $p_builder->setAttribute( "usePluginFontFamily",    $p_options[ "usePluginFontFamily" ] );
+        $p_builder->setAttribute( "usePluginFontSize",      $p_options[ "usePluginFontSize" ] );
+        $p_builder->setAttribute( "usePluginLists",         $p_options[ "usePluginLists" ] );
+        $p_builder->setAttribute( "usePluginMediaManager",  $p_options[ "usePluginMediaManager" ] );
+        $p_builder->setAttribute( "usePluginTable",         $p_options[ "usePluginTable" ] );
+        $p_builder->setAttribute( "usePluginVideo",         $p_options[ "usePluginVideo" ] );
     }
 
     /**
@@ -58,11 +71,24 @@ class FroalaEditorType extends AbstractType
      */
     public function buildView( FormView $p_view, FormInterface $p_form, array $p_options )
     {
-     //------------------------- DECLARE ---------------------------//
+        //------------------------- DECLARE ---------------------------//
      
-        $p_view->vars[ "basePath" ]         = $p_options[ "basePath" ];
-        $p_view->vars[ "language" ]         = $p_options[ "language" ];
-        $p_view->vars[ "inlineMode" ]       = $p_options[ "inlineMode" ];
+        // Config.
+        $p_view->vars[ "basePath" ]                     = $p_options[ "basePath" ];
+        $p_view->vars[ "language" ]                     = $p_options[ "language" ];
+        $p_view->vars[ "inlineMode" ]                   = $p_options[ "inlineMode" ];
+        
+        // Plugins.
+        $p_view->vars[ "usePluginBlockStyles" ]         = $p_options[ "usePluginBlockStyles" ];
+        $p_view->vars[ "usePluginColors" ]              = $p_options[ "usePluginColors" ];
+        $p_view->vars[ "usePluginCharCounter" ]         = $p_options[ "usePluginCharCounter" ];
+        $p_view->vars[ "usePluginFileUpload" ]          = $p_options[ "usePluginFileUpload" ];
+        $p_view->vars[ "usePluginFontFamily" ]          = $p_options[ "usePluginFontFamily" ];
+        $p_view->vars[ "usePluginFontSize" ]            = $p_options[ "usePluginFontSize" ];
+        $p_view->vars[ "usePluginLists" ]               = $p_options[ "usePluginLists" ];
+        $p_view->vars[ "usePluginMediaManager" ]        = $p_options[ "usePluginMediaManager" ];
+        $p_view->vars[ "usePluginTable" ]               = $p_options[ "usePluginTable" ];
+        $p_view->vars[ "usePluginVideo" ]               = $p_options[ "usePluginVideo" ];
     }
 
     /**
@@ -74,9 +100,20 @@ class FroalaEditorType extends AbstractType
         
         $p_resolver
             ->setDefaults( array(
-                    "basePath"          => $this->m_container->getParameter( "kms_froala_editor.basePath" ),
-                    "language"          => $this->m_container->getParameter( "kms_froala_editor.language" ),
-                    "inlineMode"        => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
+                    "basePath"                  => $this->m_container->getParameter( "kms_froala_editor.basePath" ),
+                    "language"                  => $this->m_container->getParameter( "kms_froala_editor.language" ),
+                    "inlineMode"                => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
+                    
+                    "usePluginBlockStyles"      => $this->m_container->getParameter( "kms_froala_editor.plugins.blockStyles" ),
+                    "usePluginColors"           => $this->m_container->getParameter( "kms_froala_editor.plugins.colors" ),
+                    "usePluginCharCounter"      => $this->m_container->getParameter( "kms_froala_editor.plugins.charCounter" ),
+                    "usePluginFileUpload"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fileUpload" ),
+                    "usePluginFontFamily"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fontFamily" ),
+                    "usePluginFontSize"         => $this->m_container->getParameter( "kms_froala_editor.plugins.fontSize" ),
+                    "usePluginLists"            => $this->m_container->getParameter( "kms_froala_editor.plugins.lists" ),
+                    "usePluginMediaManager"     => $this->m_container->getParameter( "kms_froala_editor.plugins.mediaManager" ),
+                    "usePluginTable"            => $this->m_container->getParameter( "kms_froala_editor.plugins.table" ),
+                    "usePluginVideo"            => $this->m_container->getParameter( "kms_froala_editor.plugins.video" ),
             ))
             ->addAllowedTypes( array(
                     "inlineMode"    => "bool"
