@@ -63,7 +63,7 @@ kms_froala_editor:
     inlineMode: true
     
     # Plugins.
-    # All plugins are enabled by default, just disable if not needed.
+    # Default: all plugins are enabled.
     plugins:
         blockStyles: false
         colors: false
@@ -92,7 +92,6 @@ $builder->add( "yourField", "froala", array(
     "language" => "fr",
     "inlineMode" => true, 
     "usePluginCharCounter" => false, 
-    ...,
     "usePlugin<pluginNameInConfiguration>" => false
 ) );
 ```
