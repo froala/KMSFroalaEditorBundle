@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -9,7 +10,7 @@
 
 $.Editable.LANGS['nb'] = {
   translation: {
-    "Bold": "Halvfet",
+    "Bold": "Fet",
     "Italic": "Kursiv",
     "Underline": "Understreket",
     "Strikethrough": "Gjennomstreket",
@@ -83,7 +84,11 @@ $.Editable.LANGS['nb'] = {
     "Delete row": "Slett rad",
     "Insert column before": "Sett inn kolonne f\u00f8r",
     "Insert column after": "Sett inn kolonne etter",
-    "Delete column": "Slett kolonne"
+    "Delete column": "Slett kolonne",
+    "Uploading image": "Opplasting bilde",
+    "Upload File": "Opplastingsfil",
+    "Drop File": "Slippe fil",
+    "Clear formatting": "Fjerne formatering"
   },
   direction: "ltr"
 };

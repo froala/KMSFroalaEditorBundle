@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['me'] = {
     "Delete row": "Obri\u0161i red",
     "Insert column before": "Umetni kolonu prije",
     "Insert column after": "Umetni kolonu poslije",
-    "Delete column": "Obri\u0161i kolonu"
+    "Delete column": "Obri\u0161i kolonu",
+    "Uploading image": "Prijenos slike",
+    "Upload File": "Prijenos datoteke",
+    "Drop File": "Izbaci datoteke",
+    "Clear formatting": "Izbrisati formatiranje"
   },
   direction: "ltr"
 };

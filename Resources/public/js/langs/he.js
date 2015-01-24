@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['he'] = {
     "Delete row": "\u05de\u05d7\u05d9\u05e7\u05ea \u05e9\u05d5\u05e8\u05d4",
     "Insert column before": "\u05d4\u05d5\u05e1\u05e4\u05ea \u05d8\u05d5\u05e8 \u05dc\u05e4\u05e0\u05d9",
     "Insert column after": "\u05d4\u05d5\u05e1\u05e4\u05ea \u05d8\u05d5\u05e8 \u05d0\u05d7\u05e8\u05d9",
-    "Delete column": "\u05de\u05d7\u05d9\u05e7\u05ea \u05d8\u05d5\u05e8"
+    "Delete column": "\u05de\u05d7\u05d9\u05e7\u05ea \u05d8\u05d5\u05e8",
+    "Uploading image": "\u05ea\u05de\u05d5\u05e0\u05ea \u05d4\u05e2\u05dc\u05d0\u05d4",
+    "Upload File": "\u05d4\u05e2\u05dc\u05d0\u05ea \u05e7\u05d5\u05d1\u05e5",
+    "Drop File": "\u05d6\u05e8\u05d5\u05e7 \u05e7\u05d5\u05d1\u05e5 \u05db\u05d0\u05df",
+    "Clear formatting": "\u05dc\u05d4\u05e1\u05d9\u05e8 \u05e2\u05d9\u05e6\u05d5\u05d1"
   },
   direction: "rtl"
 };

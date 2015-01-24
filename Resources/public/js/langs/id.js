@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['id'] = {
     "Delete row": "Hapus baris",
     "Insert column before": "Sisipkan kolom sebelum",
     "Insert column after": "Sisipkan kolom setelah",
-    "Delete column": "Hapus kolom"
+    "Delete column": "Hapus kolom",
+    "Uploading image": "Meng-upload gambar",
+    "Upload File": "Meng-upload berkas",
+    "Drop File": "Jatuhkan berkas",
+    "Clear formatting": "Menghapus format"
   },
   direction: "ltr"
 };

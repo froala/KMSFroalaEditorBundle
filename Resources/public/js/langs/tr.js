@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['tr'] = {
     "Delete row": "Sat\u0131r\u0131 sil",
     "Insert column before": "\u00d6ncesine yeni s\u00fctun ekle",
     "Insert column after": "Sonras\u0131na yeni s\u00fctun ekle",
-    "Delete column": "S\u00fctunu sil"
+    "Delete column": "S\u00fctunu sil",
+    "Uploading image": "Y\u00fckleme resim",
+    "Upload File": "Dosya Y\u00fckle",
+    "Drop File": "B\u0131rak dosya",
+    "Clear formatting": "Bi\u00e7imlendirme kald\u0131r"
   },
   direction: "ltr"
 };

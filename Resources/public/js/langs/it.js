@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['it'] = {
     "Delete row": "Cancella Riga",
     "Insert column before": "Inserisci una Colonna Prima",
     "Insert column after": "Inserisci una Colonna Dopo",
-    "Delete column": "Cancella Colonna"
+    "Delete column": "Cancella Colonna",
+    "Uploading image": "Caricamento dell'immagine",
+    "Upload File": "Carica File",
+    "Drop File": "Rilascia File",
+    "Clear formatting": "Cancella formattazione"
   },
   direction: "ltr"
 };

@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 [contenteditable],
 [contenteditable]:focus {
@@ -8,6 +9,9 @@
 }
 button {
   outline: none;
+}
+.fr-visible {
+  display: block !important;
 }
 .f-non-selectable {
   user-select: none;
@@ -42,9 +46,25 @@ button {
 .froala-box {
   position: relative;
 }
+.froala-box:after {
+  position: absolute;
+  bottom: 5px;
+  right: 7px;
+  color: #CCC;
+  content: attr(data-chars);
+  font-size: 15px;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+.froala-box.f-rtl:after {
+  left: 7px;
+  right: auto;
+}
+.froala-box .froala-wrapper {
+  overflow: auto;
+}
 .froala-box .html-switch {
   position: absolute;
-  left: 1px;
+  right: 1px;
   top: 1px;
   z-index: 1000;
   display: none;
@@ -73,6 +93,15 @@ button {
   color: #ffffff;
   background: #2c82c9;
 }
+.froala-box.fr-fullscreen {
+  margin: 0 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 3000;
+}
 .froala-box.f-html .html-switch {
   display: inline-block;
 }
@@ -95,54 +124,50 @@ button {
 .fr-hidden {
   display: none !important;
 }
-.froala-element img.fr-fil,
-img.fr-tag.fr-fil {
+body.fr-fullscreen {
+  overflow: hidden;
+}
+img.fr-fil {
   z-index: 1;
   position: relative;
-  vertical-align: top;
-  display: block;
   margin: auto;
   overflow: auto;
   padding: 10px 10px 10px 3px;
   float: left !important;
 }
-.froala-element img.fr-fil.fr-tni,
-img.fr-tag.fr-fil.fr-tni {
+img.fr-fil.fr-dib {
   float: none !important;
   margin-left: 0 !important;
 }
-.froala-element img.fr-fir,
-img.fr-tag.fr-fir {
+img.fr-fir {
   z-index: 1;
   position: relative;
-  vertical-align: top;
-  display: block;
   margin: auto;
   overflow: auto;
   padding: 10px 3px 10px 10px;
   float: right !important;
 }
-.froala-element img.fr-fir.fr-tni,
-img.fr-tag.fr-fir.fr-tni {
+img.fr-fir.fr-dib {
   float: none !important;
   margin-right: 0 !important;
 }
-.froala-element img.fr-fin,
-img.fr-tag.fr-fin {
+img.fr-fin {
   z-index: 1;
   position: relative;
-  vertical-align: top;
-  display: block;
   margin: auto;
   overflow: auto;
-  padding: 10px 0;
   float: none;
 }
-.froala-element a.fr-file,
+img.fr-fin.fr-dib {
+  padding: 10px 0;
+}
+img.fr-dib {
+  vertical-align: top;
+  display: block;
+}
 a.fr-file {
   position: relative;
 }
-.froala-element a.fr-file:before,
 a.fr-file:before {
   position: relative;
   display: inline-block;
@@ -156,7 +181,7 @@ a.fr-file:before {
   top: 0;
   padding-right: 3px;
 }
-.froala-element table,
+.froala-view table,
 table.fr-tag {
   border-collapse: collapse;
   empty-cells: show;
@@ -167,18 +192,18 @@ table.fr-tag {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.froala-element table td,
+.froala-view table td,
 table.fr-tag td {
   border: solid 1px #cccccc;
   padding: 5px;
 }
-.froala-element table th,
+.froala-view table th,
 table.fr-tag th {
   background: #e6e6e6;
   border: solid 1px #cccccc;
   padding: 5px;
 }
-.froala-element pre,
+.froala-view pre,
 pre.fr-tag {
   white-space: pre-wrap;
   /* CSS3 */
@@ -200,7 +225,7 @@ pre.fr-tag {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
 }
-.froala-element blockquote,
+.froala-view blockquote,
 blockquote.fr-tag {
   margin-left: 20px;
   margin-right: 0;
@@ -210,7 +235,7 @@ blockquote.fr-tag {
   font-style: italic;
   border-left: solid 5px #cccccc;
 }
-.froala-element hr,
+.froala-view hr,
 hr.fr-tag {
   height: 0px;
   border: 0;
@@ -230,6 +255,18 @@ hr.fr-tag {
   float: right;
   margin: 10px 1px 10px 10px;
 }
+.fr-tnv {
+  float: none !important;
+  margin: auto;
+  text-align: center;
+  display: block !important;
+}
+.fr-tnv.fr-fvl {
+  text-align: left;
+}
+.fr-tnv.fr-fvr {
+  text-align: right;
+}
 .froala-element {
   min-height: 35px;
   overflow-y: auto;
@@ -237,15 +274,7 @@ hr.fr-tag {
   position: relative;
   word-wrap: break-word;
   vertical-align: top;
-}
-.froala-element:after {
-  position: absolute;
-  bottom: 0px;
-  right: 5px;
-  color: #CCC;
-  content: attr(data-chars);
-  font-size: 15px;
-  font-family: "Times New Roman", Georgia, Serif;
+  cursor: text;
 }
 .froala-element * {
   -webkit-box-sizing: content-box;
@@ -255,36 +284,22 @@ hr.fr-tag {
 .froala-element.f-image {
   overflow: visible;
 }
-.froala-element.f-tni span.f-img-wrap {
-  display: block;
-  text-align: center;
-}
-.froala-element.f-tni span.f-img-wrap:after {
-  clear: both;
-  display: block;
-  content: "";
-}
-.froala-element.f-tni span.f-img-editor {
-  display: inline-block;
-}
-.froala-element.f-tni img {
-  display: block;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-.froala-element.f-tni img:after {
-  clear: both;
-  display: block;
-  content: "";
-}
 .froala-element .btn {
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
   user-select: text;
+  -o-user-select: text;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
 }
-.froala-element span {
-  line-height: 120%;
+.froala-element [contenteditable="false"],
+.froala-element [contenteditable="false"] * {
+  user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 .froala-element + span.fr-placeholder {
   display: none;
@@ -293,23 +308,22 @@ hr.fr-tag {
   color: #cccccc;
   font-style: italic;
   position: absolute;
-  margin: auto;
+  margin: 0;
   left: 0;
   right: 0;
-  top: 0;
+  top: 2px;
   display: inline-block;
   cursor: text;
+  padding-left: 2px;
   user-select: none;
   -o-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-  line-height: 13px;
 }
 .froala-element.f-basic.f-placeholder + span.fr-placeholder {
-  left: 10px;
-  right: 10px;
+  margin: 10px;
 }
 .froala-element.not-msie pre,
 .froala-element.not-msie blockquote {
@@ -329,16 +343,21 @@ hr.fr-tag {
 .froala-element img {
   min-width: 32px !important;
   min-height: 32px !important;
+}
+.froala-element img.fr-fil,
+.froala-element img.fr-fir,
+.froala-element img.fr-fin {
   cursor: pointer;
   z-index: 1;
   position: relative;
-  vertical-align: top;
-  display: block;
   margin: auto;
   overflow: auto;
 }
 .froala-element:not(.ie8) img {
   max-width: 100% !important;
+}
+.froala-element td img {
+  max-width: auto !important;
 }
 .froala-element img::selection {
   color: #ffffff;
@@ -355,7 +374,7 @@ hr.fr-tag {
   outline: 0;
   max-width: 100% !important;
 }
-.froala-element span.f-img-wrap.fr-fin {
+.froala-element span.f-img-wrap.fr-fin.fr-dib {
   display: block;
 }
 .froala-element span.f-img-wrap.fr-fir {
@@ -363,6 +382,16 @@ hr.fr-tag {
 }
 .froala-element span.f-img-wrap.fr-fil {
   float: left;
+}
+.froala-element span.f-img-wrap.fr-dib {
+  display: block;
+  text-align: center;
+  float: none !important;
+}
+.froala-element span.f-img-wrap.fr-dib:after {
+  clear: both;
+  display: block;
+  content: "";
 }
 .froala-element span.f-img-editor {
   display: inline-block;
@@ -373,7 +402,6 @@ hr.fr-tag {
   line-height: 0;
   overflow: visible;
   z-index: 2;
-  vertical-align: top;
   border: 0;
   outline: 0;
   outline-color: transparent;
@@ -382,13 +410,13 @@ hr.fr-tag {
 .froala-element span.f-img-editor:before {
   content: "";
   position: absolute;
-  top: -2px;
-  left: -2px;
-  bottom: -2px;
-  right: -2px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   display: block;
-  border: solid 2px #ffffff !important;
-  outline: solid 1px #252525 !important;
+  border: none !important;
+  outline: solid 1px #2c82c9 !important;
   z-index: 1;
 }
 .froala-element span.f-img-editor:after {
@@ -405,49 +433,76 @@ hr.fr-tag {
   float: right;
 }
 .froala-element span.f-img-editor.fr-fin {
-  margin: 10px 0;
   float: none;
+}
+.froala-element span.f-img-editor.fr-fin.fr-dib {
+  margin: 10px 0;
 }
 .froala-element span.f-img-editor img {
   padding: 0 !important;
   margin: auto;
 }
+.froala-element span.f-img-editor.fr-dib {
+  display: inline-block;
+}
 .froala-element span.f-img-handle {
   position: absolute;
-  height: 13px;
-  width: 13px;
-  border: solid 1px #252525 !important;
-  background: #ffffff;
+  height: 8px;
+  width: 8px;
+  border: solid 1px #ffffff !important;
+  background: #2c82c9;
   z-index: 2;
   margin: auto;
 }
 .froala-element span.f-img-handle.f-h-ne {
-  top: -3px;
+  top: -4px;
   left: auto;
-  right: -3px;
+  right: -4px;
   bottom: auto;
   cursor: ne-resize;
 }
 .froala-element span.f-img-handle.f-h-se {
   top: auto;
   left: auto;
-  right: -3px;
-  bottom: -3px;
+  right: -4px;
+  bottom: -4px;
   cursor: se-resize;
 }
 .froala-element span.f-img-handle.f-h-sw {
   top: auto;
-  left: -3px;
+  left: -4px;
   right: auto;
-  bottom: -3px;
+  bottom: -4px;
   cursor: sw-resize;
 }
 .froala-element span.f-img-handle.f-h-nw {
-  top: -3px;
-  left: -3px;
+  top: -4px;
+  left: -4px;
   right: auto;
   bottom: auto;
   cursor: nw-resize;
+}
+@media (max-width: 991px) {
+  .froala-element span.f-img-handle {
+    height: 12px;
+    width: 12px;
+  }
+  .froala-element span.f-img-handle.f-h-ne {
+    top: -6px;
+    right: -6px;
+  }
+  .froala-element span.f-img-handle.f-h-se {
+    right: -6px;
+    bottom: -6px;
+  }
+  .froala-element span.f-img-handle.f-h-sw {
+    left: -6px;
+    bottom: -6px;
+  }
+  .froala-element span.f-img-handle.f-h-nw {
+    top: -6px;
+    left: -6px;
+  }
 }
 .froala-element .f-video-editor {
   display: inline-block;
@@ -459,7 +514,7 @@ hr.fr-tag {
 .froala-element .f-video-editor > * {
   max-width: 100%;
 }
-.froala-element .f-video-editor:after {
+.froala-box .froala-element .f-video-editor:after {
   position: absolute;
   content: '';
   z-index: 2;
@@ -469,8 +524,16 @@ hr.fr-tag {
   bottom: 0;
   cursor: pointer;
 }
-.froala-element .f-video-editor.active:after {
+.froala-box .froala-element .f-video-editor.active:after {
   border: solid 1px #252525;
+}
+.f-html:after {
+  display: none;
+}
+.f-html .froala-wrapper:after {
+  clear: both;
+  display: block;
+  content: "";
 }
 .f-html .froala-element {
   background: #202020;
@@ -488,12 +551,15 @@ hr.fr-tag {
   display: block;
   content: "";
 }
+.f-html .froala-element.f-inline textarea {
+  padding: 10px 0 0 10px;
+}
 .f-html .froala-element textarea {
   direction: ltr !important;
   text-align: left;
   width: 100%;
   word-wrap: break-word;
-  padding: 0 0 0 10px;
+  padding: 0;
   background: transparent;
   border: 0 transparent;
   color: #FFF;
@@ -683,7 +749,6 @@ hr.fr-tag {
 }
 .froala-editor .fr-dropdown.fr-color-picker .fr-dropdown-menu p span.fr-choose-color {
   padding: 5px 10px;
-  width: 50%;
   text-align: center;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -691,6 +756,10 @@ hr.fr-tag {
   border-top: solid 4px transparent;
   border-bottom: solid 4px transparent;
   cursor: pointer;
+  width: 100%;
+}
+.froala-editor .fr-dropdown.fr-color-picker .fr-dropdown-menu p span.fr-choose-color.fr-50 {
+  width: 50%;
 }
 .froala-editor .fr-dropdown.fr-color-picker .fr-dropdown-menu p span.fr-choose-color.active,
 .froala-editor .fr-dropdown.fr-color-picker .fr-dropdown-menu p span.fr-choose-color:hover {
@@ -1178,6 +1247,8 @@ hr.fr-tag {
   padding: 2px 7px;
   background: #475577;
   color: #ffffff;
+  border: 0;
+  vertical-align: top;
 }
 .froala-popup.froala-image-popup div.f-popup-line button.f-browse:hover,
 .froala-popup.froala-file-popup div.f-popup-line button.f-browse:hover {
@@ -1270,6 +1341,7 @@ hr.fr-tag {
   background: #475577;
   color: #ffffff;
   margin-left: -1px;
+  border: 0;
 }
 .froala-popup.froala-link-popup div.f-popup-line .f-browse-links:hover {
   background: #353535;
@@ -1332,7 +1404,7 @@ hr.fr-tag {
 .froala-popup.froala-text-popup div.f-popup-line input {
   margin-left: 0 !important;
 }
-.froala-popup button:not(.fr-bttn):not(.fr-trigger) {
+.froala-popup button.fr-p-bttn {
   border: 0;
   color: #ffffff;
   padding: 2px 5px;
@@ -1348,21 +1420,21 @@ hr.fr-tag {
   -o-transition: background linear 0.2s;
   min-width: 16px;
 }
-.froala-popup button:not(.fr-bttn):not(.fr-trigger).f-ok {
+.froala-popup button.fr-p-bttn.f-ok {
   background: #2c82c9;
   color: #ffffff;
 }
-.froala-popup button:not(.fr-bttn):not(.fr-trigger).f-unlink {
+.froala-popup button.fr-p-bttn.f-unlink {
   background: #b8312f;
   color: #ffffff;
   margin: 0 5px;
 }
-.froala-popup button:not(.fr-bttn):not(.fr-trigger).f-unlink:hover {
+.froala-popup button.fr-p-bttn.f-unlink:hover {
   background: #353535;
   color: #ffffff;
 }
-.froala-popup button:not(.fr-bttn):not(.fr-trigger):hover,
-.froala-popup button:not(.fr-bttn):not(.fr-trigger):focus {
+.froala-popup button.fr-p-bttn:hover,
+.froala-popup button.fr-p-bttn:focus {
   background: #353535;
   color: #ffffff;
 }
@@ -1643,6 +1715,7 @@ hr.fr-tag {
   right: 10px;
   direction: rtl;
   text-align: right;
+  padding-right: 3px;
 }
 .froala-editor.f-basic {
   padding: 0px;
@@ -1683,8 +1756,12 @@ hr.fr-tag {
 .froala-editor.f-basic hr {
   display: none;
 }
-.froala-element.f-basic {
+.froala-wrapper.f-basic {
   border: solid 1px #252525;
+  position: relative;
+  background: #ffffff;
+}
+.froala-element.f-basic {
   padding: 10px;
 }
 .froala-element.f-basic span.f-img-editor {

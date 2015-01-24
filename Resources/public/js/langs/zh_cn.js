@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['zh_cn'] = {
     "Delete row": "\u5220\u9664\u884c",
     "Insert column before": "\u5728\u5de6\u4fa7\u63d2\u5165",
     "Insert column after": "\u5728\u53f3\u4fa7\u63d2\u5165",
-    "Delete column": "\u5220\u9664\u5217"
+    "Delete column": "\u5220\u9664\u5217",
+    "Uploading image": "\u4e0a\u4f20\u56fe\u50cf",
+    "Upload File": "\u4e0a\u4f20\u6587\u4ef6",
+    "Drop File": "\u6587\u4ef6\u62d6\u653e",
+    "Clear formatting": "\u683c\u5f0f\u5316\u5220\u9664"
   },
   direction: "ltr"
 };

@@ -4,10 +4,15 @@
     "description": "Provides a Froala editor integration for Symfony 2.",
     "keywords": [ "froala", "editor", "wysiwyg" ],
     "license": "MIT",
+    "version": "1.2.5",
     "authors": [
         {
             "name": "Simon GUIONNIERE",
             "email": "simon.guionniere@gmail.com"
+        },
+        {
+            "name": "Stefan Neculai",
+            "email": "stefan.neculai@gmail.com"
         }
     ],
     "require": {

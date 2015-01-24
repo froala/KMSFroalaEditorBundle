@@ -14,20 +14,20 @@
             link.href = p_path;
             link.media = "all";
             head.appendChild( link );
-        }  
-    
+        }
+
         $( function() {
             loadCSS( "{{ asset( basePath ~ "css/font-awesome.min.css" ) }}" );
             loadCSS( "{{ asset( basePath ~ "css/froala_editor.min.css" ) }}" );
             loadCSS( "{{ asset( basePath ~ "css/froala_style.min.css" ) }}" );
-        } );  
+        } );
     </script>
-    
+
     <!-- Include JS files. -->
     <script type="text/javascript" src="{{ asset( basePath ~ "js/froala_editor.min.js" ) }}"></script>
-    
+
     <script type="text/javascript" src="{{ asset( basePath ~ "js/langs/" ~ language ~ ".js" ) }}"></script>
-    
+
     {% if usePluginBlockStyles == true %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/block_styles.min.js" ) }}"></script>
     {% endif %}
@@ -43,8 +43,14 @@
     {% if usePluginFontFamily == true %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/font_family.min.js" ) }}"></script>
     {% endif %}
+    {% if usePluginFullscreen == true %}
+        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/fullscreen.min.js" ) }}"></script>
+    {% endif %}
     {% if usePluginFontSize == true %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/font_size.min.js" ) }}"></script>
+    {% endif %}
+    {% if usePluginInlineStyle == true %}
+        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/inline_style.min.js" ) }}"></script>
     {% endif %}
     {% if usePluginLists == true %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/lists.min.js" ) }}"></script>
@@ -57,6 +63,9 @@
     {% endif %}
     {% if usePluginVideo == true %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/video.min.js" ) }}"></script>
+    {% endif %}
+    {% if usePluginUrls == true %}
+        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/urls.min.js" ) }}"></script>
     {% endif %}
 
     <!-- Initialize the editor. -->

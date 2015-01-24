@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -83,7 +84,11 @@ $.Editable.LANGS['hu'] = {
     "Delete row": "Sor t\u00f6rl\u00e9se",
     "Insert column before": "Oszlop besz\u00far\u00e1sa el\u00e9",
     "Insert column after": "Oszlop besz\u00far\u00e1sa m\u00f6g\u00e9",
-    "Delete column": "Oszlop t\u00f6rl\u00e9se"
+    "Delete column": "Oszlop t\u00f6rl\u00e9se",
+    "Uploading image": "Felt\u00f6lt\u00e9s k\u00e9p",
+    "Upload File": "F\u00e1jl felt\u00f6lt\u00e9se",
+    "Drop File": "Csepp f\u00e1jl",
+    "Clear formatting": "Form\u00e1z\u00e1s elt\u00e1vol\u00edt\u00e1sa"
   },
   direction: "ltr"
 };

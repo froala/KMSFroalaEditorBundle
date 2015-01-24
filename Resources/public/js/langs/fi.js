@@ -1,6 +1,7 @@
 /*!
- * froala_editor v1.2.3 (http://editor.froala.com)
- * Copyright 2014-2014 Froala
+ * froala_editor v1.2.5 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
  */
 
 /**
@@ -51,19 +52,19 @@ $.Editable.LANGS['fi'] = {
     "Replace Image": "Vaihda kuva",
     "Remove Image": "Poista kuva",
     "Title": "Otsikko",
-    "Drop image": "Pudottaa kuva",
+    "Drop image": "Pudota kuva",
     "or click": "tai napsauta",
     "or": "tai",
     "Enter URL": "Anna URL",
-    "Please wait!": "Olkaa hyv\u00e4 odota!",
+    "Please wait!": "Odota, ole hyv\u00e4!",
     "Are you sure? Image will be deleted.": "Oletko varma? Kuva poistetaan.",
     "UNLINK": "Poista linkki",
     "Open in new tab": "Avaa uudessa v\u00e4lilehdess\u00e4",
     "Type something": "Kirjoita jotain",
     "Cancel": "Peruuta",
     "OK": "Ok",
-    "Manage images": "Hallita kuvia",
-    "Delete": "Poistaa",
+    "Manage images": "Hallitse kuvia",
+    "Delete": "Poista",
     "Font Family": "Fontti",
     "Insert Horizontal Line": "Lis\u00e4\u00e4 vaakasuora viiva",
     "Table": "Taulukko",
@@ -83,7 +84,11 @@ $.Editable.LANGS['fi'] = {
     "Delete row": "Poista rivi",
     "Insert column before": "Lis\u00e4\u00e4 sarake ennen",
     "Insert column after": "Lis\u00e4\u00e4 sarake j\u00e4lkeen",
-    "Delete column": "Poista sarake"
+    "Delete column": "Poista sarake",
+    "Uploading image": "Lataaminen kuva",
+    "Upload File": "Lataa tiedosto",
+    "Drop File": "Pudota tiedosto",
+    "Clear formatting": "Poista muotoilu"
   },
   direction: "ltr"
 };
