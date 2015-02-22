@@ -2,7 +2,6 @@
  
 namespace KMS\FroalaEditorBundle\Service;
 
-use KMS\EngineBundle\Utility\UDebug;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;

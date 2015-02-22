@@ -4,7 +4,6 @@ namespace KMS\FroalaEditorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use KMS\EngineBundle\Utility\UDebug;
 
 /**
  * Images controller.
