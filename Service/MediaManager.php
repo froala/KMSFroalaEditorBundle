@@ -5,7 +5,6 @@ namespace KMS\FroalaEditorBundle\Service;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use KMS\EngineBundle\Utility\UDebug;
 
 /**
  * Media manager.
@@ -40,10 +39,6 @@ class MediaManager
         $folder = $this->getPhysicalFolder( $p_rootDir, $p_folder );
         $response = new JsonResponse();
         //------------------------- DECLARE ---------------------------//
-        
-        UDebug::log( "root dir : "  . $p_rootDir );
-        UDebug::log( "base path : " . $p_basePath);
-        UDebug::log( "folder : "    . $p_folder );
         
         if( $p_file == null )
         {
