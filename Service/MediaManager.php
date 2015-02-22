@@ -74,10 +74,8 @@ class MediaManager
             $name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
 
             // Save file in the folder.
-            UDebug::log( "move to folder : " . $folder );
             $file->move( $folder, $name );
 
-            UDebug::log( "link : " . $p_basePath . $p_folder . '/' . $name );
             $response->setData(  array( "link" => $p_basePath . $p_folder . '/' . $name ) );
             return $response;
         }
