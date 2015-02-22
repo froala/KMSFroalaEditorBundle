@@ -5,6 +5,7 @@ namespace KMS\FroalaEditorBundle\Service;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use KMS\EngineBundle\Utility\UDebug;
 
 /**
  * Media manager.
@@ -36,9 +37,13 @@ class MediaManager
     public function uploadImage( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder )
     {
         $arrExtension = array( "gif", "jpeg", "jpg", "png" );
-        $folder = $this->getPhysicalFolder( $p_rootDir, $p_basePath, $p_folder );
+        $folder = $this->getPhysicalFolder( $p_rootDir, $p_folder );
         $response = new JsonResponse();
         //------------------------- DECLARE ---------------------------//
+        
+        UDebug::log( "root dir : "  . $p_rootDir );
+        UDebug::log( "base path : " . $p_basePath);
+        UDebug::log( "folder : "    . $p_folder );
         
         if( $p_file == null )
         {
@@ -74,8 +79,10 @@ class MediaManager
             $name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
 
             // Save file in the folder.
+            UDebug::log( "move to folder : " . $folder );
             $file->move( $folder, $name );
 
+            UDebug::log( "link : " . $p_basePath . $p_folder . '/' . $name );
             $response->setData(  array( "link" => $p_basePath . $p_folder . '/' . $name ) );
             return $response;
         }
@@ -89,7 +96,7 @@ class MediaManager
      */
     public function deleteImage( $p_imageSrc, $p_rootDir, $p_basePath, $p_folder )
     {
-        $folder = $this->getPhysicalFolder( $p_rootDir, $p_basePath, $p_folder );
+        $folder = $this->getPhysicalFolder( $p_rootDir, $p_folder );
         $arrExploded = explode( '/', $p_imageSrc );
         //------------------------- DECLARE ---------------------------//
         
@@ -101,10 +108,13 @@ class MediaManager
     //--------------------------- PRIVATE -------------------------//
     //-------------------------------------------------------------//
     
-    private function getPhysicalFolder( $p_rootDir, $p_basePath, $p_folder )
+    /**
+     * Obtain the physical folder.
+     */
+    private function getPhysicalFolder( $p_rootDir, $p_folder )
     {
         //------------------------- DECLARE ---------------------------//
         
-        return $p_rootDir . "/../.." . $p_basePath . $p_folder;
+        return $p_rootDir . "/../web" . $p_folder;
     }
 }
