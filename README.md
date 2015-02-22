@@ -4,10 +4,12 @@
 
 [![knpbundles.com](http://knpbundles.com/samarhxc/KMSFroalaEditorBundle/badge)](http://knpbundles.com/samarhxc/KMSFroalaEditorBundle)
 
-###Licence
+##Licence
 
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
 For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
+
+##Quick installation guide
 
 ###Step 1 : Add KMSFroalaEditorBundle to your composer.json
 
@@ -75,11 +77,11 @@ All configuration items can be overridden:
 ``` php
 $builder->add( "yourField", "froala", array(
     "language" => "fr",
-    "inlineMode" => true, 
-    "usePluginCharCounter" => false, 
-    "usePlugin<PluginNameInConfiguration>" => false,
+    "inlineMode" => true
 ) );
 ```
+
+##More configuration
 
 ###Plugins
 
