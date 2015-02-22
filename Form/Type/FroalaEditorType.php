@@ -18,41 +18,41 @@ class FroalaEditorType extends AbstractType
     //-------------------------------------------------------------//
 	//--------------------------- MEMBERS -------------------------//
 	//-------------------------------------------------------------//
-
+	
     /** The container. */
     private $m_container;
-
+	
 	//-------------------------------------------------------------//
 	//-------------------------- CONSTRUCTOR ----------------------//
 	//-------------------------------------------------------------//
-
+	
     public function __construct( ContainerInterface $p_container )
     {
         //------------------------- DECLARE ---------------------------//
-
+        
         $this->m_container = $p_container;
     }
-
+    
 	//-------------------------------------------------------------//
 	//--------------------------- METHODS -------------------------//
 	//-------------------------------------------------------------//
-
+	
     //-------------------------------------------------------------//
     //--------------------------- OVERRIDE ------------------------//
     //-------------------------------------------------------------//
-
+    
     /**
      * {@inheritdoc}
      */
     public function buildForm( FormBuilderInterface $p_builder, array $p_options )
     {
         //------------------------- DECLARE ---------------------------//
-
+        
         // Config.
         $p_builder->setAttribute( "basePath",               $p_options[ "basePath" ] );
         $p_builder->setAttribute( "language",               $p_options[ "language" ] );
         $p_builder->setAttribute( "inlineMode",             $p_options[ "inlineMode" ] );
-
+        
         // Plugins.
         $p_builder->setAttribute( "usePluginBlockStyles",   $p_options[ "usePluginBlockStyles" ] );
         $p_builder->setAttribute( "usePluginColors",        $p_options[ "usePluginColors" ] );
@@ -60,13 +60,14 @@ class FroalaEditorType extends AbstractType
         $p_builder->setAttribute( "usePluginFileUpload",    $p_options[ "usePluginFileUpload" ] );
         $p_builder->setAttribute( "usePluginFontFamily",    $p_options[ "usePluginFontFamily" ] );
         $p_builder->setAttribute( "usePluginFontSize",      $p_options[ "usePluginFontSize" ] );
-        $p_builder->setAttribute( "usePluginFullscreen",    $p_options[ "usePluginFullscreen" ] );
-        $p_builder->setAttribute( "usePluginInlineStyles",  $p_options[ "usePluginInlineStyles" ] );
         $p_builder->setAttribute( "usePluginLists",         $p_options[ "usePluginLists" ] );
         $p_builder->setAttribute( "usePluginMediaManager",  $p_options[ "usePluginMediaManager" ] );
         $p_builder->setAttribute( "usePluginTable",         $p_options[ "usePluginTable" ] );
-        $p_builder->setAttribute( "usePluginUrls",          $p_options[ "usePluginUrls" ] );
         $p_builder->setAttribute( "usePluginVideo",         $p_options[ "usePluginVideo" ] );
+        
+        // Image upload.
+        $p_builder->setAttribute( "imageUploadRoute",       $p_options[ "imageUploadRoute" ] );
+        $p_builder->setAttribute( "imageUploadFolder",      $p_options[ "imageUploadFolder" ] );
     }
 
     /**
@@ -75,12 +76,12 @@ class FroalaEditorType extends AbstractType
     public function buildView( FormView $p_view, FormInterface $p_form, array $p_options )
     {
         //------------------------- DECLARE ---------------------------//
-
+     
         // Config.
         $p_view->vars[ "basePath" ]                     = $p_options[ "basePath" ];
         $p_view->vars[ "language" ]                     = $p_options[ "language" ];
         $p_view->vars[ "inlineMode" ]                   = $p_options[ "inlineMode" ];
-
+        
         // Plugins.
         $p_view->vars[ "usePluginBlockStyles" ]         = $p_options[ "usePluginBlockStyles" ];
         $p_view->vars[ "usePluginColors" ]              = $p_options[ "usePluginColors" ];
@@ -88,13 +89,14 @@ class FroalaEditorType extends AbstractType
         $p_view->vars[ "usePluginFileUpload" ]          = $p_options[ "usePluginFileUpload" ];
         $p_view->vars[ "usePluginFontFamily" ]          = $p_options[ "usePluginFontFamily" ];
         $p_view->vars[ "usePluginFontSize" ]            = $p_options[ "usePluginFontSize" ];
-        $p_view->vars[ "usePluginFullscreen" ]          = $p_options[ "usePluginFullscreen" ];
-        $p_view->vars[ "usePluginInlineStyle" ]         = $p_options[ "usePluginInlineStyle" ];
         $p_view->vars[ "usePluginLists" ]               = $p_options[ "usePluginLists" ];
         $p_view->vars[ "usePluginMediaManager" ]        = $p_options[ "usePluginMediaManager" ];
         $p_view->vars[ "usePluginTable" ]               = $p_options[ "usePluginTable" ];
-        $p_view->vars[ "usePluginUrls" ]                = $p_options[ "usePluginUrls" ];
         $p_view->vars[ "usePluginVideo" ]               = $p_options[ "usePluginVideo" ];
+        
+        // Image upload.
+        $p_view->vars[ "imageUploadRoute" ]             = $p_options[ "imageUploadRoute" ];
+        $p_view->vars[ "imageUploadFolder" ]            = $p_options[ "imageUploadFolder" ];
     }
 
     /**
@@ -103,26 +105,29 @@ class FroalaEditorType extends AbstractType
     public function setDefaultOptions( OptionsResolverInterface $p_resolver )
     {
         //------------------------- DECLARE ---------------------------//
-
+        
         $p_resolver
             ->setDefaults( array(
+                    // Config.
                     "basePath"                  => $this->m_container->getParameter( "kms_froala_editor.basePath" ),
                     "language"                  => $this->m_container->getParameter( "kms_froala_editor.language" ),
                     "inlineMode"                => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
-
+                    
+                    // Plugins.
                     "usePluginBlockStyles"      => $this->m_container->getParameter( "kms_froala_editor.plugins.blockStyles" ),
                     "usePluginColors"           => $this->m_container->getParameter( "kms_froala_editor.plugins.colors" ),
                     "usePluginCharCounter"      => $this->m_container->getParameter( "kms_froala_editor.plugins.charCounter" ),
                     "usePluginFileUpload"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fileUpload" ),
                     "usePluginFontFamily"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fontFamily" ),
                     "usePluginFontSize"         => $this->m_container->getParameter( "kms_froala_editor.plugins.fontSize" ),
-                    "usePluginFullscreen"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fullscreen" ),
-                    "usePluginInlineStyle"      => $this->m_container->getParameter( "kms_froala_editor.plugins.inlineStyle" ),
                     "usePluginLists"            => $this->m_container->getParameter( "kms_froala_editor.plugins.lists" ),
                     "usePluginMediaManager"     => $this->m_container->getParameter( "kms_froala_editor.plugins.mediaManager" ),
                     "usePluginTable"            => $this->m_container->getParameter( "kms_froala_editor.plugins.table" ),
-                    "usePluginUrls"            => $this->m_container->getParameter( "kms_froala_editor.plugins.urls" ),
-                    "usePluginVideo"            => $this->m_container->getParameter( "kms_froala_editor.plugins.video" )
+                    "usePluginVideo"            => $this->m_container->getParameter( "kms_froala_editor.plugins.video" ),
+                    
+                    // Image upload.
+                    "imageUploadRoute"          => $this->m_container->getParameter( "kms_froala_editor.imageUpload.route" ),
+                    "imageUploadFolder"         => $this->m_container->getParameter( "kms_froala_editor.imageUpload.folder" ),
             ))
             ->addAllowedTypes( array(
                     "inlineMode"    => "bool"
@@ -138,14 +143,14 @@ class FroalaEditorType extends AbstractType
 
         return "textarea";
     }
-
+    
     /**
      * {@inheritdoc}
      */
     public function getName()
     {
         //------------------------- DECLARE ---------------------------//
-
+        
         return "froala";
     }
 }

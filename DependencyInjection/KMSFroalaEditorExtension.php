@@ -44,12 +44,14 @@ class KMSFroalaEditorExtension extends Extension
         //------------------------- DECLARE ---------------------------//
     
         $p_config[ "basePath" ] = ltrim( $p_config[ "basePath" ], '/' );
-        $p_container->setParameter( "kms_froala_editor.basePath",   $p_config[ "basePath" ] );
-        $p_container->setParameter( "kms_froala_editor.language",   $p_config[ "language" ] );
-        $p_container->setParameter( "kms_froala_editor.inlineMode", $p_config[ "inlineMode" ] );
+        $p_container->setParameter( "kms_froala_editor.basePath",           $p_config[ "basePath" ] );
+        $p_container->setParameter( "kms_froala_editor.language",           $p_config[ "language" ] );
+        $p_container->setParameter( "kms_froala_editor.inlineMode",         $p_config[ "inlineMode" ] );
         
         // Load plugins.
         $this->loadPlugins( $p_container, $p_config );
+        
+        $this->loadImageUpload( $p_container, $p_config );
     }
     
     /**
@@ -71,6 +73,19 @@ class KMSFroalaEditorExtension extends Extension
         $p_container->setParameter( "kms_froala_editor.plugins.mediaManager",   $pluginsNode[ "mediaManager" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.table",          $pluginsNode[ "table" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.video",          $pluginsNode[ "video" ] );
+    }
+    
+    /**
+     * Load plugins.
+     */
+    private function loadImageUpload( ContainerBuilder $p_container, $p_config )
+    {
+        //------------------------- DECLARE ---------------------------//
+    
+        $imageUploadNode = $p_config[ "imageUpload" ];
+        
+        $p_container->setParameter( "kms_froala_editor.imageUpload.route",  $imageUploadNode[ "route" ] );
+        $p_container->setParameter( "kms_froala_editor.imageUpload.folder", $imageUploadNode[ "folder" ] );
     }
     
     //-------------------------------------------------------------//

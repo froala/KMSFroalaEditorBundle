@@ -1,0 +1,6 @@
+# Image upload
+kms_froala_editor_upload_image:
+    pattern: /upload_image
+    defaults: { _controller: KMSFroalaEditorBundle:Image:upload }
+    options:
+        expose: true

@@ -96,6 +96,19 @@ class Configuration implements ConfigurationInterface
                     ->info( "Enable/disable inline mode." )
                 ->end()
                 
+                // Media manager.
+                ->arrayNode( "imageUpload" )
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode( "route" )
+                            ->defaultValue( "kms_froala_editor_upload_image" )
+                            ->info( "Image upload route." )
+                        ->end()
+                        ->scalarNode( "folder" )
+                            ->defaultValue( "/upload" )
+                            ->info( "Image upload directory in the web folder ." )
+                        ->end()
+                    ->end()
             ->end();
         
         return $treeBuilder;

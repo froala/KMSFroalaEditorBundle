@@ -12,3 +12,7 @@ services:
         class: "KMS\FroalaEditorBundle\Twig\FroalaEditorExtension"
         tags:
             - { name: "twig.extension" }
+            
+# Media manager.
+    kms_froala_editor.media_manager:
+        class: "KMS\FroalaEditorBundle\Service\MediaManager"
