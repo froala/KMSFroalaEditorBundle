@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Images controller.
+ * Media controller.
  */
 class MediaController extends Controller
 {
@@ -20,16 +20,34 @@ class MediaController extends Controller
      */
     public function uploadImageAction()
     {
-        $request = $this->get( "request" );
-        $mediaManager = $this->get( "kms_froala_editor.media_manager" );
-        $folder = $request->request->get( "folder" );
+        $request        = $this->get( "request" );
+        $mediaManager   = $this->get( "kms_froala_editor.media_manager" );
+        $folder         = $request->request->get( "folder" );
+        $rootDir        = $this->get( "kernel" )->getRootDir();
+        $basePath       = $request->getBasePath();
         //------------------------- DECLARE ---------------------------//
         
 //         if( $request->isXmlHttpRequest() == true )
 //         {
-            return $mediaManager->uploadImage( $request->files, $this->get( "kernel" )->getRootDir(), $request->getBasePath(), $folder );
+            return $mediaManager->uploadImage( $request->files, $rootDir, $basePath, $folder );
             
 //         }
+    }
+    
+    /**
+     * Delete an image.
+     */
+    public function deleteImageAction()
+    {
+        $request        = $this->get( "request" );
+        $mediaManager   = $this->get( "kms_froala_editor.media_manager" );
+        $imageSrc       = $request->request->get( "src" );
+        $folder         = $request->request->get( "folder" );
+        $rootDir        = $this->get( "kernel" )->getRootDir();
+        $basePath       = $request->getBasePath();
+        //------------------------- DECLARE ---------------------------//
+        
+        $mediaManager->deleteImage( $imageSrc, $rootDir, $basePath, $folder );
     }
     
     //-------------------------------------------------------------//

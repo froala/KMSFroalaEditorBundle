@@ -67,6 +67,7 @@ class FroalaEditorType extends AbstractType
         
         // Image upload.
         $p_builder->setAttribute( "imageUploadRoute",       $p_options[ "imageUploadRoute" ] );
+        $p_builder->setAttribute( "imageUploadRouteDelete", $p_options[ "imageUploadRouteDelete" ] );
         $p_builder->setAttribute( "imageUploadFolder",      $p_options[ "imageUploadFolder" ] );
     }
 
@@ -96,6 +97,7 @@ class FroalaEditorType extends AbstractType
         
         // Image upload.
         $p_view->vars[ "imageUploadRoute" ]             = $p_options[ "imageUploadRoute" ];
+        $p_view->vars[ "imageUploadRouteDelete" ]       = $p_options[ "imageUploadRouteDelete" ];
         $p_view->vars[ "imageUploadFolder" ]            = $p_options[ "imageUploadFolder" ];
     }
 
@@ -127,6 +129,7 @@ class FroalaEditorType extends AbstractType
                     
                     // Image upload.
                     "imageUploadRoute"          => $this->m_container->getParameter( "kms_froala_editor.imageUpload.route" ),
+                    "imageUploadRouteDelete"    => $this->m_container->getParameter( "kms_froala_editor.imageUpload.routeDelete" ),
                     "imageUploadFolder"         => $this->m_container->getParameter( "kms_froala_editor.imageUpload.folder" ),
             ))
             ->addAllowedTypes( array(

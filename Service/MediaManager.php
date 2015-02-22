@@ -5,6 +5,7 @@ namespace KMS\FroalaEditorBundle\Service;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use KMS\EngineBundle\Utility\UDebug;
 /**
  * Media manager.
  */
@@ -35,7 +36,7 @@ class MediaManager
     public function uploadImage( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder )
     {
         $arrExtension = array( "gif", "jpeg", "jpg", "png" );
-        $folder = $p_rootDir . "/../.." . $p_basePath . $p_folder;
+        $folder = $this->getPhysicalFolder( $p_rootDir, $p_basePath, $p_folder );
         $response = new JsonResponse();
         //------------------------- DECLARE ---------------------------//
         
@@ -81,10 +82,29 @@ class MediaManager
         
         $response->setData(  array( "error" =>  "File not supported." ) );
         return $response;
-    }    
+    }   
+
+    /**
+     * Delete an image.
+     */
+    public function deleteImage( $p_imageSrc, $p_rootDir, $p_basePath, $p_folder )
+    {
+        $folder = $this->getPhysicalFolder( $p_rootDir, $p_basePath, $p_folder );
+        $arrExploded = explode( '/', $p_imageSrc );
+        //------------------------- DECLARE ---------------------------//
+        
+        $fileName = $arrExploded[ count( $arrExploded ) - 1 ];
+        unlink( $folder . '/' . $fileName );        
+    }
     
     //-------------------------------------------------------------//
     //--------------------------- PRIVATE -------------------------//
     //-------------------------------------------------------------//
     
+    private function getPhysicalFolder( $p_rootDir, $p_basePath, $p_folder )
+    {
+        //------------------------- DECLARE ---------------------------//
+        
+        return $p_rootDir . "/../.." . $p_basePath . $p_folder;
+    }
 }

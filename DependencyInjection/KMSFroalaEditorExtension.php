@@ -85,6 +85,7 @@ class KMSFroalaEditorExtension extends Extension
         $imageUploadNode = $p_config[ "imageUpload" ];
         
         $p_container->setParameter( "kms_froala_editor.imageUpload.route",  $imageUploadNode[ "route" ] );
+        $p_container->setParameter( "kms_froala_editor.imageUpload.routeDelete", $imageUploadNode[ "routeDelete" ] );
         $p_container->setParameter( "kms_froala_editor.imageUpload.folder", $imageUploadNode[ "folder" ] );
     }
     

@@ -3,6 +3,7 @@
     <textarea {{ block( "widget_attributes" ) }} >{{ value }}</textarea>
 
     <!-- Include CSS files. -->
+    <!-- TODO : Include just on time if multiple instance in the same page. -->
     <script type="text/javascript">
         function loadCSS( p_path )
         {
@@ -70,13 +71,23 @@
                 language: "{{ language }}",
                 inlineMode : "{{ inlineMode }}",
                 imageUploadURL: "{{ path( imageUploadRoute ) }}",
+                imageDeleteURL: "{{ path( imageUploadRouteDelete ) }}",
                 imageUploadParams: { folder : "{{ imageUploadFolder }}" }
-            } )
-            .on('editable.imageError', function ( e, editor, error )
+            })
+            .on( "editable.afterRemoveImage", function ( e, editor, $img ) {
+                editor.options.imageDeleteParams = { src : $img.attr( "src" ), folder : "{{ imageUploadFolder }}" };
+                editor.deleteImage( $img );
+            })
+            .on( "editable.imageError", function ( e, editor, error )
             {
             	froalaDisplayError( "Error " + error.code + " : " + error.message );
+            })
+            .on( "editable.imageDeleteError", function ( e, editor, error )
+            {
+                // Undefined error ?
+            	// froalaDisplayError( "Error " + error.code + " : " + error.message );
             });
-        })
+        });
     </script>
     
 {% endblock %}
