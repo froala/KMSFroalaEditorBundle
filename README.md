@@ -75,6 +75,13 @@ kms_froala_editor:
         mediaManager: false
         table: false
         video: false
+    
+    # Image uploader.
+    imageUpload:
+        # Default: the uploader integrated in this bundle.
+        route: myCustomImageUploadRoute
+        # Default: /upload (in web directory).
+        folder: /myWebDirectory
 ```
 
 ###Step 5 : Add Froala to your form
@@ -92,12 +99,11 @@ $builder->add( "yourField", "froala", array(
     "language" => "fr",
     "inlineMode" => true, 
     "usePluginCharCounter" => false, 
-    "usePlugin<PluginNameInConfiguration>" => false
+    "usePlugin<PluginNameInConfiguration>" => false,
+    "imageUploadFolder" => "/myWebDirectory"
 ) );
 ```
 
 ###TODO...
-* more configurations
 * tests
-* custom file uploader
 * ... any idea ?
