@@ -60,20 +60,6 @@ kms_froala_editor:
     # The inline mode.
     # Default: false.
     inlineMode: true
-    
-    # Plugins.
-    # Default: all plugins are enabled.
-    plugins:
-        blockStyles: false
-        colors: false
-        charCounter: false
-        fileUpload: false
-        fontFamily: false
-        fontSize: false
-        lists: false
-        mediaManager: false
-        table: false
-        video: false
 ```
 
 ###Step 5 : Add Froala to your form
@@ -92,11 +78,43 @@ $builder->add( "yourField", "froala", array(
     "inlineMode" => true, 
     "usePluginCharCounter" => false, 
     "usePlugin<PluginNameInConfiguration>" => false,
-    "imageUploadFolder" => "/myWebDirectory"
 ) );
 ```
 
-###Image upload
+###Plugins
+
+All [Froala plugins](https://editor.froala.com/plugins) are enabled, but if you don't need one of them, you can disable it in the configuration, full list provided bellow:
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+
+    # Plugins.
+    # Default: all plugins are enabled.
+    plugins:
+        blockStyles: false
+        colors: false
+        charCounter: false
+        fileUpload: false
+        fontFamily: false
+        fontSize: false
+        lists: false
+        mediaManager: false
+        table: false
+        video: false
+```
+
+Plugins can be disabled for each Froala instance in the form builer too:
+
+``` php
+$builder->add( "yourField", "froala", array(
+    "usePluginCharCounter" => false, 
+    "usePlugin<PluginNameInConfiguration>" => false,
+) );
+```
+
+###Concept: Image upload
 
 This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your image on your own web server. It is enabled by default and store your images in the web/upload folder.
 
