@@ -33,11 +33,20 @@ public function registerBundles()
 }
 ```
 
-###Step 3 : Install the bundle
+###Step 3 : Import routes
+
+``` yaml
+// app/config/routing.yml
+kms_froala_editor:
+    resource: "@KMSFroalaEditor/Resources/config/routing/routing.xml"
+    prefix:   /froalaeditor
+```
+
+###Step 4 : Install the bundle
 
 `$ composer update`
 
-###Step 4 : Configure the bundle (optional)
+###Step 5 : Configure the bundle (optional)
 
 ``` yaml
 // app/config.yml
@@ -62,7 +71,7 @@ kms_froala_editor:
     inlineMode: true
 ```
 
-###Step 5 : Add Froala to your form
+###Step 6 : Add Froala to your form
 
 Just add a froala type in your form:
 
