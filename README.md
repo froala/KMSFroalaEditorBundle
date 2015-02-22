@@ -1,6 +1,6 @@
 #KMSFroalaEditorBundle
 
-[![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/samarhxc/KMSFroalaEditorBundle)
+[![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
 ##Licence
 
