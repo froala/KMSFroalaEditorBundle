@@ -9,7 +9,6 @@
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
 For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
 
-
 ###Step 1 : Add KMSFroalaEditorBundle to your composer.json
 
 ```
@@ -75,13 +74,6 @@ kms_froala_editor:
         mediaManager: false
         table: false
         video: false
-    
-    # Image uploader.
-    imageUpload:
-        # Default: the uploader integrated in this bundle.
-        route: myCustomImageUploadRoute
-        # Default: /upload (in web directory).
-        folder: /myWebDirectory
 ```
 
 ###Step 5 : Add Froala to your form
@@ -100,6 +92,33 @@ $builder->add( "yourField", "froala", array(
     "inlineMode" => true, 
     "usePluginCharCounter" => false, 
     "usePlugin<PluginNameInConfiguration>" => false,
+    "imageUploadFolder" => "/myWebDirectory"
+) );
+```
+
+###Image upload
+
+This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your image on your own web server. It is enabled by default and store your images in the web/upload folder.
+
+If you want to use your own uploader, or change the upload folder, you can change the configuration:
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # Image uploader.
+    imageUpload:
+        # Default: the uploader integrated in this bundle.
+        route: myCustomImageUploadRoute
+        # Default: /upload (in web directory).
+        folder: /myWebDirectory
+```
+
+You can also provide those data in the form builder:
+
+``` php
+$builder->add( "yourField", "froala", array(
     "imageUploadFolder" => "/myWebDirectory"
 ) );
 ```
