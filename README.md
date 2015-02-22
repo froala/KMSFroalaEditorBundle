@@ -129,6 +129,8 @@ kms_froala_editor:
     imageUpload:
         # Default: the uploader integrated in this bundle.
         route: myCustomImageUploadRoute
+        # Default: the uploader integrated in this bundle.
+        routeDelete: myCustomImageDeleteRoute
         # Default: /upload (in web directory).
         folder: /myWebDirectory
 ```
