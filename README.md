@@ -118,9 +118,9 @@ $builder->add( "yourField", "froala", array(
 
 ###Concept: Image upload
 
-This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your image on your own web server. It is enabled by default and store your images in the web/upload folder.
+This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server. Files are uploaded in the web/upload folder.
 
-If you want to use your own uploader, or change the upload folder, you can change the configuration:
+If you want to use your own uploader, or change the upload folder, you can modify the configuration:
 
 ``` yaml
 // app/config.yml
