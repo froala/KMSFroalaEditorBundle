@@ -14,7 +14,7 @@ For a commercial use, please read the [Froala license agreement](https://editor.
 ```
 {
     "require": {
-       "kms/froala-editor-bundle": "@dev-master"
+       "kms/froala-editor-bundle": "dev-master"
     }
 }
 ```
