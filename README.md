@@ -143,6 +143,9 @@ $builder->add( "yourField", "froala", array(
 ) );
 ```
 
-###TODO...
+###TODO
+* image deletion from server
+* auto save
+* file upload
 * tests
 * ... any idea ?
