@@ -38,7 +38,7 @@ public function registerBundles()
 ``` yaml
 // app/config/routing.yml
 kms_froala_editor:
-    resource: "@KMSFroalaEditor/Resources/config/routing/routing.xml"
+    resource: "@KMSFroalaEditorBundle/Resources/config/routing/routing.xml"
     prefix:   /froalaeditor
 ```
 
