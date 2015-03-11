@@ -154,6 +154,6 @@ $builder->add( "yourField", "froala", array(
 
 ###TODO
 * auto save
+* media manager
 * file upload
-* tests
 * ... any idea ?
