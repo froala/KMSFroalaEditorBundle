@@ -5,6 +5,7 @@ namespace KMS\FroalaEditorBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Media controller.
@@ -45,10 +46,26 @@ class MediaController extends Controller
         $imageSrc       = $request->request->get( "src" );
         $folder         = $request->request->get( "folder" );
         $rootDir        = $this->get( "kernel" )->getRootDir();
-        $basePath       = $request->getBaseUrl();
         //------------------------- DECLARE ---------------------------//
         
-        $mediaManager->deleteImage( $imageSrc, $rootDir, $basePath, $folder );
+        $mediaManager->deleteImage( $imageSrc, $rootDir, $folder );
+        
+        return new Response();
+    }
+    
+    /**
+     * Load images.
+     */
+    public function loadImagesAction()
+    {
+        $request        = $this->get( "request" );
+        $mediaManager   = $this->get( "kms_froala_editor.media_manager" );
+        $folder         = $request->request->get( "folder" );
+        $rootDir        = $this->get( "kernel" )->getRootDir();
+        $basePath       = $request->getBasePath();
+        //------------------------- DECLARE ---------------------------//
+        
+        return $mediaManager->loadImages( $rootDir, $basePath, $folder );
     }
     
     //-------------------------------------------------------------//

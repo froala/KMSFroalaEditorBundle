@@ -5,6 +5,7 @@
     <!-- Include CSS files. -->
     <!-- TODO : Include just on time if multiple instance in the same page. -->
     <script type="text/javascript">
+    // TODO: check to include only one time if multiple forms in the same page.
         function loadCSS( p_path )
         {
             var $ = document;
@@ -67,12 +68,16 @@
             alert( p_message );
         }
         $( function() {
-            $( "#{{ id }}" ).editable( {
-                language: "{{ language }}",
+            $( "#{{ id }}" ).editable({
+                language : "{{ language }}",
                 inlineMode : "{{ inlineMode }}",
-                imageUploadURL: "{{ path( imageUploadRoute ) }}",
-                imageDeleteURL: "{{ path( imageUploadRouteDelete ) }}",
-                imageUploadParams: { folder : "{{ imageUploadFolder }}" }
+                imageUploadURL : "{{ path( imageUploadRoute ) }}",
+                imageUploadParams : { folder : "{{ imageUploadFolder }}" },
+                imageDeleteURL : "{{ path( imageUploadRouteDelete ) }}",
+                {% if usePluginMediaManager == true %}
+                imagesLoadURL : "{{ path( mediaManagerRoute ) }}",
+                imagesLoadParams : { folder : "{{ imageUploadFolder }}" },
+                {% endif %}
             })
             .on( "editable.afterRemoveImage", function ( e, editor, $img ) {
                 editor.options.imageDeleteParams = { src : $img.attr( "src" ), folder : "{{ imageUploadFolder }}" };
@@ -84,8 +89,19 @@
             })
             .on( "editable.imageDeleteError", function ( e, editor, error )
             {
-                // Undefined error ?
-            	// froalaDisplayError( "Error " + error.code + " : " + error.message );
+            	froalaDisplayError( "Error " + error.code + " : " + error.message );
+            })
+            .on( "editable.imagesLoadError", function ( e, editor, error )
+            {
+            	froalaDisplayError( "Error " + error.code + " : " + error.message );
+            })
+            .on( "editable.imagesLoaded", function ( e, editor, data )
+            {
+            	froalaDisplayError( "Error " + error.code + " : " + error.message );
+            })
+            .on( "editable.saveError", function (e, editor, error)
+            {
+            	froalaDisplayError( "Error " + error.code + " : " + error.message );
             });
         });
     </script>

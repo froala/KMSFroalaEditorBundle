@@ -5,6 +5,7 @@ namespace KMS\FroalaEditorBundle\Service;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Media manager.
@@ -87,7 +88,7 @@ class MediaManager
     /**
      * Delete an image.
      */
-    public function deleteImage( $p_imageSrc, $p_rootDir, $p_basePath, $p_folder )
+    public function deleteImage( $p_imageSrc, $p_rootDir, $p_folder )
     {
         $folder = $this->getPhysicalFolder( $p_rootDir, $p_folder );
         $arrExploded = explode( '/', $p_imageSrc );
@@ -95,6 +96,39 @@ class MediaManager
         
         $fileName = $arrExploded[ count( $arrExploded ) - 1 ];
         unlink( $folder . '/' . $fileName );        
+    }
+    
+    /**
+     * Load images.
+     */
+    public function loadImages( $p_rootDir, $p_basePath, $p_folder )
+    {
+        $response = new JsonResponse();
+        $arrImage = array();
+        $folder = $this->getPhysicalFolder( $p_rootDir, $p_folder );
+        $finder = new Finder();
+        //------------------------- DECLARE ---------------------------//
+        
+        $arrTypes = array(
+            "image/gif",
+            "image/jpeg",
+            "image/pjpeg",
+            "image/jpeg",
+            "image/pjpeg",
+            "image/png",
+            "image/x-png"
+        );
+
+        $finder->files()->in( $folder );
+        
+        foreach( $finder as $file )
+        {
+            $arrImage[] = $file->getRealPath();
+        }
+        
+        $response->setData( $arrImage );
+        
+        return $response;
     }
     
     //-------------------------------------------------------------//

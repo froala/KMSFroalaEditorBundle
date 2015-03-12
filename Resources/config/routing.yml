@@ -2,11 +2,11 @@
 kms_froala_editor_upload_image:
     pattern: /upload_image
     defaults: { _controller: KMSFroalaEditorBundle:Media:uploadImage }
-    options:
-        expose: true
 
 kms_froala_editor_delete_image:
     pattern: /delete_image
     defaults: { _controller: KMSFroalaEditorBundle:Media:deleteImage }
-    options:
-        expose: true
+
+kms_froala_editor_load_images:
+    pattern: /load_images
+    defaults: { _controller: KMSFroalaEditorBundle:Media:loadImages }

@@ -69,6 +69,14 @@ class FroalaEditorType extends AbstractType
         $p_builder->setAttribute( "imageUploadRoute",       $p_options[ "imageUploadRoute" ] );
         $p_builder->setAttribute( "imageUploadRouteDelete", $p_options[ "imageUploadRouteDelete" ] );
         $p_builder->setAttribute( "imageUploadFolder",      $p_options[ "imageUploadFolder" ] );
+        
+        // Media manager.
+        $p_builder->setAttribute( "mediaManagerRoute",      $p_options[ "mediaManagerRoute" ] );
+        
+        // Autosave.
+        $p_builder->setAttribute( "autosaveActive",         $p_options[ "autosaveActive" ] );
+        $p_builder->setAttribute( "autosaveRoute",          $p_options[ "autosaveRoute" ] );
+        $p_builder->setAttribute( "autosaveRequestType",    $p_options[ "autosaveRequestType" ] );
     }
 
     /**
@@ -99,6 +107,14 @@ class FroalaEditorType extends AbstractType
         $p_view->vars[ "imageUploadRoute" ]             = $p_options[ "imageUploadRoute" ];
         $p_view->vars[ "imageUploadRouteDelete" ]       = $p_options[ "imageUploadRouteDelete" ];
         $p_view->vars[ "imageUploadFolder" ]            = $p_options[ "imageUploadFolder" ];
+        
+        // Media manager.
+        $p_view->vars[ "mediaManagerRoute" ]            = $p_options[ "mediaManagerRoute" ];
+        
+        // Autosave.
+        $p_view->vars[ "autosaveActive" ]               = $p_options[ "autosaveActive" ];
+        $p_view->vars[ "autosaveRoute" ]                = $p_options[ "autosaveRoute" ];
+        $p_view->vars[ "autosaveRequestType" ]          = $p_options[ "autosaveRequestType" ];
     }
 
     /**
@@ -131,9 +147,18 @@ class FroalaEditorType extends AbstractType
                     "imageUploadRoute"          => $this->m_container->getParameter( "kms_froala_editor.imageUpload.route" ),
                     "imageUploadRouteDelete"    => $this->m_container->getParameter( "kms_froala_editor.imageUpload.routeDelete" ),
                     "imageUploadFolder"         => $this->m_container->getParameter( "kms_froala_editor.imageUpload.folder" ),
+                    
+                    // Media manager.
+                    "mediaManagerRoute"         => $this->m_container->getParameter( "kms_froala_editor.mediaManager.route" ),
+
+                    // Autosave.
+                    "autosaveActive"            => $this->m_container->getParameter( "kms_froala_editor.autosave.active" ),
+                    "autosaveRoute"             => $this->m_container->getParameter( "kms_froala_editor.autosave.route" ),
+                    "autosaveRequestType"       => $this->m_container->getParameter( "kms_froala_editor.autosave.requestType" ),
             ))
             ->addAllowedTypes( array(
-                    "inlineMode"    => "bool"
+                    "inlineMode"        => "bool", 
+                    "autosaveActive"    => "bool"
             ));
     }
 

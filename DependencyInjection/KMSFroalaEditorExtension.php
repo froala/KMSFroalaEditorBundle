@@ -51,7 +51,14 @@ class KMSFroalaEditorExtension extends Extension
         // Load plugins.
         $this->loadPlugins( $p_container, $p_config );
         
+        // Load image upload.
         $this->loadImageUpload( $p_container, $p_config );
+        
+        // Load media manager.
+        $this->loadMediaManager( $p_container, $p_config );
+        
+        // Load auto save.
+        $this->loadAutoSave( $p_container, $p_config );
     }
     
     /**
@@ -76,7 +83,7 @@ class KMSFroalaEditorExtension extends Extension
     }
     
     /**
-     * Load plugins.
+     * Load image upload.
      */
     private function loadImageUpload( ContainerBuilder $p_container, $p_config )
     {
@@ -87,6 +94,32 @@ class KMSFroalaEditorExtension extends Extension
         $p_container->setParameter( "kms_froala_editor.imageUpload.route",  $imageUploadNode[ "route" ] );
         $p_container->setParameter( "kms_froala_editor.imageUpload.routeDelete", $imageUploadNode[ "routeDelete" ] );
         $p_container->setParameter( "kms_froala_editor.imageUpload.folder", $imageUploadNode[ "folder" ] );
+    }
+    
+    /**
+     * Load media manager.
+     */
+    private function loadMediaManager( ContainerBuilder $p_container, $p_config )
+    {
+        //------------------------- DECLARE ---------------------------//
+    
+        $mediaManagerNode = $p_config[ "mediaManager" ];
+    
+        $p_container->setParameter( "kms_froala_editor.mediaManager.route",  $mediaManagerNode[ "route" ] );
+    }
+    
+    /**
+     * Load auto save.
+     */
+    private function loadAutoSave( ContainerBuilder $p_container, $p_config )
+    {
+        //------------------------- DECLARE ---------------------------//
+    
+        $autosaveNode = $p_config[ "autosave" ];
+    
+        $p_container->setParameter( "kms_froala_editor.autosave.active",  $autosaveNode[ "active" ] );
+        $p_container->setParameter( "kms_froala_editor.autosave.route", $autosaveNode[ "route" ] );
+        $p_container->setParameter( "kms_froala_editor.autosave.requestType", $autosaveNode[ "requestType" ] );
     }
     
     //-------------------------------------------------------------//
