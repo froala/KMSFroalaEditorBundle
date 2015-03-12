@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Finder\Finder;
+use KMS\EngineBundle\Utility\UDebug;
 
 /**
  * Media manager.
@@ -123,7 +124,7 @@ class MediaManager
         
         foreach( $finder as $file )
         {
-            $arrImage[] = $file->getRealPath();
+            $arrImage[] = $p_basePath . $p_folder . '/' . $file->getFilename();
         }
         
         $response->setData( $arrImage );

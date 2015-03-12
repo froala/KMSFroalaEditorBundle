@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use KMS\EngineBundle\Utility\UDebug;
 
 /**
  * Media controller.
@@ -60,7 +61,7 @@ class MediaController extends Controller
     {
         $request        = $this->get( "request" );
         $mediaManager   = $this->get( "kms_froala_editor.media_manager" );
-        $folder         = $request->request->get( "folder" );
+        $folder         = $request->query->get( "folder" );
         $rootDir        = $this->get( "kernel" )->getRootDir();
         $basePath       = $request->getBasePath();
         //------------------------- DECLARE ---------------------------//
