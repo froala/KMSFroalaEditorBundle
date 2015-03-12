@@ -74,6 +74,7 @@
                 imageUploadURL : "{{ path( imageUploadRoute ) }}",
                 imageUploadParams : { folder : "{{ imageUploadFolder }}" },
                 imageDeleteURL : "{{ path( imageUploadRouteDelete ) }}",
+                imageDeleteParams : { folder : "{{ imageUploadFolder }}" },
                 {% if usePluginMediaManager == true %}
                 imagesLoadURL : "{{ path( mediaManagerRoute ) }}",
                 imagesLoadParams : { folder : "{{ imageUploadFolder }}" },
@@ -94,10 +95,6 @@
             .on( "editable.imagesLoadError", function ( e, editor, error )
             {
             	froalaDisplayError( "Error " + error.code + " : " + error.message );
-            })
-            .on( "editable.imagesLoaded", function ( e, editor, data )
-            {
-                alert( "Working!" );
             })
             .on( "editable.saveError", function ( e, editor, error )
             {

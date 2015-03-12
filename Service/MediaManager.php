@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Finder\Finder;
-use KMS\EngineBundle\Utility\UDebug;
 
 /**
  * Media manager.
@@ -96,6 +95,7 @@ class MediaManager
         //------------------------- DECLARE ---------------------------//
         
         $fileName = $arrExploded[ count( $arrExploded ) - 1 ];
+        UDebug::log($fileName);
         unlink( $folder . '/' . $fileName );        
     }
     
