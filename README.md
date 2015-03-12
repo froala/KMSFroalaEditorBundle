@@ -125,7 +125,7 @@ $builder->add( "yourField", "froala", array(
 
 ###Concept: Image upload
 
-This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server. Files are uploaded in the web/upload folder.
+This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server. Files are uploaded in the web/upload folder by default.
 
 If you want to use your own uploader, or change the upload folder, you can modify the configuration:
 
@@ -152,8 +152,24 @@ $builder->add( "yourField", "froala", array(
 ) );
 ```
 
+###Concept: Media manager
+
+This bundle provides an integration of the [Froala media manager concept](https://editor.froala.com/concepts/media-manager) to browse all images on your own web server (in the folder configured by the image uploader, so web/upload by default).
+
+If you want to use your own file browser, you can modify the configuration:
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # Media manager.
+    mediaManager:
+        # Default: the manager integrated in this bundle.
+        route: myCustomMediaManagerRoute
+```
+
 ###TODO
 * auto save
-* media manager
 * file upload
 * ... any idea ?
