@@ -95,7 +95,6 @@ class MediaManager
         //------------------------- DECLARE ---------------------------//
         
         $fileName = $arrExploded[ count( $arrExploded ) - 1 ];
-        UDebug::log($fileName);
         unlink( $folder . '/' . $fileName );        
     }
     
@@ -110,6 +109,7 @@ class MediaManager
         $finder = new Finder();
         //------------------------- DECLARE ---------------------------//
         
+        // TODO: check that.
         $arrTypes = array(
             "image/gif",
             "image/jpeg",
