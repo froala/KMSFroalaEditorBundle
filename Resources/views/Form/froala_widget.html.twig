@@ -95,6 +95,10 @@
             {
             	froalaDisplayError( "Error " + error.code + " : " + error.message );
             })
+            .on( "editable.imagesLoaded", function ( e, editor, data )
+            {
+                alert( "Working!" );
+            })
             .on( "editable.saveError", function ( e, editor, error )
             {
             	froalaDisplayError( "Error " + error.code + " : " + error.message );
