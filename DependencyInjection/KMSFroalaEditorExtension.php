@@ -117,9 +117,30 @@ class KMSFroalaEditorExtension extends Extension
     
         $autosaveNode = $p_config[ "autosave" ];
     
-        $p_container->setParameter( "kms_froala_editor.autosave.active",  $autosaveNode[ "active" ] );
-        $p_container->setParameter( "kms_froala_editor.autosave.route", $autosaveNode[ "route" ] );
-        $p_container->setParameter( "kms_froala_editor.autosave.requestType", $autosaveNode[ "requestType" ] );
+        $p_container->setParameter( "kms_froala_editor.autosave.active"         , $autosaveNode[ "active" ] );
+        $p_container->setParameter( "kms_froala_editor.autosave.interval"       , $autosaveNode[ "interval" ] );
+        $p_container->setParameter( "kms_froala_editor.autosave.route"          , $autosaveNode[ "route" ] );
+        $p_container->setParameter( "kms_froala_editor.autosave.requestType"    , $autosaveNode[ "requestType" ] );
+        
+        if( isset( $autosaveNode[ "params" ] ) )
+        {
+            $array = $autosaveNode[ "params" ];
+        }
+        else
+        {
+            $array = array();
+        }
+        $p_container->setParameter( "kms_froala_editor.autosave.params" , $array );
+        
+        if( isset( $autosaveNode[ "routeParams" ] ) )
+        {
+            $array = $autosaveNode[ "routeParams" ];
+        }
+        else
+        {
+            $array = array();
+        }
+        $p_container->setParameter( "kms_froala_editor.autosave.routeParams" , $array );
     }
     
     //-------------------------------------------------------------//

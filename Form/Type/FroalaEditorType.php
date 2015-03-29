@@ -75,8 +75,11 @@ class FroalaEditorType extends AbstractType
         
         // Autosave.
         $p_builder->setAttribute( "autosaveActive",         $p_options[ "autosaveActive" ] );
+        $p_builder->setAttribute( "autosaveInterval",       $p_options[ "autosaveInterval" ] );
         $p_builder->setAttribute( "autosaveRoute",          $p_options[ "autosaveRoute" ] );
         $p_builder->setAttribute( "autosaveRequestType",    $p_options[ "autosaveRequestType" ] );
+        $p_builder->setAttribute( "autosaveParams",         $p_options[ "autosaveParams" ] );
+        $p_builder->setAttribute( "autosaveRouteParams",    $p_options[ "autosaveRouteParams" ] );
     }
 
     /**
@@ -113,8 +116,11 @@ class FroalaEditorType extends AbstractType
         
         // Autosave.
         $p_view->vars[ "autosaveActive" ]               = $p_options[ "autosaveActive" ];
+        $p_view->vars[ "autosaveInterval" ]             = $p_options[ "autosaveInterval" ];
         $p_view->vars[ "autosaveRoute" ]                = $p_options[ "autosaveRoute" ];
         $p_view->vars[ "autosaveRequestType" ]          = $p_options[ "autosaveRequestType" ];
+        $p_view->vars[ "autosaveParams" ]               = $p_options[ "autosaveParams" ];
+        $p_view->vars[ "autosaveRouteParams" ]          = $p_options[ "autosaveRouteParams" ];
     }
 
     /**
@@ -153,8 +159,11 @@ class FroalaEditorType extends AbstractType
 
                     // Autosave.
                     "autosaveActive"            => $this->m_container->getParameter( "kms_froala_editor.autosave.active" ),
+                    "autosaveInterval"          => $this->m_container->getParameter( "kms_froala_editor.autosave.interval" ),
                     "autosaveRoute"             => $this->m_container->getParameter( "kms_froala_editor.autosave.route" ),
+                    "autosaveRouteParams"       => array(),
                     "autosaveRequestType"       => $this->m_container->getParameter( "kms_froala_editor.autosave.requestType" ),
+                    "autosaveParams"            => array(),
             ))
             ->addAllowedTypes( array(
                     "inlineMode"        => "bool", 

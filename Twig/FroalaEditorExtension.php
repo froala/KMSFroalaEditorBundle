@@ -21,7 +21,9 @@ class FroalaEditorExtension extends \Twig_Extension
     //--------------------------- METHODS -------------------------//
     //-------------------------------------------------------------//
     
+    //
     // Better to render directly in the template for the moment.
+    //
     
     /**
      * Render the main Froala command (used to start the plugin).

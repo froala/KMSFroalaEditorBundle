@@ -17,8 +17,8 @@
             link.media = "all";
             head.appendChild( link );
         }  
-    
-        $( function() {
+
+        $( document ).ready( function() {
             loadCSS( "{{ asset( basePath ~ "css/font-awesome.min.css" ) }}" );
             loadCSS( "{{ asset( basePath ~ "css/froala_editor.min.css" ) }}" );
             loadCSS( "{{ asset( basePath ~ "css/froala_style.min.css" ) }}" );
@@ -60,25 +60,41 @@
     {% if usePluginVideo == true %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/video.min.js" ) }}"></script>
     {% endif %}
-
+    
     <!-- Initialize the editor. -->
     <script type="text/javascript">
         function froalaDisplayError( p_message )
         {
             alert( p_message );
         }
-        $( function() {
+        $( document ).ready( function() {
             $( "#{{ id }}" ).editable({
+
+                // Main configuration.
                 language : "{{ language }}",
                 inlineMode : "{{ inlineMode }}",
+
+                // Image upload.
                 imageUploadURL : "{{ path( imageUploadRoute ) }}",
                 imageUploadParams : { folder : "{{ imageUploadFolder }}" },
                 imageDeleteURL : "{{ path( imageUploadRouteDelete ) }}",
                 imageDeleteParams : { folder : "{{ imageUploadFolder }}" },
+
+                // Media manager.
                 {% if usePluginMediaManager == true %}
                 imagesLoadURL : "{{ path( mediaManagerRoute ) }}",
                 imagesLoadParams : { folder : "{{ imageUploadFolder }}" },
                 {% endif %}
+
+                // Autosave.
+                {% if autosaveActive == true %}
+                autosave : true,
+                autosaveInterval : {{ autosaveInterval }},
+                saveURL : "{{ path( autosaveRoute, autosaveRouteParams ) }}",
+                saveRequestType : "{{ autosaveRequestType }}",
+                saveParams : { {% for key, value in autosaveParams %}{{ key }} : "{{ value }}", {% endfor %} }
+                {% endif %} 
+                
             })
             .on( "editable.afterRemoveImage", function ( e, editor, $img ) {
                 editor.options.imageDeleteParams = { src : $img.attr( "src" ), folder : "{{ imageUploadFolder }}" };
@@ -93,6 +109,10 @@
             	froalaDisplayError( "Error " + error.code + " : " + error.message );
             })
             .on( "editable.imagesLoadError", function ( e, editor, error )
+            {
+            	froalaDisplayError( "Error " + error.code + " : " + error.message );
+            })
+            .on( "editable.saveError", function ( e, editor, error )
             {
             	froalaDisplayError( "Error " + error.code + " : " + error.message );
             })
