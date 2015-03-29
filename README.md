@@ -193,10 +193,10 @@ kms_froala_editor:
         route: yourOwnSaveRoute
         # The array of parameters used by Symfony to generate your route.
         # Optionnal
-        routeParams: [ id : 10 ]
+        routeParams: { id : 10 }
         # The array of parameters to send with the editor content to your server.
         # Optionnal
-        params: [ type : "demo" ]
+        params: { type : "demo" }
 ```
 
 You can also provide those data in the form builder:
