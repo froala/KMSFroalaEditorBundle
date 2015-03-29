@@ -169,7 +169,49 @@ kms_froala_editor:
         route: myCustomMediaManagerRoute
 ```
 
+###Concept: Autosave
+
+This bundle provides an integration of the [Froala autosave concept](https://editor.froala.com/concepts/autosave) to automatically request a save action on your server.
+
+Just add some configuration:
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # Auto save.
+    autosave:
+        # Default: false.
+        active: true
+        # The request call interval in millisec.
+        # Default: 10000.
+        interval: 20000
+        # Default: POST.
+        requestType: GET
+        # Default: none.
+        route: yourOwnSaveRoute
+        # The array of parameters used by Symfony to generate your route.
+        # Optionnal
+        routeParams: [ id : 10 ]
+        # The array of parameters to send with the editor content to your server.
+        # Optionnal
+        params: [ type : "demo" ]
+```
+
+You can also provide those data in the form builder:
+
+``` php
+$builder->add( "yourField", "froala", array(
+    "autosaveActive" => true,
+    "autosaveInterval" => 5000,
+    "autosaveRoute" => "my_route_autosave",
+    "autosaveRouteParams" => array( "id" => $id ),
+    "autosaveParams" => array( "type" => "demo" ),
+) );
+```
+
 ###TODO
-* auto save
+* more configuration
 * file upload
 * ... any idea ?
