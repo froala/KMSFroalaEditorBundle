@@ -71,6 +71,22 @@ kms_froala_editor:
     inlineMode: true
 ```
 
+If JQuery or Font Awesome is already included in your layout, you can disable bundle inclusion:
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # JQuery inclusion.
+    # Default: true.
+    includeJQuery: false
+    
+    # Font Awesome inclusion.
+    # Default: true.
+    includeFontAwesome: false
+```
+
 ###Step 6 : Add Froala to your form
 
 Just add a froala type in your form:
@@ -86,13 +102,6 @@ $builder->add( "yourField", "froala", array(
     "language" => "fr",
     "inlineMode" => true
 ) );
-```
-
-Note that you have to include JQuery in your form layout by your own way:
-
-``` twig
-<!-- Include jQuery. -->
-<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
 ```
 
 ###Step 7 : Display editor content
@@ -135,11 +144,13 @@ kms_froala_editor:
         colors: false
         charCounter: false
         fileUpload: false
+        fullscreen: false
         fontFamily: false
         fontSize: false
         lists: false
         mediaManager: false
-        table: false
+        tables: false
+        urls: false
         video: false
 ```
 
