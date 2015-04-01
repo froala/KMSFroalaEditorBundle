@@ -45,6 +45,8 @@ class KMSFroalaEditorExtension extends Extension
     
         $p_config[ "basePath" ] = ltrim( $p_config[ "basePath" ], '/' );
         $p_container->setParameter( "kms_froala_editor.basePath",           $p_config[ "basePath" ] );
+        $p_container->setParameter( "kms_froala_editor.includeJQuery",      $p_config[ "includeJQuery" ] );
+        $p_container->setParameter( "kms_froala_editor.includeFontAwesome", $p_config[ "includeFontAwesome" ] );
         $p_container->setParameter( "kms_froala_editor.language",           $p_config[ "language" ] );
         $p_container->setParameter( "kms_froala_editor.inlineMode",         $p_config[ "inlineMode" ] );
         
@@ -76,9 +78,11 @@ class KMSFroalaEditorExtension extends Extension
         $p_container->setParameter( "kms_froala_editor.plugins.fileUpload",     $pluginsNode[ "fileUpload" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.fontFamily",     $pluginsNode[ "fontFamily" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.fontSize",       $pluginsNode[ "fontSize" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.fullscreen",     $pluginsNode[ "fullscreen" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.lists",          $pluginsNode[ "lists" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.mediaManager",   $pluginsNode[ "mediaManager" ] );
-        $p_container->setParameter( "kms_froala_editor.plugins.table",          $pluginsNode[ "table" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.tables",         $pluginsNode[ "tables" ] );
+        $p_container->setParameter( "kms_froala_editor.plugins.urls",           $pluginsNode[ "urls" ] );
         $p_container->setParameter( "kms_froala_editor.plugins.video",          $pluginsNode[ "video" ] );
     }
     

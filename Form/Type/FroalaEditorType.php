@@ -50,6 +50,8 @@ class FroalaEditorType extends AbstractType
         
         // Config.
         $p_builder->setAttribute( "basePath",               $p_options[ "basePath" ] );
+        $p_builder->setAttribute( "includeJQuery",          $p_options[ "includeJQuery" ] );
+        $p_builder->setAttribute( "inlineFontAwesome",      $p_options[ "includeFontAwesome" ] );
         $p_builder->setAttribute( "language",               $p_options[ "language" ] );
         $p_builder->setAttribute( "inlineMode",             $p_options[ "inlineMode" ] );
         
@@ -60,9 +62,11 @@ class FroalaEditorType extends AbstractType
         $p_builder->setAttribute( "usePluginFileUpload",    $p_options[ "usePluginFileUpload" ] );
         $p_builder->setAttribute( "usePluginFontFamily",    $p_options[ "usePluginFontFamily" ] );
         $p_builder->setAttribute( "usePluginFontSize",      $p_options[ "usePluginFontSize" ] );
+        $p_builder->setAttribute( "usePluginFullscreen",    $p_options[ "usePluginFullscreen" ] );
         $p_builder->setAttribute( "usePluginLists",         $p_options[ "usePluginLists" ] );
         $p_builder->setAttribute( "usePluginMediaManager",  $p_options[ "usePluginMediaManager" ] );
-        $p_builder->setAttribute( "usePluginTable",         $p_options[ "usePluginTable" ] );
+        $p_builder->setAttribute( "usePluginTables",        $p_options[ "usePluginTables" ] );
+        $p_builder->setAttribute( "usePluginUrls",          $p_options[ "usePluginUrls" ] );
         $p_builder->setAttribute( "usePluginVideo",         $p_options[ "usePluginVideo" ] );
         
         // Image upload.
@@ -91,6 +95,8 @@ class FroalaEditorType extends AbstractType
      
         // Config.
         $p_view->vars[ "basePath" ]                     = $p_options[ "basePath" ];
+        $p_view->vars[ "includeJQuery" ]                = $p_options[ "includeJQuery" ];
+        $p_view->vars[ "includeFontAwesome" ]           = $p_options[ "includeFontAwesome" ];
         $p_view->vars[ "language" ]                     = $p_options[ "language" ];
         $p_view->vars[ "inlineMode" ]                   = $p_options[ "inlineMode" ];
         
@@ -101,9 +107,11 @@ class FroalaEditorType extends AbstractType
         $p_view->vars[ "usePluginFileUpload" ]          = $p_options[ "usePluginFileUpload" ];
         $p_view->vars[ "usePluginFontFamily" ]          = $p_options[ "usePluginFontFamily" ];
         $p_view->vars[ "usePluginFontSize" ]            = $p_options[ "usePluginFontSize" ];
+        $p_view->vars[ "usePluginFullscreen" ]          = $p_options[ "usePluginFullscreen" ];
         $p_view->vars[ "usePluginLists" ]               = $p_options[ "usePluginLists" ];
         $p_view->vars[ "usePluginMediaManager" ]        = $p_options[ "usePluginMediaManager" ];
-        $p_view->vars[ "usePluginTable" ]               = $p_options[ "usePluginTable" ];
+        $p_view->vars[ "usePluginTables" ]              = $p_options[ "usePluginTables" ];
+        $p_view->vars[ "usePluginUrls" ]                = $p_options[ "usePluginUrls" ];
         $p_view->vars[ "usePluginVideo" ]               = $p_options[ "usePluginVideo" ];
         
         // Image upload.
@@ -134,6 +142,8 @@ class FroalaEditorType extends AbstractType
             ->setDefaults( array(
                     // Config.
                     "basePath"                  => $this->m_container->getParameter( "kms_froala_editor.basePath" ),
+                    "includeJQuery"             => $this->m_container->getParameter( "kms_froala_editor.includeJQuery" ),
+                    "includeFontAwesome"        => $this->m_container->getParameter( "kms_froala_editor.includeFontAwesome" ),
                     "language"                  => $this->m_container->getParameter( "kms_froala_editor.language" ),
                     "inlineMode"                => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
                     
@@ -144,9 +154,11 @@ class FroalaEditorType extends AbstractType
                     "usePluginFileUpload"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fileUpload" ),
                     "usePluginFontFamily"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fontFamily" ),
                     "usePluginFontSize"         => $this->m_container->getParameter( "kms_froala_editor.plugins.fontSize" ),
+                    "usePluginFullscreen"       => $this->m_container->getParameter( "kms_froala_editor.plugins.fullscreen" ),
                     "usePluginLists"            => $this->m_container->getParameter( "kms_froala_editor.plugins.lists" ),
                     "usePluginMediaManager"     => $this->m_container->getParameter( "kms_froala_editor.plugins.mediaManager" ),
-                    "usePluginTable"            => $this->m_container->getParameter( "kms_froala_editor.plugins.table" ),
+                    "usePluginTables"           => $this->m_container->getParameter( "kms_froala_editor.plugins.tables" ),
+                    "usePluginUrls"             => $this->m_container->getParameter( "kms_froala_editor.plugins.urls" ),
                     "usePluginVideo"            => $this->m_container->getParameter( "kms_froala_editor.plugins.video" ),
                     
                     // Image upload.

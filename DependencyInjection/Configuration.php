@@ -43,6 +43,18 @@ class Configuration implements ConfigurationInterface
                     ->info( "Editor's language." )
                 ->end()
                 
+                // JQuery inclusion.
+                ->booleanNode( "includeJQuery" )
+                    ->defaultTrue()
+                    ->info( "Include JQuery lib." )
+                ->end()
+        
+                // Font Awesome inclusion.
+                ->booleanNode( "includeFontAwesome" )
+                    ->defaultTrue()
+                    ->info( "Include Font Awesome lib." )
+                ->end()
+                
                 // Plugins.
                 ->arrayNode( "plugins" )
                     ->addDefaultsIfNotSet()
@@ -71,6 +83,10 @@ class Configuration implements ConfigurationInterface
                             ->defaultTrue()
                             ->info( "Use plugin : Font size." )
                         ->end()
+                        ->booleanNode( "fullscreen" )
+                            ->defaultTrue()
+                            ->info( "Use plugin : Fullscreen." )
+                            ->end()
                         ->booleanNode( "lists" )
                             ->defaultTrue()
                             ->info( "Use plugin : Lists." )
@@ -79,9 +95,13 @@ class Configuration implements ConfigurationInterface
                             ->defaultTrue()
                             ->info( "Use plugin : Media manager." )
                         ->end()
-                        ->booleanNode( "table" )
+                        ->booleanNode( "tables" )
                             ->defaultTrue()
-                            ->info( "Use plugin : Table." )
+                            ->info( "Use plugin : Tables." )
+                        ->end()
+                        ->booleanNode( "urls" )
+                            ->defaultTrue()
+                            ->info( "Use plugin : URLs." )
                         ->end()
                         ->booleanNode( "video" )
                             ->defaultTrue()
