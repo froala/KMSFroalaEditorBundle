@@ -92,12 +92,12 @@ $builder->add( "yourField", "froala", array(
 
 To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
 
-``` html
+``` twig
 <!-- Basic formatting for image, video, table, code and quote. -->
-<link href="bundles/kmsfroalaeditor/css/froala_content.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset( "bundles/kmsfroalaeditor/css/froala_content.min.css" ) }}" rel="stylesheet" type="text/css" />
 
 <!-- CSS rules for styling the block tags such as p, h1, h2, etc. -->
-<link href="bundles/kmsfroalaeditor/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link href="{{ asset( "bundles/kmsfroalaeditor/css/froala_style.min.css" ) }}" rel="stylesheet" type="text/css" />
 ```
 
 Also, you should make sure that you put the edited content inside an element that has the class froala-view:
