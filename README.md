@@ -88,6 +88,26 @@ $builder->add( "yourField", "froala", array(
 ) );
 ```
 
+###Step 7 : Display editor content
+
+To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
+
+``` html
+<!-- Basic formatting for image, video, table, code and quote. -->
+<link href="../css/froala_content.min.css" rel="stylesheet" type="text/css" />
+
+<!-- CSS rules for styling the block tags such as p, h1, h2, etc. -->
+<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
+```
+
+Also, you should make sure that you put the edited content inside an element that has the class froala-view:
+
+``` twig
+<div class="froala-view">
+  {{ myContentHtml | raw }}
+</div>
+```
+
 ##More configuration
 
 ###Plugins
