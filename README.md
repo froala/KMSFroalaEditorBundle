@@ -252,6 +252,7 @@ $builder->add( "yourField", "froala", array(
 ```
 
 ###TODO
+* include JS only one time if multiple instance on the same page (done for CSS).
 * more configuration
 * file upload
 * ... any idea ?
