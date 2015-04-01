@@ -88,7 +88,7 @@ $builder->add( "yourField", "froala", array(
 ) );
 ```
 
-Note that you have to include JQuery by your own way:
+Note that you have to include JQuery in your form layout by your own way:
 
 ``` twig
 <!-- Include jQuery. -->
