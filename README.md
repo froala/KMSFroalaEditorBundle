@@ -88,6 +88,13 @@ $builder->add( "yourField", "froala", array(
 ) );
 ```
 
+Note that you have to include JQuery by your own way:
+
+``` twig
+<!-- Include jQuery. -->
+<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+```
+
 ###Step 7 : Display editor content
 
 To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
