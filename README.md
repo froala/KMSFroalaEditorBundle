@@ -94,10 +94,10 @@ To preserve the look of the edited HTML outside of the editor you have to includ
 
 ``` html
 <!-- Basic formatting for image, video, table, code and quote. -->
-<link href="../css/froala_content.min.css" rel="stylesheet" type="text/css" />
+<link href="bundles/kmsfroalaeditor/css/froala_content.min.css" rel="stylesheet" type="text/css" />
 
 <!-- CSS rules for styling the block tags such as p, h1, h2, etc. -->
-<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
+<link href="bundles/kmsfroalaeditor/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 ```
 
 Also, you should make sure that you put the edited content inside an element that has the class froala-view:
