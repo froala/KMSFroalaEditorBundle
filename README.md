@@ -57,6 +57,9 @@ kms_froala_editor:
     # Default: the editor version included in the bundle.
     basePath: "/yourCustomFroalaEditorPath/"
     
+    # The Froala license key for commercial uses.
+    serialNumber: "yourKey"
+    
     # The editor language.
     # Default: "en_us".
     # More : see Resources/public/js/langs for all languages.
