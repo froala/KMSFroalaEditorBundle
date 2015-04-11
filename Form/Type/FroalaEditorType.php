@@ -50,9 +50,10 @@ class FroalaEditorType extends AbstractType
         
         // Config.
         $p_builder->setAttribute( "basePath",               $p_options[ "basePath" ] );
+        $p_builder->setAttribute( "serialNumber",           $p_options[ "serialNumber" ] );
+        $p_builder->setAttribute( "language",               $p_options[ "language" ] );
         $p_builder->setAttribute( "includeJQuery",          $p_options[ "includeJQuery" ] );
         $p_builder->setAttribute( "inlineFontAwesome",      $p_options[ "includeFontAwesome" ] );
-        $p_builder->setAttribute( "language",               $p_options[ "language" ] );
         $p_builder->setAttribute( "inlineMode",             $p_options[ "inlineMode" ] );
         
         // Plugins.
@@ -95,9 +96,10 @@ class FroalaEditorType extends AbstractType
      
         // Config.
         $p_view->vars[ "basePath" ]                     = $p_options[ "basePath" ];
+        $p_view->vars[ "serialNumber" ]                 = $p_options[ "serialNumber" ];
+        $p_view->vars[ "language" ]                     = $p_options[ "language" ];
         $p_view->vars[ "includeJQuery" ]                = $p_options[ "includeJQuery" ];
         $p_view->vars[ "includeFontAwesome" ]           = $p_options[ "includeFontAwesome" ];
-        $p_view->vars[ "language" ]                     = $p_options[ "language" ];
         $p_view->vars[ "inlineMode" ]                   = $p_options[ "inlineMode" ];
         
         // Plugins.
@@ -142,9 +144,10 @@ class FroalaEditorType extends AbstractType
             ->setDefaults( array(
                     // Config.
                     "basePath"                  => $this->m_container->getParameter( "kms_froala_editor.basePath" ),
+                    "serialNumber"              => $this->m_container->getParameter( "kms_froala_editor.serialNumber" ),
+                    "language"                  => $this->m_container->getParameter( "kms_froala_editor.language" ),
                     "includeJQuery"             => $this->m_container->getParameter( "kms_froala_editor.includeJQuery" ),
                     "includeFontAwesome"        => $this->m_container->getParameter( "kms_froala_editor.includeFontAwesome" ),
-                    "language"                  => $this->m_container->getParameter( "kms_froala_editor.language" ),
                     "inlineMode"                => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
                     
                     // Plugins.

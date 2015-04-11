@@ -45,9 +45,10 @@ class KMSFroalaEditorExtension extends Extension
     
         $p_config[ "basePath" ] = ltrim( $p_config[ "basePath" ], '/' );
         $p_container->setParameter( "kms_froala_editor.basePath",           $p_config[ "basePath" ] );
+        $p_container->setParameter( "kms_froala_editor.serialNumber",       $p_config[ "serialNumber" ] );
+        $p_container->setParameter( "kms_froala_editor.language",           $p_config[ "language" ] );
         $p_container->setParameter( "kms_froala_editor.includeJQuery",      $p_config[ "includeJQuery" ] );
         $p_container->setParameter( "kms_froala_editor.includeFontAwesome", $p_config[ "includeFontAwesome" ] );
-        $p_container->setParameter( "kms_froala_editor.language",           $p_config[ "language" ] );
         $p_container->setParameter( "kms_froala_editor.inlineMode",         $p_config[ "inlineMode" ] );
         
         // Load plugins.

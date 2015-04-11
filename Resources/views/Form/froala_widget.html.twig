@@ -37,6 +37,11 @@
     <script type="text/javascript" src="{{ asset( basePath ~ "js/froala_editor.min.js" ) }}"></script>
     <script type="text/javascript" src="{{ asset( basePath ~ "js/langs/" ~ language ~ ".js" ) }}"></script>
     
+    <!-- Include license. -->
+    {% if serialNumber != null %}
+       <script type="text/javascript">$.Editable.DEFAULTS.key = "{{ serialNumber }}";</script> 
+    {% endif %}
+    
     {% if usePluginBlockStyles %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/block_styles.min.js" ) }}"></script>
     {% endif %}

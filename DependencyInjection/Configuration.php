@@ -37,6 +37,12 @@ class Configuration implements ConfigurationInterface
                     ->info( "URL path used to load Froala files from." )
                 ->end()
                 
+                // Serial number.
+                ->scalarNode( "serialNumber" )
+                    ->defaultNull()
+                    ->info( "Serial number to use a purchased Froala license." )
+                ->end()
+                
                 // Language.
                 ->scalarNode( "language" )
                     ->defaultValue( "en_us" )
