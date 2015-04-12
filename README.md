@@ -69,9 +69,11 @@ kms_froala_editor:
     # More : see Resources/public/js/langs for all languages.
     language: "nl"
     
-    #######################################################################
-    # See https://editor.froala.com/options to all configurations bellow. #
-    #######################################################################
+    #########################################################
+    # Editor options.
+    # See https://editor.froala.com/options for more infos.
+    # Currently implemented is listed below:
+    #########################################################
     
     inlineMode
     minHeight
