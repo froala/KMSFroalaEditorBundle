@@ -44,12 +44,30 @@ class KMSFroalaEditorExtension extends Extension
         //------------------------- DECLARE ---------------------------//
     
         $p_config[ "basePath" ] = ltrim( $p_config[ "basePath" ], '/' );
-        $p_container->setParameter( "kms_froala_editor.basePath",           $p_config[ "basePath" ] );
-        $p_container->setParameter( "kms_froala_editor.serialNumber",       $p_config[ "serialNumber" ] );
-        $p_container->setParameter( "kms_froala_editor.language",           $p_config[ "language" ] );
-        $p_container->setParameter( "kms_froala_editor.includeJQuery",      $p_config[ "includeJQuery" ] );
-        $p_container->setParameter( "kms_froala_editor.includeFontAwesome", $p_config[ "includeFontAwesome" ] );
-        $p_container->setParameter( "kms_froala_editor.inlineMode",         $p_config[ "inlineMode" ] );
+        
+        $p_container->setParameter( "kms_froala_editor.basePath",               $p_config[ "basePath" ] );
+        $p_container->setParameter( "kms_froala_editor.serialNumber",           $p_config[ "serialNumber" ] );
+        $p_container->setParameter( "kms_froala_editor.language",               $p_config[ "language" ] );
+        $p_container->setParameter( "kms_froala_editor.includeJQuery",          $p_config[ "includeJQuery" ] );
+        $p_container->setParameter( "kms_froala_editor.includeFontAwesome",     $p_config[ "includeFontAwesome" ] );
+        
+        $p_container->setParameter( "kms_froala_editor.inlineMode",             $p_config[ "inlineMode" ] );
+        $p_container->setParameter( "kms_froala_editor.minHeight",              $p_config[ "minHeight" ] );
+        $p_container->setParameter( "kms_froala_editor.maxHeight",              $p_config[ "maxHeight" ] );
+        $p_container->setParameter( "kms_froala_editor.width",                  $p_config[ "width" ] );
+        $p_container->setParameter( "kms_froala_editor.height",                 $p_config[ "height" ] );
+        $p_container->setParameter( "kms_froala_editor.plainPaste",             $p_config[ "plainPaste" ] );
+        $p_container->setParameter( "kms_froala_editor.tabSpaces",              $p_config[ "tabSpaces" ] );
+        $p_container->setParameter( "kms_froala_editor.multiLine",              $p_config[ "multiLine" ] );
+        $p_container->setParameter( "kms_froala_editor.paragraphy",             $p_config[ "paragraphy" ] );
+        $p_container->setParameter( "kms_froala_editor.placeholder",            $p_config[ "placeholder" ] );
+        $p_container->setParameter( "kms_froala_editor.theme",                  $p_config[ "theme" ] );
+        $p_container->setParameter( "kms_froala_editor.unlinkButton",           $p_config[ "unlinkButton" ] );
+        $p_container->setParameter( "kms_froala_editor.beautifyCode",           $p_config[ "beautifyCode" ] );
+        $array = isset($p_config[ "buttons" ] ) ? $p_config[ "buttons" ] : null;
+        $p_container->setParameter( "kms_froala_editor.buttons",                $array );
+        $p_container->setParameter( "kms_froala_editor.convertMailAddresses",   $p_config[ "convertMailAddresses" ] );
+        
         
         // Load plugins.
         $this->loadPlugins( $p_container, $p_config );
@@ -126,25 +144,9 @@ class KMSFroalaEditorExtension extends Extension
         $p_container->setParameter( "kms_froala_editor.autosave.interval"       , $autosaveNode[ "interval" ] );
         $p_container->setParameter( "kms_froala_editor.autosave.route"          , $autosaveNode[ "route" ] );
         $p_container->setParameter( "kms_froala_editor.autosave.requestType"    , $autosaveNode[ "requestType" ] );
-        
-        if( isset( $autosaveNode[ "params" ] ) )
-        {
-            $array = $autosaveNode[ "params" ];
-        }
-        else
-        {
-            $array = array();
-        }
+        $array = isset( $autosaveNode[ "params" ] ) ? $autosaveNode[ "params" ] :  array();
         $p_container->setParameter( "kms_froala_editor.autosave.params" , $array );
-        
-        if( isset( $autosaveNode[ "routeParams" ] ) )
-        {
-            $array = $autosaveNode[ "routeParams" ];
-        }
-        else
-        {
-            $array = array();
-        }
+        $array = isset( $autosaveNode[ "routeParams" ] ) ? $autosaveNode[ "routeParams" ] : array();
         $p_container->setParameter( "kms_froala_editor.autosave.routeParams" , $array );
     }
     

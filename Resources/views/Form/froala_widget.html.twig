@@ -38,7 +38,7 @@
     <script type="text/javascript" src="{{ asset( basePath ~ "js/langs/" ~ language ~ ".js" ) }}"></script>
     
     <!-- Include license. -->
-    {% if serialNumber != null %}
+    {% if serialNumber is null %}
        <script type="text/javascript">$.Editable.DEFAULTS.key = "{{ serialNumber }}";</script> 
     {% endif %}
     
@@ -78,7 +78,6 @@
     {% if usePluginVideo %}
         <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/video.min.js" ) }}"></script>
     {% endif %}
-    
     <!-- Initialize the editor. -->
     <script type="text/javascript">
         function froalaDisplayError( p_message )
@@ -90,7 +89,6 @@
 
                 // Main configuration.
                 language : "{{ language }}",
-                inlineMode : "{{ inlineMode }}",
 
                 // Image upload.
                 imageUploadURL : "{{ path( imageUploadRoute ) }}",
@@ -110,8 +108,56 @@
                 autosaveInterval : {{ autosaveInterval }},
                 saveURL : "{{ path( autosaveRoute, autosaveRouteParams ) }}",
                 saveRequestType : "{{ autosaveRequestType }}",
-                saveParams : { {% for key, value in autosaveParams %}{{ key }} : "{{ value }}", {% endfor %} }
-                {% endif %} 
+                saveParams : { {% for key, value in autosaveParams %}{{ key }} : "{{ value }}", {% endfor %} },
+                {% endif %}
+
+                // Options.
+                {% if inlineMode is not null %}
+                inlineMode : {{ inlineMode ? "true" : "false" }},
+                {% endif %}
+                {% if minHeight is not null %}
+                minHeight : {{ minHeight }},
+                {% endif %}
+                {% if maxHeight is not null %}
+                maxHeight : {{ maxHeight }},
+                {% endif %}
+                {% if width is not null %}
+                width : {{ width }},
+                {% endif %}
+                {% if height is not null %}
+                height : {{ height }},
+                {% endif %}
+                {% if plainPaste is not null %}
+                plainPaste : {{ plainPaste ? "true" : "false" }},
+                {% endif %}
+                {% if tabSpaces is not null %}
+                tabSpaces : {{ tabSpaces ? "true" : "false" }},
+                {% endif %}
+                {% if multiLine is not null %}
+                multiLine : {{ multiLine ? "true" : "false" }},
+                {% endif %}
+                {% if paragraphy is not null %}
+                paragraphy : {{ paragraphy ? "true" : "false" }},
+                {% endif %}
+                {% if placeholder is not null %}
+                placeholder : "{{ placeholder }}",
+                {% endif %}
+                {% if theme is not null %}
+                theme : "{{ theme }}",
+                {% endif %}
+                {% if unlinkButton is not null %}
+                unlinkButton : {{ unlinkButton ? "true" : "false" }},
+                {% endif %}
+                {% if beautifyCode is not null %}
+                beautifyCode : {{ beautifyCode ? "true" : "false" }},
+                {% endif %}
+                {% if buttons is not null %}
+                buttons : { {% for key, value in buttons %}{{ key }} : "{{ value }}", {% endfor %} },
+                {% endif %}
+                {% if convertMailAddresses is not null %}
+                convertMailAddresses : {{ convertMailAddresses ? "true" : "false" }},
+                {% endif %}
+                
                 
             })
             .on( "editable.afterRemoveImage", function ( e, editor, $img ) {

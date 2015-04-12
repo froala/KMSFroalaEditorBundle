@@ -54,7 +54,23 @@ class FroalaEditorType extends AbstractType
         $p_builder->setAttribute( "language",               $p_options[ "language" ] );
         $p_builder->setAttribute( "includeJQuery",          $p_options[ "includeJQuery" ] );
         $p_builder->setAttribute( "inlineFontAwesome",      $p_options[ "includeFontAwesome" ] );
+        
+        // Options.
         $p_builder->setAttribute( "inlineMode",             $p_options[ "inlineMode" ] );
+        $p_builder->setAttribute( "minHeight",              $p_options[ "minHeight" ] );
+        $p_builder->setAttribute( "maxHeight",              $p_options[ "maxHeight" ] );
+        $p_builder->setAttribute( "width",                  $p_options[ "width" ] );
+        $p_builder->setAttribute( "height",                 $p_options[ "height" ] );
+        $p_builder->setAttribute( "plainPaste",             $p_options[ "plainPaste" ] );
+        $p_builder->setAttribute( "tabSpaces",              $p_options[ "tabSpaces" ] );
+        $p_builder->setAttribute( "multiLine",              $p_options[ "multiLine" ] );
+        $p_builder->setAttribute( "paragraphy",             $p_options[ "paragraphy" ] );
+        $p_builder->setAttribute( "placeholder",            $p_options[ "placeholder" ] );
+        $p_builder->setAttribute( "theme",                  $p_options[ "theme" ] );
+        $p_builder->setAttribute( "unlinkButton",           $p_options[ "unlinkButton" ] );
+        $p_builder->setAttribute( "beautifyCode",           $p_options[ "beautifyCode" ] );
+        $p_builder->setAttribute( "buttons",                $p_options[ "buttons" ] );
+        $p_builder->setAttribute( "convertMailAddresses",   $p_options[ "convertMailAddresses" ] );
         
         // Plugins.
         $p_builder->setAttribute( "usePluginBlockStyles",   $p_options[ "usePluginBlockStyles" ] );
@@ -100,7 +116,23 @@ class FroalaEditorType extends AbstractType
         $p_view->vars[ "language" ]                     = $p_options[ "language" ];
         $p_view->vars[ "includeJQuery" ]                = $p_options[ "includeJQuery" ];
         $p_view->vars[ "includeFontAwesome" ]           = $p_options[ "includeFontAwesome" ];
+        
+        // Options.s
         $p_view->vars[ "inlineMode" ]                   = $p_options[ "inlineMode" ];
+        $p_view->vars[ "minHeight" ]                    = $p_options[ "minHeight" ];
+        $p_view->vars[ "maxHeight" ]                    = $p_options[ "maxHeight" ];
+        $p_view->vars[ "width" ]                        = $p_options[ "width" ];
+        $p_view->vars[ "height" ]                       = $p_options[ "height" ];
+        $p_view->vars[ "plainPaste" ]                   = $p_options[ "plainPaste" ];
+        $p_view->vars[ "tabSpaces" ]                    = $p_options[ "tabSpaces" ];
+        $p_view->vars[ "multiLine" ]                    = $p_options[ "multiLine" ];
+        $p_view->vars[ "paragraphy" ]                   = $p_options[ "paragraphy" ];
+        $p_view->vars[ "placeholder" ]                  = $p_options[ "placeholder" ];
+        $p_view->vars[ "theme" ]                        = $p_options[ "theme" ];
+        $p_view->vars[ "unlinkButton" ]                 = $p_options[ "unlinkButton" ];
+        $p_view->vars[ "beautifyCode" ]                 = $p_options[ "beautifyCode" ];
+        $p_view->vars[ "buttons" ]                      = $p_options[ "buttons" ];
+        $p_view->vars[ "convertMailAddresses" ]         = $p_options[ "convertMailAddresses" ];
         
         // Plugins.
         $p_view->vars[ "usePluginBlockStyles" ]         = $p_options[ "usePluginBlockStyles" ];
@@ -148,7 +180,23 @@ class FroalaEditorType extends AbstractType
                     "language"                  => $this->m_container->getParameter( "kms_froala_editor.language" ),
                     "includeJQuery"             => $this->m_container->getParameter( "kms_froala_editor.includeJQuery" ),
                     "includeFontAwesome"        => $this->m_container->getParameter( "kms_froala_editor.includeFontAwesome" ),
+                    
+                    // Options.
                     "inlineMode"                => $this->m_container->getParameter( "kms_froala_editor.inlineMode" ),
+                    "minHeight"                 => $this->m_container->getParameter( "kms_froala_editor.minHeight" ),
+                    "maxHeight"                 => $this->m_container->getParameter( "kms_froala_editor.maxHeight" ),
+                    "width"                     => $this->m_container->getParameter( "kms_froala_editor.width" ),
+                    "height"                    => $this->m_container->getParameter( "kms_froala_editor.height" ),
+                    "plainPaste"                => $this->m_container->getParameter( "kms_froala_editor.plainPaste" ),
+                    "tabSpaces"                 => $this->m_container->getParameter( "kms_froala_editor.tabSpaces" ),
+                    "multiLine"                 => $this->m_container->getParameter( "kms_froala_editor.multiLine" ),
+                    "paragraphy"                => $this->m_container->getParameter( "kms_froala_editor.paragraphy" ),
+                    "placeholder"               => $this->m_container->getParameter( "kms_froala_editor.placeholder" ),
+                    "theme"                     => $this->m_container->getParameter( "kms_froala_editor.theme" ),
+                    "unlinkButton"              => $this->m_container->getParameter( "kms_froala_editor.unlinkButton" ),
+                    "beautifyCode"              => $this->m_container->getParameter( "kms_froala_editor.beautifyCode" ),
+                    "buttons"                   => $this->m_container->getParameter( "kms_froala_editor.buttons" ),
+                    "convertMailAddresses"      => $this->m_container->getParameter( "kms_froala_editor.convertMailAddresses" ),
                     
                     // Plugins.
                     "usePluginBlockStyles"      => $this->m_container->getParameter( "kms_froala_editor.plugins.blockStyles" ),
@@ -179,10 +227,6 @@ class FroalaEditorType extends AbstractType
                     "autosaveRouteParams"       => array(),
                     "autosaveRequestType"       => $this->m_container->getParameter( "kms_froala_editor.autosave.requestType" ),
                     "autosaveParams"            => array(),
-            ))
-            ->addAllowedTypes( array(
-                    "inlineMode"        => "bool", 
-                    "autosaveActive"    => "bool"
             ));
     }
 

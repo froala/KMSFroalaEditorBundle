@@ -61,6 +61,95 @@ class Configuration implements ConfigurationInterface
                     ->info( "Include Font Awesome lib." )
                 ->end()
                 
+                // Inline mode.
+                ->booleanNode( "inlineMode" )
+                    ->defaultNull()
+                    ->info( "Enable/disable inline mode." )
+                ->end()
+                
+                // Min height.
+                ->integerNode( "minHeight" )
+                    ->defaultNull()
+                    ->info( "Min height." )
+                ->end()
+                
+                // Max height.
+                ->integerNode( "maxHeight" )
+                    ->defaultNull()
+                    ->info( "Max height." )
+                ->end()
+        
+                // Width.
+                ->integerNode( "width" )
+                    ->defaultNull()
+                    ->info( "Width." )
+                ->end()
+        
+                // Height.
+                ->integerNode( "height" )
+                    ->defaultNull()
+                    ->info( "Height." )
+                ->end()
+        
+                // Plain paste.
+                ->booleanNode( "plainPaste" )
+                    ->defaultNull()
+                    ->info( "Removes text formatting when pasting content into the editor." )
+                ->end()
+        
+                // Tab spaces.
+                ->booleanNode( "tabSpaces" )
+                    ->defaultNull()
+                    ->info( "When TAB key is hit, the editor will add 4 spaces." )
+                ->end()
+        
+                // Multiline.
+                ->booleanNode( "multiLine" )
+                    ->defaultNull()
+                    ->info( "Allow new line to be inserted when ENTER key is hit." )
+                ->end()
+        
+                // Paragraphy.
+                ->booleanNode( "paragraphy" )
+                    ->defaultNull()
+                    ->info( "Use paragraphs for new line." )
+                ->end()
+                
+                // Placeholder.
+                ->scalarNode( "placeholder" )
+                    ->defaultNull()
+                    ->info( "The placeholder used when the editor body is empty." )
+                ->end()
+        
+                // Theme.
+                ->scalarNode( "theme" )
+                    ->defaultNull()
+                    ->info( "Specify the theme name to use in the editor. The theme should be included as CSS." )
+                ->end()
+        
+                // Unlink button.
+                ->booleanNode( "unlinkButton" )
+                    ->defaultNull()
+                    ->info( "Shows 'Unlink' button in the link edit popup when the option is set to true." )
+                ->end()
+        
+                // Beautify code.
+                ->booleanNode( "beautifyCode" )
+                    ->defaultNull()
+                    ->info( "Format the source code in HTML view for a better reading." )
+                ->end()
+        
+                // Buttons.
+                ->arrayNode( "buttons" )
+                    ->info( "The list of buttons that appear in the editor toolbar." )
+                ->end()
+        
+                // Convert mail addresses.
+                ->booleanNode( "convertMailAddresses" )
+                    ->defaultNull()
+                    ->info( "Email addresses inserted as link are converted to mailto: links." )
+                ->end()
+                
                 // Plugins.
                 ->arrayNode( "plugins" )
                     ->addDefaultsIfNotSet()
@@ -114,12 +203,6 @@ class Configuration implements ConfigurationInterface
                             ->info( "Use plugin : Video." )
                         ->end()
                     ->end()
-                ->end()
-                
-                // Inline mode.
-                ->booleanNode( "inlineMode" )
-                    ->defaultFalse()
-                    ->info( "Enable/disable inline mode." )
                 ->end()
                 
                 // Media manager.
