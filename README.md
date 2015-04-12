@@ -72,7 +72,7 @@ kms_froala_editor:
     #########################################################
     # Editor options.
     # See https://editor.froala.com/options for more infos.
-    # Currently implemented is listed below:
+    # Currently implemented are listed below:
     #########################################################
     
     inlineMode
