@@ -53,6 +53,10 @@ kms_froala_editor:
 
 kms_froala_editor:
 
+    ################
+    # Main config. #
+    ################
+    
     # The Froala editor path.
     # Default: the editor version included in the bundle.
     basePath: "/yourCustomFroalaEditorPath/"
@@ -65,13 +69,27 @@ kms_froala_editor:
     # More : see Resources/public/js/langs for all languages.
     language: "nl"
     
-    #######################################################################
-    # See https://editor.froala.com/options to all configurations bellow. #
-    #######################################################################
+    #########################################################
+    # Editor options.
+    # See https://editor.froala.com/options for more infos.
+    # Currently implemented are listed below:
+    #########################################################
     
-    # The inline mode.
-    # Default: false.
-    inlineMode: true
+    inlineMode
+    minHeight
+    maxHeight
+    width
+    height
+    plainPaste
+    tabSpaces
+    multiLine
+    paragraphy
+    placeholder
+    theme
+    unlinkButton
+    beautifyCode
+    buttons
+    convertMailAddresses
 ```
 
 If JQuery or Font Awesome is already included in your layout, you can disable bundle inclusion:
