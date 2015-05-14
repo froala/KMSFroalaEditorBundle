@@ -1,6 +1,6 @@
 /*!
- * froala_editor v1.2.6 (http://editor.froala.com)
- * License http://editor.froala.com/license
+ * froala_editor v1.2.7 (https://www.froala.com/wysiwyg-editor)
+ * License https://www.froala.com/wysiwyg-editor/terms
  * Copyright 2014-2015 Froala Labs
  */
 [contenteditable],
@@ -59,6 +59,9 @@ button {
   left: 7px;
   right: auto;
 }
+.froala-box.fr-disabled .froala-wrapper {
+  overflow: hidden;
+}
 .froala-box.fr-disabled .froala-element {
   color: #999999;
 }
@@ -110,6 +113,18 @@ button {
   bottom: 0;
   right: 0;
   z-index: 3000;
+}
+.froala-box.fr-fullscreen .froala-editor {
+  width: 100% !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+.froala-box.fr-fullscreen .froala-editor.f-basic.f-scroll {
+  border-bottom: 0 !important;
+}
+.froala-box.fr-fullscreen .froala-element {
+  padding-top: 10px !important;
 }
 .froala-box.f-html .html-switch {
   display: inline-block;
@@ -205,12 +220,14 @@ table.fr-tag {
 table.fr-tag td {
   border: solid 1px #cccccc;
   padding: 5px;
+  vertical-align: top;
 }
 .froala-view table th,
 table.fr-tag th {
   background: #e6e6e6;
   border: solid 1px #cccccc;
   padding: 5px;
+  vertical-align: top;
 }
 .froala-view pre,
 pre.fr-tag {
@@ -285,11 +302,8 @@ hr.fr-tag {
   word-wrap: break-word;
   vertical-align: top;
   cursor: text;
-}
-.froala-element * {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
+  z-index: 2;
+  -webkit-user-select: auto;
 }
 .froala-element.f-image {
   overflow: visible;
@@ -332,6 +346,7 @@ hr.fr-tag {
   -ms-user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  z-index: 1;
 }
 .froala-element.f-basic.f-placeholder + span.fr-placeholder {
   margin: 10px;
@@ -354,6 +369,9 @@ hr.fr-tag {
 .froala-element img {
   min-width: 32px !important;
   min-height: 32px !important;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
 }
 .froala-element img.fr-fil,
 .froala-element img.fr-fir,
@@ -384,6 +402,9 @@ hr.fr-tag {
   border: 0;
   outline: 0;
   max-width: 100% !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .froala-element span.f-img-wrap.fr-fin.fr-dib {
   display: block;
@@ -640,9 +661,6 @@ hr.fr-tag {
 .froala-editor.right-side:before {
   right: 15px;
   left: auto;
-}
-.froala-editor .bttn-wrapper {
-  white-space: nowrap;
 }
 .froala-editor hr {
   border: 0;
@@ -940,6 +958,7 @@ hr.fr-tag {
   border: solid 1px #252525;
   line-height: 0;
   padding: 5px;
+  white-space: nowrap;
 }
 .froala-editor .fr-dropdown .fr-dropdown-menu.fr-table > li > div > div.fr-t-info {
   line-height: 140%;
@@ -1029,7 +1048,7 @@ hr.fr-tag {
 }
 .froala-editor button.fr-bttn i,
 .froala-editor button.fr-trigger i {
-  line-height: 170%;
+  line-height: 35px;
   -moz-outline: 0;
   outline: 0;
 }

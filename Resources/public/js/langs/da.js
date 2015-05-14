@@ -1,6 +1,6 @@
 /*!
- * froala_editor v1.2.6 (http://editor.froala.com)
- * License http://editor.froala.com/license
+ * froala_editor v1.2.7 (https://www.froala.com/wysiwyg-editor)
+ * License https://www.froala.com/wysiwyg-editor/terms
  * Copyright 2014-2015 Froala Labs
  */
 
@@ -52,8 +52,8 @@ $.Editable.LANGS['da'] = {
     "Replace Image": "Udskift billedet",
     "Remove Image": "Fjern billede",
     "Title": "Titel",
-    "Drop image": "Dr\u00e5be billede",
-    "or click": "eller klik p\u00e5",
+    "Drop image": "Tr\u00e6k billedet herind",
+    "or click": "eller klik",
     "or": "eller",
     "Enter URL": "Indtast URL",
     "Please wait!": "Vent venligst!",

@@ -1,8 +1,5 @@
 Froala WYSIWYG Editor
 ================
 
-Froala WYSIWYG Editor can be used for:
-
-- Non Commercial purposes under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (http://creativecommons.org/licenses/by-nc-nd/4.0/).
-
-- Commercial purposes under Froala License Agreement (http://editor.froala.com/license).
+In order to use Froala Editor you have to purchase a license from: https://www.froala.com/wysiwyg-editor/pricing.
+For more informations regarding the license please read https://www.froala.com/wysiwyg-editor/terms.
