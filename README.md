@@ -202,7 +202,9 @@ kms_froala_editor:
         # Default: the uploader integrated in this bundle.
         routeDelete: myCustomImageDeleteRoute
         # Default: /upload (in web directory).
-        folder: /myWebDirectory
+        folder: /my_upload
+        # Default: same as folder.
+        path: /my_upload
 ```
 
 You can also provide those data in the form builder:
