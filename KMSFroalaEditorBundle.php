@@ -1,5 +1,7 @@
 <?php
+
 namespace KMS\FroalaEditorBundle;
+
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
