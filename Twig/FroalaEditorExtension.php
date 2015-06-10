@@ -1,7 +1,5 @@
 <?php
-
 namespace KMS\FroalaEditorBundle\Twig;
-
 
 /**
  * Froala editor Twig extension.
@@ -9,17 +7,17 @@ namespace KMS\FroalaEditorBundle\Twig;
 class FroalaEditorExtension extends \Twig_Extension
 {
     
-    //-------------------------------------------------------------//
-    //--------------------------- MEMBERS -------------------------//
-    //-------------------------------------------------------------//
+    // -------------------------------------------------------------//
+    // --------------------------- MEMBERS -------------------------//
+    // -------------------------------------------------------------//
     
-    //-------------------------------------------------------------//
-    //-------------------------- CONSTRUCTOR ----------------------//
-    //-------------------------------------------------------------//
-
-    //-------------------------------------------------------------//
-    //--------------------------- METHODS -------------------------//
-    //-------------------------------------------------------------//
+    // -------------------------------------------------------------//
+    // -------------------------- CONSTRUCTOR ----------------------//
+    // -------------------------------------------------------------//
+    
+    // -------------------------------------------------------------//
+    // --------------------------- METHODS -------------------------//
+    // -------------------------------------------------------------//
     
     //
     // Better to render directly in the template for the moment.
@@ -28,48 +26,51 @@ class FroalaEditorExtension extends \Twig_Extension
     /**
      * Render the main Froala command (used to start the plugin).
      */
-//     public function twigRenderEditable( $p_id, $p_inlineMode, $p_language, $p_urlImageUpload )
-//     {
-//         //------------------------- DECLARE ---------------------------//
-        
-//         return sprintf(    "$( function() {
-//                                 $( \"#%s\" ).editable( {
-//                                     language: \"%s\",
-//                                     inlineMode : %s,
-//                                     imageUploadURL: \"%s\"
-//                                 } )
-//                             } );",
-//                     $p_id, //
-//                     $p_language, //
-//                     $p_inlineMode ? "true" : "false", //
-//                     $p_urlImageUpload );
-//     }
+    // public function twigRenderEditable( $p_id, $p_inlineMode, $p_language,
+    // $p_urlImageUpload )
+    // {
+    // //------------------------- DECLARE ---------------------------//
     
-    //-------------------------------------------------------------//
-    //--------------------------- OVERRIDE ------------------------//
-    //-------------------------------------------------------------//
+    // return sprintf( "$( function() {
+    // $( \"#%s\" ).editable( {
+    // language: \"%s\",
+    // inlineMode : %s,
+    // imageUploadURL: \"%s\"
+    // } )
+    // } );",
+    // $p_id, //
+    // $p_language, //
+    // $p_inlineMode ? "true" : "false", //
+    // $p_urlImageUpload );
+    // }
+    
+    // -------------------------------------------------------------//
+    // --------------------------- OVERRIDE ------------------------//
+    // -------------------------------------------------------------//
     
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getFunctions()
+    public function getFunctions ()
     {
-//         $options = array( "is_safe" => array( "html" ) );
-        //------------------------- DECLARE ---------------------------//
-        
-        return array(
-//                 new \Twig_SimpleFunction( "froala_editable", array( $this, "twigRenderEditable" ), $options ),
-        );
+        // $options = array( "is_safe" => array( "html" ) );
+        // ------------------------- DECLARE ---------------------------//
+        return array()
+        // new \Twig_SimpleFunction( "froala_editable", array( $this,
+        // "twigRenderEditable" ), $options ),
+        ;
     }
-    
+
     /**
-     * {@inheritdoc}
+     *
+     * @ERROR!!!
+     *
      */
-    public function getName()
+    public function getName ()
     {
-        //------------------------- DECLARE ---------------------------//
-        
+        // ------------------------- DECLARE ---------------------------//
         return "kms_froala_editor";
     }
-    
 }

@@ -1,14 +1,14 @@
 {% block froala_widget %}
 
-    <textarea {{ block( "widget_attributes" ) }} >{{ value }}</textarea>
+<textarea  {{ block( "widget_attributes" ) }}>{{ value }}</textarea>
 
-    <!-- Include JQuery -->
-    {% if includeJQuery %}
-        <script src="http://code.jquery.com/jquery-1.11.0.js"></script>
-    {% endif %} 
-        
-    <!-- Include CSS files. -->
-    <script type="text/javascript">
+<!-- Include JQuery -->
+{% if includeJQuery %}
+<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
+{% endif %}
+
+<!-- Include CSS files. -->
+<script type="text/javascript">
         function loadCSS( p_path )
         {
         	if ( ! $( "link[href=\"" + p_path + "\"]" ).length )
@@ -32,54 +32,55 @@
         loadCSS( "{{ asset( basePath ~ "css/froala_editor.min.css" ) }}" );
         loadCSS( "{{ asset( basePath ~ "css/froala_style.min.css" ) }}" );
     </script>
-    
-    <!-- Include JS files. -->
-    <script type="text/javascript" src="{{ asset( basePath ~ "js/froala_editor.min.js" ) }}"></script>
-    <script type="text/javascript" src="{{ asset( basePath ~ "js/langs/" ~ language ~ ".js" ) }}"></script>
-    
-    <!-- Include license. -->
-    {% if serialNumber is null %}
-       <script type="text/javascript">$.Editable.DEFAULTS.key = "{{ serialNumber }}";</script> 
-    {% endif %}
-    
-    {% if usePluginBlockStyles %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/block_styles.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginColors %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/colors.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginCharCounter %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/char_counter.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginFileUpload %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/file_upload.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginFontFamily %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/font_family.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginFontSize  %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/font_size.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginFullscreen %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/fullscreen.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginLists %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/lists.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginMediaManager %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/media_manager.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginTables %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/tables.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginUrls %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/urls.min.js" ) }}"></script>
-    {% endif %}
-    {% if usePluginVideo %}
-        <script type="text/javascript" src="{{ asset( basePath ~ "js/plugins/video.min.js" ) }}"></script>
-    {% endif %}
-    <!-- Initialize the editor. -->
-    <script type="text/javascript">
+
+<!-- Include JS files. -->
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/froala_editor.min.js" ) }}"></script>
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/langs/" ~ language ~ ".js" ) }}"></script>
+
+<!-- Include license. -->
+{% if serialNumber is null %}
+<script type="text/javascript">$.Editable.DEFAULTS.key = "{{ serialNumber }}";</script>
+{% endif %} {% if usePluginBlockStyles %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/block_styles.min.js" ) }}"></script>
+{% endif %} {% if usePluginColors %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/colors.min.js" ) }}"></script>
+{% endif %} {% if usePluginCharCounter %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/char_counter.min.js" ) }}"></script>
+{% endif %} {% if usePluginFileUpload %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/file_upload.min.js" ) }}"></script>
+{% endif %} {% if usePluginFontFamily %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/font_family.min.js" ) }}"></script>
+{% endif %} {% if usePluginFontSize %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/font_size.min.js" ) }}"></script>
+{% endif %} {% if usePluginFullscreen %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/fullscreen.min.js" ) }}"></script>
+{% endif %} {% if usePluginLists %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/lists.min.js" ) }}"></script>
+{% endif %} {% if usePluginMediaManager %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/media_manager.min.js" ) }}"></script>
+{% endif %} {% if usePluginTables %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/tables.min.js" ) }}"></script>
+{% endif %} {% if usePluginUrls %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/urls.min.js" ) }}"></script>
+{% endif %} {% if usePluginVideo %}
+<script type="text/javascript"
+	src="{{ asset( basePath ~ "js/plugins/video.min.js" ) }}"></script>
+{% endif %}
+<!-- Initialize the editor. -->
+<script type="text/javascript">
         function froalaDisplayError( p_message )
         {
             alert( p_message );
@@ -92,14 +93,14 @@
 
                 // Image upload.
                 imageUploadURL : "{{ path( imageUploadRoute ) }}",
-                imageUploadParams : { folder : "{{ imageUploadFolder }}" },
+                imageUploadParams : { path : "{{ imageUploadPath }}", folder : "{{ imageUploadFolder }}" },
                 imageDeleteURL : "{{ path( imageUploadRouteDelete ) }}",
-                imageDeleteParams : { folder : "{{ imageUploadFolder }}" },
+                imageDeleteParams : { path : "{{ imageUploadPath }}", folder : "{{ imageUploadFolder }}" },
 
                 // Media manager.
                 {% if usePluginMediaManager == true %}
                 imagesLoadURL : "{{ path( mediaManagerRoute ) }}",
-                imagesLoadParams : { folder : "{{ imageUploadFolder }}" },
+                imagesLoadParams : { path : "{{ imageUploadPath }}", folder : "{{ imageUploadFolder }}" },
                 {% endif %}
 
                 // Autosave.
@@ -160,7 +161,8 @@
                 
                 
             })
-            .on( "editable.afterRemoveImage", function ( e, editor, $img ) {
+            .on( "editable.afterRemoveImage", function ( e, editor, $img )
+            {
                 editor.options.imageDeleteParams = { src : $img.attr( "src" ), folder : "{{ imageUploadFolder }}" };
                 editor.deleteImage( $img );
             })
@@ -186,5 +188,5 @@
             });
         });
     </script>
-    
+
 {% endblock %}

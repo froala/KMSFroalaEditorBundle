@@ -1,12 +1,12 @@
 # Image upload
 kms_froala_editor_upload_image:
-    pattern: /upload_image
+    path: /upload_image
     defaults: { _controller: KMSFroalaEditorBundle:Media:uploadImage }
 
 kms_froala_editor_delete_image:
-    pattern: /delete_image
+    path: /delete_image
     defaults: { _controller: KMSFroalaEditorBundle:Media:deleteImage }
 
 kms_froala_editor_load_images:
-    pattern: /load_images
+    path: /load_images
     defaults: { _controller: KMSFroalaEditorBundle:Media:loadImages }
