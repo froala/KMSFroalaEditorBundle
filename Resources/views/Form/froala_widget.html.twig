@@ -1,6 +1,6 @@
 {% block froala_widget %}
 
-<textarea     {{ block( "widget_attributes" ) }}>{{ value }}</textarea>
+<textarea      {{ block( "widget_attributes" ) }}>{{ value }}</textarea>
 
 <!-- Include JQuery -->
 {% if includeJQuery %}
@@ -15,19 +15,10 @@
             {
         		   $( "<link href=\"" + p_path +  "\" rel=\"stylesheet\">" ).appendTo( "head" );
             }
-            
-//             var $ = document;
-//             var head  = $.getElementsByTagName( "head" )[0];
-//             var link  = $.createElement( "link" );
-//             link.rel  = "stylesheet";
-//             link.type = "text/css";
-//             link.href = p_path;
-//             link.media = "all";
-//             head.appendChild( link );
         }  
 
     	{% if includeFontAwesome %}
-            loadCSS( "{{ asset( basePath ~ "css/font-awesome.min.css" ) }}" );
+            loadCSS( "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" );
         {% endif %}
         loadCSS( "{{ asset( basePath ~ "css/froala_editor.min.css" ) }}" );
         loadCSS( "{{ asset( basePath ~ "css/froala_style.min.css" ) }}" );
