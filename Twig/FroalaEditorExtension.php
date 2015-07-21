@@ -1,72 +1,74 @@
 <?php
 
-namespace KMS\FroalaEditorBundle\Twig;
+	namespace KMS\FroalaEditorBundle\Twig;
 
-/**
- * Froala editor Twig extension.
- */
-class FroalaEditorExtension extends \Twig_Extension
-{
-	
-	// -------------------------------------------------------------//
-	// --------------------------- MEMBERS -------------------------//
-	// -------------------------------------------------------------//
-	
-	// -------------------------------------------------------------//
-	// -------------------------- CONSTRUCTOR ----------------------//
-	// -------------------------------------------------------------//
-	
-	// -------------------------------------------------------------//
-	// --------------------------- METHODS -------------------------//
-	// -------------------------------------------------------------//
-	
-	//
-	// Better to render directly in the template for the moment.
-	//
-	
 	/**
-	 * Render the main Froala command (used to start the plugin).
+	 * Froala editor Twig extension.
+	 * Class FroalaEditorExtension
+	 * @package KMS\FroalaEditorBundle\Twig
 	 */
-	// public function twigRenderEditable( $p_id, $p_inlineMode, $p_language,
-	// $p_urlImageUpload )
-	// {
-	// //------------------------- DECLARE ---------------------------//
-	
-	// return sprintf( "$( function() {
-	// $( \"#%s\" ).editable( {
-	// language: \"%s\",
-	// inlineMode : %s,
-	// imageUploadURL: \"%s\"
-	// } )
-	// } );",
-	// $p_id, //
-	// $p_language, //
-	// $p_inlineMode ? "true" : "false", //
-	// $p_urlImageUpload );
-	// }
-	
-	// -------------------------------------------------------------//
-	// --------------------------- OVERRIDE ------------------------//
-	// -------------------------------------------------------------//
-	
-	/**
-	 * @ERROR!!!
-	 */
-	public function getFunctions ()
+	class FroalaEditorExtension extends \Twig_Extension
 	{
-		// $options = array( "is_safe" => array( "html" ) );
-		// ------------------------- DECLARE ---------------------------//
-		return array ();
-		// new \Twig_SimpleFunction( "froala_editable", array( $this,
-		// "twigRenderEditable" ), $options ),
+
+		// -------------------------------------------------------------//
+		// --------------------------- MEMBERS -------------------------//
+		// -------------------------------------------------------------//
+
+		// -------------------------------------------------------------//
+		// -------------------------- CONSTRUCTOR ----------------------//
+		// -------------------------------------------------------------//
+
+		// -------------------------------------------------------------//
+		// --------------------------- METHODS -------------------------//
+		// -------------------------------------------------------------//
+
+		//
+		// Better to render directly in the template for the moment.
+		//
+
+		/**
+		 * Render the main Froala command (used to start the plugin).
+		 */
+		// public function twigRenderEditable( $p_id, $p_inlineMode, $p_language,
+		// $p_urlImageUpload )
+		// {
+		// //------------------------- DECLARE ---------------------------//
+
+		// return sprintf( "$( function() {
+		// $( \"#%s\" ).editable( {
+		// language: \"%s\",
+		// inlineMode : %s,
+		// imageUploadURL: \"%s\"
+		// } )
+		// } );",
+		// $p_id, //
+		// $p_language, //
+		// $p_inlineMode ? "true" : "false", //
+		// $p_urlImageUpload );
+		// }
+
+		// -------------------------------------------------------------//
+		// --------------------------- OVERRIDE ------------------------//
+		// -------------------------------------------------------------//
+
+		/**
+		 * @return array
+		 */
+		public function getFunctions()
+		{
+			// $options = array( "is_safe" => array( "html" ) );
+			// ------------------------- DECLARE ---------------------------//
+			return array();
+			// new \Twig_SimpleFunction( "froala_editable", array( $this,
+			// "twigRenderEditable" ), $options ),
+		}
+
+		/**
+		 * @return string
+		 */
+		public function getName()
+		{
+			// ------------------------- DECLARE ---------------------------//
+			return "kms_froala_editor";
+		}
 	}
-	
-	/**
-	 * @ERROR!!!
-	 */
-	public function getName ()
-	{
-		// ------------------------- DECLARE ---------------------------//
-		return "kms_froala_editor";
-	}
-}
