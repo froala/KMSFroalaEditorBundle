@@ -32,11 +32,10 @@
 			// ------------------------- DECLARE ---------------------------//
 
 			// FIXME
-			// if( $request->isXmlHttpRequest() == true )
-			// {
-			return $mediaManager->uploadImage( $request->files, $rootDir, $basePath, $folder, $path );
-
-			// }
+//			if( $request->isXmlHttpRequest() == true )
+//			{
+				return $mediaManager->uploadImage( $request->files, $rootDir, $basePath, $folder, $path );
+//			}
 		}
 
 		/**
@@ -65,14 +64,22 @@
 		{
 			$request      = $this->getRequest();
 			$mediaManager = $this->get( "kms_froala_editor.media_manager" );
-			$folder       = $request->query->get( "folder" );
 			$path         = $request->query->get( "path" );
+			$folder       = $request->query->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
 			$basePath     = $request->getBasePath();
 
 			// ------------------------- DECLARE ---------------------------//
 
 			return $mediaManager->loadImages( $rootDir, $basePath, $folder, $path );
+		}
+
+		/**
+		 *
+		 */
+		public function uploadFileAction()
+		{
+			//------------------------- DECLARE ---------------------------//
 		}
 
 	}

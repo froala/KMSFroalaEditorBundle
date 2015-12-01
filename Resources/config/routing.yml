@@ -10,3 +10,8 @@ kms_froala_editor_delete_image:
 kms_froala_editor_load_images:
     path: /load_images
     defaults: { _controller: KMSFroalaEditorBundle:Media:loadImages }
+
+# File upload
+kms_froala_editor_upload_file:
+    path: /upload_file
+    defaults: { _controller: KMSFroalaEditorBundle:Media:uploadFile }

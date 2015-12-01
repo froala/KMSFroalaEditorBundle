@@ -1,208 +1,79 @@
+<!-- @formatter:off -->
 {% block froala_widget %}
 
+	{# JS. #}
+	{% if includeJQuery %}
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	{% endif %}
+
+	{% if includeJS %}
+		<script src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
+		<script src="{{ asset( basePath ~ 'js/froala_editor.min.js' ) }}"></script>
+
+		<!--[if lt IE 9]>
+		<script src="{{ asset( basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
+		<![endif]-->
+		<script src="{{ asset( basePath ~ 'js/languages/' ~ arrOption.language ~ '.js' ) }}"></script>
+
+		{% for plugin in arrPluginJS %}
+			<script src="{{ asset( basePath ~ 'js/plugins/' ~ plugin ~ '.min.js' ) }}"></script>
+		{% endfor %}
+	{% endif %}
+
+	{# CSS. #}
+	{% if includeFontAwesome %}
+		<script type="text/javascript">
+			loadCSS( "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" );
+		</script>
+	{% endif %}
+
+	{% if includeCSS %}
+		<script type="text/javascript">
+			loadCSS( "{{ asset( basePath ~ 'css/froala_editor.min.css' ) }}" );
+			loadCSS( "{{ asset( basePath ~ 'css/froala_style.min.css' ) }}" );
+
+			{% for plugin in arrPluginCSS %}
+				loadCSS( "{{ asset( basePath ~ 'css/plugins/' ~ plugin ~ '.min.css' ) }}" );
+			{% endfor %}
+		</script>
+	{% endif %}
+
+	{# Editor textarea. #}
 	<textarea {{ block( "widget_attributes" ) }}>{{ value }}</textarea>
 
-	<!-- Include JQuery -->
-	{% if includeJQuery %}
-		<script src="http://code.jquery.com/jquery-1.11.0.js"></script>
-	{% endif %}
-
-	<!-- Include CSS files. -->
-	<script type="text/javascript">
-		function loadCSS( p_path )
-		{
-			if ( !$( "link[href=\"" + p_path + "\"]" ).length )
-			{
-				$( "<link href=\"" + p_path + "\" rel=\"stylesheet\">" ).appendTo( "head" );
-			}
-		}
-
-		{% if includeFontAwesome %}
-		loadCSS( "{{ asset( basePath ~ "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" ) }}" );
-		{% endif %}
-		loadCSS( "{{ asset( basePath ~ "css/froala_editor.min.css" ) }}" );
-		loadCSS( "{{ asset( basePath ~ "css/froala_style.min.css" ) }}" );
-	</script>
-
-	<!-- Include JS files. -->
-	<script src="{{ asset( basePath ~ "js/froala_editor.min.js" ) }}"></script>
-	<!-- Include IE8 JS. -->
-	<!--[if lt IE 9]>
-	<script src="{{ asset( basePath ~ "js/froala_editor_ie8.min.js" ) }}"></script>
-	<![endif]-->
-	<script src="{{ asset( basePath ~ "js/langs/" ~ language ~ ".js" ) }}"></script>
-
-	<!-- Include license. -->
-	{% if serialNumber is not null %}
-		<script>$.Editable.DEFAULTS.key = "{{ serialNumber }}";</script>
-	{% endif %}
-	{% if usePluginBlockStyles %}
-		<script src="{{ asset( basePath ~ "js/plugins/block_styles.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginColors %}
-		<script src="{{ asset( basePath ~ "js/plugins/colors.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginCharCounter %}
-		<script src="{{ asset( basePath ~ "js/plugins/char_counter.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginFileUpload %}
-		<script src="{{ asset( basePath ~ "js/plugins/file_upload.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginFontFamily %}
-		<script src="{{ asset( basePath ~ "js/plugins/font_family.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginFontSize %}
-		<script src="{{ asset( basePath ~ "js/plugins/font_size.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginFullscreen %}
-		<script src="{{ asset( basePath ~ "js/plugins/fullscreen.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginLists %}
-		<script src="{{ asset( basePath ~ "js/plugins/lists.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginMediaManager %}
-		<script src="{{ asset( basePath ~ "js/plugins/media_manager.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginTables %}
-		<script src="{{ asset( basePath ~ "js/plugins/tables.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginUrls %}
-		<script src="{{ asset( basePath ~ "js/plugins/urls.min.js" ) }}"></script>
-	{% endif %}
-	{% if usePluginVideo %}
-		<script src="{{ asset( basePath ~ "js/plugins/video.min.js" ) }}"></script>
-	{% endif %}
-	<!-- Initialize the editor. -->
+	{# Load the editor. #}
 	<script>
-		function froalaDisplayError( p_message )
-		{
-			alert( p_message );
-		}
-		$( document ).ready( function ()
-							 {
-								 $( "#{{ id }}" ).editable( {
 
-									 // Main configuration.
-									 language : "{{ language }}",
-
-									 // Image upload.
-									 imageUploadURL    : "{{ path( imageUploadRoute ) }}",
-									 imageUploadParams : {
-										 path   : "{{ imageUploadPath }}",
-										 folder : "{{ imageUploadFolder }}"
-									 },
-									 imageDeleteURL    : "{{ path( imageUploadRouteDelete ) }}",
-									 imageDeleteParams : {
-										 path   : "{{ imageUploadPath }}",
-										 folder : "{{ imageUploadFolder }}"
-									 },
-
-									 // Media manager.
-									 {% if usePluginMediaManager == true %}
-									 imagesLoadURL    : "{{ path( mediaManagerRoute ) }}",
-									 imagesLoadParams : {
-										 path   : "{{ imageUploadPath }}",
-										 folder : "{{ imageUploadFolder }}"
-									 },
-									 {% endif %}
-
-									 // Autosave.
-									 {% if autosaveActive == true %}
-									 autosave         : true,
-									 autosaveInterval : {{ autosaveInterval }},
-									 saveURL          : "{{ path( autosaveRoute, autosaveRouteParams ) }}",
-									 saveRequestType  : "{{ autosaveRequestType }}",
-									 saveParams       : {
-								 {% for key, value in autosaveParams %}{{ key }} :
-								 "{{ value }}",
-								 {% endfor %}
-							 },
-				{% endif %}
-
-				// Options.
-				{% if inlineMode is not null %}
-							 inlineMode
-		: {{ inlineMode ? "true" : "false" }},
-		{% endif %}
-		{% if minHeight is not null %}
-		minHeight : {{ minHeight }},
-		{% endif %}
-		{% if maxHeight is not null %}
-		maxHeight : {{ maxHeight }},
-		{% endif %}
-		{% if width is not null %}
-		width : {{ width }},
-		{% endif %}
-		{% if height is not null %}
-		height : {{ height }},
-		{% endif %}
-		{% if plainPaste is not null %}
-		plainPaste : {{ plainPaste ? "true" : "false" }},
-		{% endif %}
-		{% if tabSpaces is not null %}
-		tabSpaces : {{ tabSpaces ? "true" : "false" }},
-		{% endif %}
-		{% if multiLine is not null %}
-		multiLine : {{ multiLine ? "true" : "false" }},
-		{% endif %}
-		{% if paragraphy is not null %}
-		paragraphy : {{ paragraphy ? "true" : "false" }},
-		{% endif %}
-		{% if placeholder is not null %}
-		placeholder : "{{ placeholder }}",
-				{% endif %}
-				{% if theme is not null %}
-				theme
-		:
-		"{{ theme }}",
-				{% endif %}
-				{% if unlinkButton is not null %}
-				unlinkButton
-		: {{ unlinkButton ? "true" : "false" }},
-		{% endif %}
-		{% if beautifyCode is not null %}
-		beautifyCode : {{ beautifyCode ? "true" : "false" }},
-		{% endif %}
-		{% if buttons is not null %}
-		buttons : { {% for key, value in buttons %}{{ key }} :
-			"{{ value }}",
-			{% endfor %}
-		}
-		,
-		{% endif %}
-		{% if convertMailAddresses is not null %}
-		convertMailAddresses : {{ convertMailAddresses ? "true" : "false" }},
+		{# Add license. #}
+		{% if serialNumber is defined %}
+			$.FroalaEditor.DEFAULTS.key = "{{ serialNumber }}";
 		{% endif %}
 
-
-		})
-		.on( "editable.afterRemoveImage", function ( e, editor, $img )
-		{
-			editor.options.imageDeleteParams = { src : $img.attr( "src" ), folder : "{{ imageUploadFolder }}" };
-			editor.deleteImage( $img );
-		} )
-				.on( "editable.imageError", function ( e, editor, error )
-					 {
-						 froalaDisplayError( "Error " + error.code + " : " + error.message );
-					 } )
-				.on( "editable.imageDeleteError", function ( e, editor, error )
-					 {
-						 froalaDisplayError( "Error " + error.code + " : " + error.message );
-					 } )
-				.on( "editable.imagesLoadError", function ( e, editor, error )
-					 {
-						 froalaDisplayError( "Error " + error.code + " : " + error.message );
-					 } )
-				.on( "editable.saveError", function ( e, editor, error )
-					 {
-						 froalaDisplayError( "Error " + error.code + " : " + error.message );
-					 } )
-				.on( "editable.saveError", function ( e, editor, error )
-					 {
-						 froalaDisplayError( "Error " + error.code + " : " + error.message );
-					 } );
-		})
-		;
+		{# Go. #}
+		$( document ).ready( function () { $( "#{{ id }}" ).froalaEditor({
+			{% for option, value in arrOption %}
+				{% if value is iterable %}{{ option }} :
+					{% if value[0] is defined %} [ {% for k, v in value %}  "{{ v }}", {% endfor %} ],
+					{% else %} { {% for k, v in value %} {{ k }} : "{{ v }}", {% endfor %} }, {% endif %}
+				{% else %} {{ option }} : "{{ value }}", {% endif %}
+			{% endfor %} })
+			.on( "froalaEditor.image.error", function ( e, editor, error )
+			{
+				froalaDisplayError( "Error " + error.code + " : " + error.message );
+			} )
+			.on( "froalaEditor.imageManager.error", function ( e, editor, error )
+			{
+				froalaDisplayError( "Error " + error.code + " : " + error.message );
+			} )
+			.on( "froalaEditor.save.error", function ( e, editor, error )
+			{
+				froalaDisplayError( "Error " + error.code + " : " + error.message );
+			} )
+			.on( "froalaEditor.file.error", function ( e, editor, error, responses )
+			{
+				froalaDisplayError( "Error " + error.code + " : " + error.message );
+			});
+		});
 	</script>
 
 {% endblock %}

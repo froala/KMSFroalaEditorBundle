@@ -8,7 +8,6 @@
 	use Symfony\Component\HttpFoundation\JsonResponse;
 
 	/**
-	 * Manages media.
 	 * Class MediaManager
 	 * @package KMS\FroalaEditorBundle\Service
 	 */
@@ -105,7 +104,7 @@
 				$file->move( $folder, $name );
 
 				$response->setData( array(
-										"link" => $path . '/' . $name
+										"link" => $path . $name
 									) );
 
 				return $response;
@@ -167,7 +166,7 @@
 
 			foreach( $finder as $file )
 			{
-				$arrImage [] = $path . '/' . $file->getFilename();
+				$arrImage [] = array( "url" => $path . $file->getFilename(), "thumb" => $path . $file->getFilename() );
 			}
 
 			$response->setData( $arrImage );
@@ -189,7 +188,7 @@
 		{
 			// ------------------------- DECLARE ---------------------------//
 
-			return $p_rootDir . "/../web" . $p_folder;
+			return $p_rootDir . "/../web/" . $p_folder;
 		}
 
 		/**
@@ -201,6 +200,7 @@
 		private function obtainPath( $p_basePath, $p_path )
 		{
 			// ------------------------- DECLARE ---------------------------//
-			return $p_basePath . $p_path;
+
+			return $p_basePath . '/' . $p_path;
 		}
 	}
