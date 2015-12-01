@@ -7,9 +7,14 @@
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
 For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
 
+##Important note : migration from v1 to v2##
+
+Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
+To migrate from v1 to v2, just follow instructions bellow, it's easier and faster than before.
+
 ##Quick installation guide
 
-###Step 1 : Add KMSFroalaEditorBundle to your composer.json
+###Step 1 : Add KMSFroalaEditorBundle to your composer.json (according to your needed version)
 
 ```
 {
@@ -48,64 +53,74 @@ kms_froala_editor:
 
 ###Step 5 : Configure the bundle (optional)
 
+All Froala options ([list provided here](https://editor.froala.com/options)) are supported except "emoticonSet".
+Just add the option name with your value.
+If you want to keep the Froala default value, don't provide anything in your config file.
+For options wich require an array, provide an value array.
+For options wich require an object, provide an key/value array.
+
+Note that some options needs some plugins (all information provided in the [Froala documentation](https://editor.froala.com/options)).
+
+Example for each option types bellow:
+
 ``` yaml
 // app/config.yml
 
 kms_froala_editor:
 
-    ################
-    # Main config. #
-    ################
-    
-    # The Froala editor path.
-    # Default: the editor version included in the bundle.
-    basePath: "/yourCustomFroalaEditorPath/"
-    
-    # The Froala license key for commercial uses.
-    serialNumber: "yourKey"
-    
-    # The editor language.
-    # Default: "en_us".
-    # More : see Resources/public/js/langs for all languages.
     language: "nl"
-    
-    #########################################################
-    # Editor options.
-    # See https://editor.froala.com/options for more infos.
-    # Currently implemented are listed below:
-    #########################################################
-    
-    inlineMode
-    minHeight
-    maxHeight
-    width
-    height
-    plainPaste
-    tabSpaces
-    multiLine
-    paragraphy
-    placeholder
-    theme
-    unlinkButton
-    beautifyCode
-    buttons
-    convertMailAddresses
+    toolbarInline: true
+    tableColors: [ "#FFFFFF", "#FF0000" ]
+    saveParams: { "id" : "myEditorField" }
+   
 ```
 
-If JQuery or Font Awesome is already included in your layout, you can disable bundle inclusion:
+To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
 
 ``` yaml
 // app/config.yml
 
 kms_froala_editor:
     
-    # JQuery inclusion.
-    # Default: true.
+    # Froala license number if you want to use a purchased license.
+    serialNumber: "XXXX-XXXX-XXXX"
+    
+    # Disable JQuery inclusion.
     includeJQuery: false
     
-    # Font Awesome inclusion.
-    # Default: true.
+    # Disable all bundle javascripts inclusion (not concerning JQuery).
+    # Usage: if you are using Grunt or other and you want to include yoursef all scripts. 
+    includeJS: false
+    
+    # Disable Font Awesome inclusion.
     includeFontAwesome: false
+    
+    # Disable all bundle CSS inclusion (not concerning Font Awesome).
+    # Usage: if you are using Grunt or other and you want to include yoursef all stylesheets. 
+    includeCSS: false
+    
+    # Change the froala base path.
+    basePath: "/my/custom/path".
+    
+    # The image upload folder in your /web directory.
+    # Default: "/upload".
+    imageUploadFolder: "/my/upload/folder"
+    
+    # The image upload URL base.
+    # Usage: if you are using URL rewritting for your assets.
+    # Default: same value as provided as folder.
+    imageUploadPath: "/my/upload/path"
+    
+    # Same options for file upload.
+    # Default: "/upload".
+    imageUploadFolder: "/my/upload/folder"
+    imageUploadPath: "/my/upload/path"
+    
+    # Add some parameters to your save URL.
+    # Usage: if you need parameters to generate your save action route (see save explaination below).
+    # Default: null.
+    saveURLParams: { "id" : "myId" }
+    
 ```
 
 ###Step 6 : Add Froala to your form
@@ -121,7 +136,10 @@ All configuration items can be overridden:
 ``` php
 $builder->add( "yourField", "froala", array(
     "language" => "fr",
-    "inlineMode" => true
+    "toolbarInline" => true
+    "tableColors" [ "#FFFFFF", "#FF0000" ]
+    "saveParams": [ "id" => "myEditorField" ]
+    
 ) );
 ```
 
@@ -130,20 +148,15 @@ $builder->add( "yourField", "froala", array(
 To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
 
 ``` twig
-<!-- Basic formatting for image, video, table, code and quote. -->
-<link   href="{{ asset( "bundles/kmsfroalaeditor/css/froala_content.min.css" ) }}"
-        rel="stylesheet" type="text/css" />
-
-<!-- CSS rules for styling the block tags such as p, h1, h2, etc. -->
-<link   href="{{ asset( "bundles/kmsfroalaeditor/css/froala_style.min.css" ) }}"
-        rel="stylesheet" type="text/css" />
+<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
+<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
 ```
 
 Also, you should make sure that you put the edited content inside an element that has the class froala-view:
 
 ``` twig
-<div class="froala-view">
-  {{ myContentHtml | raw }}
+<div class="fr-view">
+    {{ myContentHtml | raw }}
 </div>
 ```
 
@@ -151,131 +164,58 @@ Also, you should make sure that you put the edited content inside an element tha
 
 ###Plugins
 
-All [Froala plugins](https://editor.froala.com/plugins) are enabled, but if you don't need one of them, you can disable it in the configuration, full list provided bellow:
+All [Froala plugins](https://editor.froala.com/plugins) are enabled, but if you don't need one of them, you can disable some plugins...
 
 ``` yaml
 // app/config.yml
 
 kms_froala_editor:
-
-    # Plugins.
-    # Default: all plugins are enabled.
-    plugins:
-        blockStyles: false
-        colors: false
-        charCounter: false
-        fileUpload: false
-        fullscreen: false
-        fontFamily: false
-        fontSize: false
-        lists: false
-        mediaManager: false
-        tables: false
-        urls: false
-        video: false
+    # Disable some plugins.
+    pluginsDisabled: [ "save", "fullscreen" ]
 ```
-
-Plugins can be disabled for each Froala instance in the form builer too:
-
-``` php
-$builder->add( "yourField", "froala", array(
-    "usePluginCharCounter" => false, 
-    "usePlugin<PluginNameInConfiguration>" => false,
-) );
-```
-
-###Concept: Image upload
-
-This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server. Files are uploaded in the web/upload folder by default.
-
-If you want to use your own uploader, or change the upload folder, you can modify the configuration:
+... or chose only plugins to enable:
 
 ``` yaml
 // app/config.yml
 
 kms_froala_editor:
-    
-    # Image uploader.
-    imageUpload:
-        # Default: the uploader integrated in this bundle.
-        route: myCustomImageUploadRoute
-        # Default: the uploader integrated in this bundle.
-        routeDelete: myCustomImageDeleteRoute
-        # Default: /upload (in web directory).
-        folder: /my_upload
-        # Default: same as folder.
-        path: /my_upload
+    # Disable some plugins.
+    pluginsEnabled: [ "image", "file" ]
 ```
 
-You can also provide those data in the form builder:
+Plugins can be enabled/disabled for each Froala instance by passing the same array in the form builer.
 
-``` php
-$builder->add( "yourField", "froala", array(
-    "imageUploadFolder" => "/myWebDirectory"
-) );
-```
+###Concept: Image upload/manager
 
-###Concept: Media manager
+This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server (see custom options for configuration like upload folder).
 
-This bundle provides an integration of the [Froala media manager concept](https://editor.froala.com/concepts/media-manager) to browse all images on your own web server (in the folder configured by the image uploader, so web/upload by default).
-
-If you want to use your own file browser, you can modify the configuration:
+If you want to use your own uploader, you can override the configuration:
 
 ``` yaml
 // app/config.yml
 
 kms_froala_editor:
-    
-    # Media manager.
-    mediaManager:
-        # Default: the manager integrated in this bundle.
-        route: myCustomMediaManagerRoute
+    imageUploadURL: "my_upload_route"
+    imageUploadURLParams: { id: "myId" }
+    imageManagerLoadURL: "my_load_route"
+    imageManagerLoadURLParams: { id: "myId" }
+    imageManagerDeleteURL: "my_delete_route"
+    imageManagerDeleteURLParams: { id: "myId" }
 ```
+
 
 ###Concept: Autosave
 
-This bundle provides an integration of the [Froala autosave concept](https://editor.froala.com/concepts/autosave) to automatically request a save action on your server.
-
-Just add some configuration:
-
+The [Froala autosave concept](https://www.froala.com/wysiwyg-editor/docs/concepts/autosave) to automatically request a save action on your server is working, just enter the correct options in your configuration file.
 ``` yaml
 // app/config.yml
 
 kms_froala_editor:
-    
-    # Auto save.
-    autosave:
-        # Default: false.
-        active: true
-        # The request call interval in millisec.
-        # Default: 10000.
-        interval: 20000
-        # Default: POST.
-        requestType: GET
-        # Default: none.
-        route: yourOwnSaveRoute
-        # The array of parameters used by Symfony to generate your route.
-        # Optionnal
-        routeParams: { id : 10 }
-        # The array of parameters to send with the editor content to your server.
-        # Optionnal
-        params: { type : "demo" }
+    saveURL: "my_save_route"
+    saveInterval: 2500
+    saveParam: "content"
 ```
 
-You can also provide those data in the form builder:
+###Concept: File upload
 
-``` php
-$builder->add( "yourField", "froala", array(
-    "autosaveActive" => true,
-    "autosaveInterval" => 5000,
-    "autosaveRoute" => "my_route_autosave",
-    "autosaveRouteParams" => array( "id" => $id ),
-    "autosaveParams" => array( "type" => "demo" ),
-) );
-```
-
-###TODO
-* include JS only one time if multiple instance on the same page (done for CSS).
-* more configuration
-* file upload
-* ... any idea ?
+Coming in the next update.
