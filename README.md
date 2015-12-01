@@ -2,15 +2,15 @@
 
 [![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
+##Important note : migration from v1 to v2##
+
+Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
+To migrate from v1 to v2, you have to update your configuration file. Just follow instructions bellow, it's easier and faster than before.
+
 ##Licence
 
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
 For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
-
-##Important note : migration from v1 to v2##
-
-Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
-To migrate from v1 to v2, just follow instructions bellow, it's easier and faster than before.
 
 ##Quick installation guide
 
