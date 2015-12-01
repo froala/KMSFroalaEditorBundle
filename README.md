@@ -89,17 +89,18 @@ kms_froala_editor:
     includeJQuery: false
     
     # Disable all bundle javascripts inclusion (not concerning JQuery).
-    # Usage: if you are using Grunt or other and you want to include yoursef all scripts. 
+    # Usage: if you are using Grunt or other and you want to include yourself all scripts. 
     includeJS: false
     
     # Disable Font Awesome inclusion.
     includeFontAwesome: false
     
     # Disable all bundle CSS inclusion (not concerning Font Awesome).
-    # Usage: if you are using Grunt or other and you want to include yoursef all stylesheets. 
+    # Usage: if you are using Grunt or other and you want to include yourself all stylesheets. 
     includeCSS: false
     
     # Change the froala base path.
+    # Usage: let me know, I don't think it's usefull.
     basePath: "/my/custom/path".
     
     # The image upload folder in your /web directory.
@@ -206,7 +207,8 @@ kms_froala_editor:
 
 ###Concept: Autosave
 
-The [Froala autosave concept](https://www.froala.com/wysiwyg-editor/docs/concepts/autosave) to automatically request a save action on your server is working, just enter the correct options in your configuration file.
+The [Froala autosave concept](https://www.froala.com/wysiwyg-editor/docs/concepts/autosave) to automatically request a save action on your server is working, just enter the correct options in your configuration file:
+
 ``` yaml
 // app/config.yml
 
@@ -215,6 +217,8 @@ kms_froala_editor:
     saveInterval: 2500
     saveParam: "content"
 ```
+
+You can add some parameters in your save route (see custom options).
 
 ###Concept: File upload
 
