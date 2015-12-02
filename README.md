@@ -138,8 +138,8 @@ All configuration items can be overridden:
 $builder->add( "yourField", "froala", array(
     "language" => "fr",
     "toolbarInline" => true
-    "tableColors" [ "#FFFFFF", "#FF0000" ]
-    "saveParams": [ "id" => "myEditorField" ]
+    "tableColors" => [ "#FFFFFF", "#FF0000" ]
+    "saveParams" => [ "id" => "myEditorField" ]
     
 ) );
 ```
