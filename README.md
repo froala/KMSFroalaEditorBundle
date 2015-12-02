@@ -222,3 +222,10 @@ You can add some parameters in your save route (see custom options).
 ###Concept: File upload
 
 Coming in the next update.
+
+###TODO ?
+
+(o) File upload
+(o) Override Froala event and error display
+(o) Display the editor content with a Twig extension
+(o) Load JS at the end
