@@ -137,10 +137,9 @@ All configuration items can be overridden:
 ``` php
 $builder->add( "yourField", "froala", array(
     "language" => "fr",
-    "toolbarInline" => true
-    "tableColors" => [ "#FFFFFF", "#FF0000" ]
+    "toolbarInline" => true,
+    "tableColors" => [ "#FFFFFF", "#FF0000" ],
     "saveParams" => [ "id" => "myEditorField" ]
-    
 ) );
 ```
 
