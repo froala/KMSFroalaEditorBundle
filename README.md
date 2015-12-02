@@ -5,7 +5,7 @@
 ##Important note : migration from v1 to v2##
 
 Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
-To migrate from v1 to v2, you have to update your configuration file. Just follow instructions bellow, it's easier and faster than before.
+To migrate from v1 to v2, you have to update your configuration file. Then, read [display editor content chapter](https://github.com/froala/KMSFroalaEditorBundle#step-7--display-editor-content). Just follow instructions bellow, it's easier and faster than before.
 
 ##Licence
 
