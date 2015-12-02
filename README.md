@@ -225,7 +225,7 @@ Coming in the next update.
 
 ###TODO ?
 
-(o) File upload
-(o) Override Froala event and error display
-(o) Display the editor content with a Twig extension
-(o) Load JS at the end
+- File upload
+- Override Froala event and error display
+- Display the editor content with a Twig extension
+- Load JS at the end
