@@ -130,72 +130,72 @@
 		);
 
 		public static $OPTIONS_ARRAY = array(
-			"colorsBackground"     => null, //
-			"colorsText"           => null, //
-			//"emoticonsSet"         => null, //
-			"fileAllowedTypes"     => null, //
-			"fontSize"             => null, //
-			"htmlAllowedAttrs"     => null, //
-			"htmlAllowedEmptyTags" => null, //
-			"htmlAllowedTags"      => null, //
-			"htmlRemoveTags"       => null, //
-			"imageAllowedTypes"    => null, //
-			"imageAltButtons"      => null, //
-			"imageEditButtons"     => null, //
-			"imageInsertButtons"   => null, //
-			"imageSizeButtons"     => null, //
-			"lineBreakerTags"      => null, //
-			"linkEditButtons"      => null, //
-			"linkInsertButtons"    => null, //
-			"linkList"             => null, //
-			"pasteDeniedAttrs"     => null, //
-			"pasteDeniedTags"      => null, //
-			"shortcutsEnabled"     => null, //
-			"tableColors"          => null, //
-			"tableColorsButtons"   => null, //
-			"tableEditButtons"     => null, //
-			"tableInsertButtons"   => null, //
-			"toolbarButtons"       => null, //
-			"toolbarButtonsMD"     => null, //
-			"toolbarButtonsSM"     => null, //
-			"toolbarButtonsXS"     => null, //
-			"videoEditButtons"     => null, //
-			"videoInsertButtons"   => null, //
-			"videoSizeButtons"     => null
+			"colorsBackground"     => array(), //
+			"colorsText"           => array(), //
+			//"emoticonsSet"         => array(), //
+			"fileAllowedTypes"     => array(), //
+			"fontSize"             => array(), //
+			"htmlAllowedAttrs"     => array(), //
+			"htmlAllowedEmptyTags" => array(), //
+			"htmlAllowedTags"      => array(), //
+			"htmlRemoveTags"       => array(), //
+			"imageAllowedTypes"    => array(), //
+			"imageAltButtons"      => array(), //
+			"imageEditButtons"     => array(), //
+			"imageInsertButtons"   => array(), //
+			"imageSizeButtons"     => array(), //
+			"lineBreakerTags"      => array(), //
+			"linkEditButtons"      => array(), //
+			"linkInsertButtons"    => array(), //
+			"linkList"             => array(), //
+			"pasteDeniedAttrs"     => array(), //
+			"pasteDeniedTags"      => array(), //
+			"shortcutsEnabled"     => array(), //
+			"tableColors"          => array(), //
+			"tableColorsButtons"   => array(), //
+			"tableEditButtons"     => array(), //
+			"tableInsertButtons"   => array(), //
+			"toolbarButtons"       => array(), //
+			"toolbarButtonsMD"     => array(), //
+			"toolbarButtonsSM"     => array(), //
+			"toolbarButtonsXS"     => array(), //
+			"videoEditButtons"     => array(), //
+			"videoInsertButtons"   => array(), //
+			"videoSizeButtons"     => array()
 		);
 
 		public static $OPTIONS_ARRAY_CUSTOM = array(
-			"pluginsEnabled"  => null, //
-			"pluginsDisabled" => null
+			"pluginsEnabled"  => array(), //
+			"pluginsDisabled" => array()
 		);
 
 		public static $OPTIONS_OBJECT = array(
-			"codeMirrorOptions"        => null, //
-			"fileUploadParams"         => null, //
-			"fileUploadToS3"           => null, //
-			"fontFamily"               => null, //
-			"imageManagerDeleteParams" => null, //
-			"imageManagerLoadParams"   => null, //
-			"imageStyles"              => null, //
-			"imageUploadParams"        => null, //
-			"imageUploadToS3"          => null, //
-			"inlineStyles"             => null, //
-			"linkAttributes"           => null, //
-			"linkStyles"               => null, //
-			"paragraphFormat"          => null, //
-			"paragraphStyles"          => null, //
-			"requestHeaders"           => null, //
-			"saveParams"               => null, //
-			"tableStyles"              => null, //
-			"tableCellStyles"          => null
+			"codeMirrorOptions"        => array(), //
+			"fileUploadParams"         => array(), //
+			"fileUploadToS3"           => array(), //
+			"fontFamily"               => array(), //
+			"imageManagerDeleteParams" => array(), //
+			"imageManagerLoadParams"   => array(), //
+			"imageStyles"              => array(), //
+			"imageUploadParams"        => array(), //
+			"imageUploadToS3"          => array(), //
+			"inlineStyles"             => array(), //
+			"linkAttributes"           => array(), //
+			"linkStyles"               => array(), //
+			"paragraphFormat"          => array(), //
+			"paragraphStyles"          => array(), //
+			"requestHeaders"           => array(), //
+			"saveParams"               => array(), //
+			"tableStyles"              => array(), //
+			"tableCellStyles"          => array()
 		);
 
 		public static $OPTIONS_OBJECT_CUSTOM = array(
-			"imageManagerDeleteURLParams" => null, //
-			"imageManagerLoadURLParams"   => null, //
-			"imageUploadURLParams"        => null, //
-			"saveURLParams"               => null, //
-			"fileUploadURLParams"         => null, //
+			"imageManagerDeleteURLParams" => array(), //
+			"imageManagerLoadURLParams"   => array(), //
+			"imageUploadURLParams"        => array(), //
+			"saveURLParams"               => array(), //
+			"fileUploadURLParams"         => array(), //
 		);
 
 		/**
@@ -291,7 +291,9 @@
 
 			foreach( $array as $option => $defaultValue )
 			{
-				$p_nodeBuilder = $p_nodeBuilder->arrayNode( $option )->prototype( 'scalar' )->end()->end();
+				$p_nodeBuilder =
+					$p_nodeBuilder->arrayNode( $option )->prototype( 'scalar' )->end()->defaultValue( $defaultValue )
+								  ->end();
 			}
 		}
 
@@ -305,7 +307,9 @@
 
 			foreach( $array as $option => $defaultValue )
 			{
-				$p_nodeBuilder = $p_nodeBuilder->arrayNode( $option )->prototype( 'scalar' )->end()->end();
+				$p_nodeBuilder =
+					$p_nodeBuilder->arrayNode( $option )->prototype( 'scalar' )->end()->defaultValue( $defaultValue )
+								  ->end();
 			}
 		}
 

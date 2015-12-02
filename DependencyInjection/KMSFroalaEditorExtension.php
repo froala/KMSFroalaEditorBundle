@@ -64,14 +64,13 @@
 			// Load defined options in config file.
 			foreach( UConfiguration::getArrOptionAll() as $option )
 			{
-				if( isset( $p_arrConfig [ $option ] ) == false || //
-					$p_arrConfig [ $option ] == null
+				if( empty( $p_arrConfig [ $option ] ) == false || //
+					$p_arrConfig [ $option ] === false
 				)
 				{
-					continue;
+					$p_container->setParameter( Configuration::$NODE_ROOT . '.' . $option, $p_arrConfig [ $option ] );
 				}
 
-				$p_container->setParameter( Configuration::$NODE_ROOT . '.' . $option, $p_arrConfig [ $option ] );
 			}
 		}
 
