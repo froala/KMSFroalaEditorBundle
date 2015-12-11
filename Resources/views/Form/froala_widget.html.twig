@@ -44,13 +44,12 @@
 	{# Load the editor. #}
 	<script>
 
-		{# Add license. #}
-		{% if serialNumber is defined %}
-			$.FroalaEditor.DEFAULTS.key = "{{ serialNumber }}";
-		{% endif %}
-
 		{# Go. #}
 		$( document ).ready( function () { $( "#{{ id }}" ).froalaEditor({
+			{# Add license. #}
+			{% if serialNumber is defined %}
+				key : "{{ serialNumber }}",
+			{% endif %}
 			{% for option, value in arrOption %}
 				{% if value is iterable %}{{ option }} :
 					{% if value[0] is defined %} [ {% for k, v in value %}  "{{ v }}", {% endfor %} ],
