@@ -19,6 +19,7 @@
 			"disableRightClick"              => null, //
 			"editInPopup"                    => null, //
 			"editorClass"                    => null, //
+			"emoticonsUseImage"              => null, //
 			"fileUseSelectedText"            => null, //
 			"fontFamilySelection"            => null, //
 			"fontSizeSelection"              => null, //
@@ -59,9 +60,10 @@
 
 		public static $OPTIONS_BOOLEAN_CUSTOM = array(
 			"includeJS"          => true, //
+			"includeCSS"         => true, //
 			"includeJQuery"      => true, //
 			"includeFontAwesome" => true, //
-			"includeCSS"         => true
+			"includeCodeMirror"  => true
 		);
 
 		public static $OPTIONS_INTEGER = array(
@@ -121,7 +123,7 @@
 		);
 
 		public static $OPTIONS_STRING_CUSTOM = array(
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.0.5", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.1.0", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
@@ -150,6 +152,7 @@
 			"linkList"             => array(), //
 			"pasteDeniedAttrs"     => array(), //
 			"pasteDeniedTags"      => array(), //
+			"pluginsEnabled"       => array(), //
 			"shortcutsEnabled"     => array(), //
 			"tableColors"          => array(), //
 			"tableColorsButtons"   => array(), //
@@ -165,7 +168,6 @@
 		);
 
 		public static $OPTIONS_ARRAY_CUSTOM = array(
-			"pluginsEnabled"  => array(), //
 			"pluginsDisabled" => array()
 		);
 

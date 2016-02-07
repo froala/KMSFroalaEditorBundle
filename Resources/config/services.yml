@@ -2,20 +2,20 @@ services:
 
 # Form type.
     kms_froala_editor.form.type:
-        class: "KMS\FroalaEditorBundle\Form\Type\FroalaEditorType"
-        arguments: [ @service_container, @kms_froala_editor.option_manager, @kms_froala_editor.plugin_provider ]
+        class: "KMS\\FroalaEditorBundle\\Form\\Type\\FroalaEditorType"
+        arguments: [ "@service_container", "@kms_froala_editor.option_manager", "@kms_froala_editor.plugin_provider" ]
         tags:
-            - { name: "form.type", alias: "froala" }
+            - { name: "form.type" }
 
 # Plugin provider.
     kms_froala_editor.option_manager:
-        class: "KMS\FroalaEditorBundle\Service\OptionManager"
-        arguments: [ @router ]
+        class: "KMS\\FroalaEditorBundle\\Service\\OptionManager"
+        arguments: [ "@router" ]
 
 # Plugin provider.
     kms_froala_editor.plugin_provider:
-        class: "KMS\FroalaEditorBundle\Service\\PluginProvider"
+        class: "KMS\\FroalaEditorBundle\\Service\\PluginProvider"
 
 # Media manager.
     kms_froala_editor.media_manager:
-        class: "KMS\FroalaEditorBundle\Service\MediaManager"
+        class: "KMS\\FroalaEditorBundle\\Service\\MediaManager"

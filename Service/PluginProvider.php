@@ -38,6 +38,7 @@
 				"lists"            => [ PluginProvider::KEY_CSS => 0 ],
 				"paragraph_format" => [ PluginProvider::KEY_CSS => 0 ],
 				"paragraph_style"  => [ PluginProvider::KEY_CSS => 0 ],
+				"quick_insert"     => [ PluginProvider::KEY_CSS => 1 ],
 				"quote"            => [ PluginProvider::KEY_CSS => 0 ],
 				"save"             => [ PluginProvider::KEY_CSS => 0 ],
 				"table"            => [ PluginProvider::KEY_CSS => 1 ],
@@ -81,9 +82,12 @@
 			{
 				return array_diff( $arrPluginName, $p_pluginDisable );
 			}
-			else if( ! empty( $p_pluginEnable ) )
+			else
 			{
-				return array_intersect( $arrPluginName, $p_pluginEnable );
+				if( ! empty( $p_pluginEnable ) )
+				{
+					return array_intersect( $arrPluginName, $p_pluginEnable );
+				}
 			}
 
 			return $arrPluginName;

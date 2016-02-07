@@ -3,6 +3,7 @@
 	namespace KMS\FroalaEditorBundle\Controller;
 
 	use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Response;
 
 	/**
@@ -19,35 +20,35 @@
 
 		/**
 		 * Upload an image.
+		 * @param \Symfony\Component\HttpFoundation\Request $p_request
 		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 */
-		public function uploadImageAction()
+		public function uploadImageAction(Request $p_request)
 		{
-			$request      = $this->getRequest();
 			$mediaManager = $this->get( "kms_froala_editor.media_manager" );
-			$path         = $request->request->get( "path" );
-			$folder       = $request->request->get( "folder" );
+			$path         = $p_request->request->get( "path" );
+			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-			$basePath     = $request->getBasePath();
+			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
 			// FIXME
 //			if( $request->isXmlHttpRequest() == true )
 //			{
-				return $mediaManager->uploadImage( $request->files, $rootDir, $basePath, $folder, $path );
+				return $mediaManager->uploadImage( $p_request->files, $rootDir, $basePath, $folder, $path );
 //			}
 		}
 
 		/**
 		 * Delete an image.
+		 * @param \Symfony\Component\HttpFoundation\Request $p_request
 		 * @return \Symfony\Component\HttpFoundation\Response
 		 */
-		public function deleteImageAction()
+		public function deleteImageAction(Request $p_request)
 		{
-			$request      = $this->getRequest();
 			$mediaManager = $this->get( "kms_froala_editor.media_manager" );
-			$imageSrc     = $request->request->get( "src" );
-			$folder       = $request->request->get( "folder" );
+			$imageSrc     = $p_request->request->get( "src" );
+			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
 			// ------------------------- DECLARE ---------------------------//
 
@@ -58,16 +59,16 @@
 
 		/**
 		 * Load images.
+		 * @param \Symfony\Component\HttpFoundation\Request $p_request
 		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 */
-		public function loadImagesAction()
+		public function loadImagesAction(Request $p_request)
 		{
-			$request      = $this->getRequest();
 			$mediaManager = $this->get( "kms_froala_editor.media_manager" );
-			$path         = $request->query->get( "path" );
-			$folder       = $request->query->get( "folder" );
+			$path         = $p_request->query->get( "path" );
+			$folder       = $p_request->query->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-			$basePath     = $request->getBasePath();
+			$basePath     = $p_request->getBasePath();
 
 			// ------------------------- DECLARE ---------------------------//
 

@@ -8,6 +8,7 @@
 	use KMS\FroalaEditorBundle\Utility\UConfiguration;
 	use Symfony\Component\DependencyInjection\ContainerInterface;
 	use Symfony\Component\Form\AbstractType;
+	use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 	use Symfony\Component\Form\FormBuilderInterface;
 	use Symfony\Component\Form\FormInterface;
 	use Symfony\Component\Form\FormView;
@@ -148,7 +149,7 @@
 				}
 			}
 
-			$p_resolver->setDefined($arrDefined);
+			$p_resolver->setDefined( $arrDefined );
 			$p_resolver->setDefaults( $arrDefault );
 		}
 
@@ -158,15 +159,18 @@
 		public function getParent()
 		{
 			// ------------------------- DECLARE ---------------------------//
-			return "textarea";
+
+			return TextareaType::class;
 		}
 
 		/**
 		 * @return string
 		 */
-		public function getName()
+		public function getBlockPrefix()
 		{
-			// ------------------------- DECLARE ---------------------------//
-			return "froala";
+			//------------------------- DECLARE ---------------------------//
+
+			return 'froala';
 		}
+
 	}
