@@ -27,10 +27,5 @@
     },
     "autoload": {
         "psr-4": { "KMS\\FroalaEditorBundle\\": "" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.*-dev"
-        }
     }
 }
