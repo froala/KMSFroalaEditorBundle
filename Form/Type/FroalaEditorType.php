@@ -166,6 +166,16 @@
 		/**
 		 * @return string
 		 */
+		public function getName()
+		{
+			//------------------------- DECLARE ---------------------------//
+
+			return 'froala';
+		}
+
+		/**
+		 * @return string
+		 */
 		public function getBlockPrefix()
 		{
 			//------------------------- DECLARE ---------------------------//
