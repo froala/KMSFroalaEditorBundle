@@ -2,10 +2,6 @@
 
 [![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
-##Important note : Symfony 3 update##
-
-The master branch is now supporting Symfony 3. To use Symfony 2 integration, use 2.x branch.
-
 ##Important note 2 : migration from Froala v1 to v2##
 
 Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
