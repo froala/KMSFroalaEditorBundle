@@ -12,6 +12,7 @@
 	use Symfony\Component\Form\FormBuilderInterface;
 	use Symfony\Component\Form\FormInterface;
 	use Symfony\Component\Form\FormView;
+	use Symfony\Component\HttpKernel\Kernel;
 	use Symfony\Component\OptionsResolver\OptionsResolver;
 
 	/**
@@ -41,23 +42,31 @@
 		 */
 		private $m_pluginProvider;
 
+		/**
+		 * @var int
+		 */
+		private $m_version;
+
 		// -------------------------------------------------------------//
 		// -------------------------- CONSTRUCTOR ----------------------//
 		// -------------------------------------------------------------//
 
 		/**
 		 * FroalaEditorType constructor.
+		 * @param \Symfony\Component\HttpKernel\Kernel                      $p_kernel
 		 * @param \Symfony\Component\DependencyInjection\ContainerInterface $p_container
 		 * @param \KMS\FroalaEditorBundle\Service\OptionManager             $p_optionManager
 		 * @param \KMS\FroalaEditorBundle\Service\PluginProvider            $p_pluginProvider
 		 */
-		public function __construct( ContainerInterface $p_container, OptionManager $p_optionManager, PluginProvider $p_pluginProvider )
+		public function __construct( Kernel $p_kernel, ContainerInterface $p_container, OptionManager $p_optionManager, PluginProvider $p_pluginProvider )
 		{
 			// ------------------------- DECLARE ---------------------------//
 
 			$this->m_container      = $p_container;
 			$this->m_optionManager  = $p_optionManager;
 			$this->m_pluginProvider = $p_pluginProvider;
+
+			$this->m_version = $p_kernel::MAJOR_VERSION;
 		}
 
 		// -------------------------------------------------------------//
@@ -160,7 +169,12 @@
 		{
 			// ------------------------- DECLARE ---------------------------//
 
-			return TextareaType::class;
+			if( $this->m_version == 3 )
+			{
+				return TextareaType::class;
+			}
+
+			return "textarea";
 		}
 
 		/**
@@ -170,7 +184,7 @@
 		{
 			//------------------------- DECLARE ---------------------------//
 
-			return 'froala';
+			return "froala";
 		}
 
 		/**
@@ -180,7 +194,7 @@
 		{
 			//------------------------- DECLARE ---------------------------//
 
-			return 'froala';
+			return "froala";
 		}
 
 	}

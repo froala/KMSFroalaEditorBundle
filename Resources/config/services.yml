@@ -3,7 +3,7 @@ services:
 # Form type.
     kms_froala_editor.form.type:
         class: "KMS\\FroalaEditorBundle\\Form\\Type\\FroalaEditorType"
-        arguments: [ "@service_container", "@kms_froala_editor.option_manager", "@kms_froala_editor.plugin_provider" ]
+        arguments: [ "@kernel", "@service_container", "@kms_froala_editor.option_manager", "@kms_froala_editor.plugin_provider" ]
         tags:
             - { name: "form.type", alias: "froala" }
 
