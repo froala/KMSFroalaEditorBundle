@@ -196,20 +196,13 @@ Plugins can be enabled/disabled for each Froala instance by passing the same arr
 
 This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server (see custom options for configuration like upload folder).
 
-If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader):
+If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader).
 
-``` yaml
-// app/config.yml
+###Concept: File upload
 
-kms_froala_editor:
-    imageUploadURL: "my_upload_route"
-    imageUploadURLParams: { id: "myId" }
-    imageManagerLoadURL: "my_load_route"
-    imageManagerLoadURLParams: { id: "myId" }
-    imageManagerDeleteURL: "my_delete_route"
-    imageManagerDeleteURLParams: { id: "myId" }
-```
+This bundle provides an integration of the [Froala file upload concept](https://editor.froala.com/concepts/file-upload) to store your files on your own web server (see custom options for configuration like upload folder).
 
+If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader).
 
 ###Concept: Autosave
 
@@ -226,13 +219,9 @@ kms_froala_editor:
 
 You can add some parameters in your save route (see custom options).
 
-###Concept: File upload
-
-Coming in the next update.
-
 ###TODO ?
 
-- File upload
+- Add options to choose image and file extensions for upload
 - Override Froala event and error display
 - Display the editor content with a Twig extension
 - Load JS at the end
