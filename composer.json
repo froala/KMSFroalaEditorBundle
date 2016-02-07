@@ -1,10 +1,10 @@
 {
     "name": "kms/froala-editor-bundle",
     "type": "symfony-bundle",
-    "description": "Provides a Froala editor integration for Symfony 2.",
+    "description": "Provides a Froala editor integration for Symfony 2/3.",
     "keywords": [ "froala", "editor", "wysiwyg" ],
     "license": "MIT",
-    "version": "2.0.5",
+    "version": "2.1.0",
     "authors": [
         {
             "name": "Simon Guionniere",
