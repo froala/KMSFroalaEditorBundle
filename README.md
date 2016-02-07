@@ -2,7 +2,11 @@
 
 [![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
-##Important note : migration from v1 to v2##
+##Important note : Symfony 3 update##
+
+The master branch is now supporting Symfony 3. To use Symfony 2 integration, use 2.x branch.
+
+##Important note 2 : migration from Froala v1 to v2##
 
 Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
 To migrate from v1 to v2, you have to update your configuration file. Then, read [display editor content chapter](https://github.com/froala/KMSFroalaEditorBundle#step-7--display-editor-content). Just follow instructions bellow, it's easier and faster than before.
