@@ -254,8 +254,6 @@ kms_froala_editor:
 You can add some parameters in your save route (see custom options).
 
 ###TODO ?
-
-- Add options to choose image and file extensions for upload
 - Override Froala event and error display
 - Display the editor content with a Twig extension
 - Load JS at the end
