@@ -92,14 +92,17 @@ kms_froala_editor:
     # Disable JQuery inclusion.
     includeJQuery: false
     
-    # Disable all bundle javascripts inclusion (not concerning JQuery).
+    # Disable CodeMirror inclusion.
+    includeCodeMirror: false
+    
+     # Disable Font Awesome inclusion.
+    includeFontAwesome: false
+    
+    # Disable all bundle javascripts inclusion (not concerning JQuery nor CodeMirror).
     # Usage: if you are using Grunt or other and you want to include yourself all scripts. 
     includeJS: false
     
-    # Disable Font Awesome inclusion.
-    includeFontAwesome: false
-    
-    # Disable all bundle CSS inclusion (not concerning Font Awesome).
+    # Disable all bundle CSS inclusion (not concerning Font Awesome nor CodeMirror).
     # Usage: if you are using Grunt or other and you want to include yourself all stylesheets. 
     includeCSS: false
     
