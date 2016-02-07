@@ -110,25 +110,6 @@ kms_froala_editor:
     # Usage: let me know, I don't think it's usefull.
     basePath: "/my/custom/path".
     
-    # The image upload folder in your /web directory.
-    # Default: "/upload".
-    imageUploadFolder: "/my/upload/folder"
-    
-    # The image upload URL base.
-    # Usage: if you are using URL rewritting for your assets.
-    # Default: same value as provided as folder.
-    imageUploadPath: "/my/upload/path"
-    
-    # Same options for file upload.
-    # Default: "/upload".
-    imageUploadFolder: "/my/upload/folder"
-    imageUploadPath: "/my/upload/path"
-    
-    # Add some parameters to your save URL.
-    # Usage: if you need parameters to generate your save action route (see save explaination below).
-    # Default: null.
-    saveURLParams: { "id" : "myId" }
-    
 ```
 
 ###Step 6 : Add Froala to your form
@@ -179,6 +160,7 @@ All [Froala plugins](https://editor.froala.com/plugins) are enabled, but if you 
 kms_froala_editor:
     # Disable some plugins.
     pluginsDisabled: [ "save", "fullscreen" ]
+    
 ```
 ... or chose only plugins to enable:
 
@@ -188,6 +170,7 @@ kms_froala_editor:
 kms_froala_editor:
     # Disable some plugins.
     pluginsEnabled: [ "image", "file" ]
+    
 ```
 
 Plugins can be enabled/disabled for each Froala instance by passing the same array in the form builer.
@@ -198,11 +181,47 @@ This bundle provides an integration of the [Froala image upload concept](https:/
 
 If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader).
 
+To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # The image upload folder in your /web directory.
+    # Default: "/upload".
+    imageUploadFolder: "/my/upload/folder"
+    
+    # The image upload URL base.
+    # Usage: if you are using URL rewritting for your assets.
+    # Default: same value as provided as folder.
+    imageUploadPath: "/my/upload/path"
+    
+```
+
 ###Concept: File upload
 
 This bundle provides an integration of the [Froala file upload concept](https://editor.froala.com/concepts/file-upload) to store your files on your own web server (see custom options for configuration like upload folder).
 
 If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader).
+
+To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # The file upload folder in your /web directory.
+    # Default: "/upload".
+    fileUploadFolder: "/my/upload/folder"
+    
+     # The file upload URL base.
+    # Usage: if you are using URL rewritting for your assets.
+    # Default: same value as provided as folder.
+    fileUploadPath: "/my/upload/path"
+    
+```
 
 ###Concept: Autosave
 
@@ -215,6 +234,21 @@ kms_froala_editor:
     saveURL: "my_save_route"
     saveInterval: 2500
     saveParam: "content"
+    
+```
+
+To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+    
+    # Add some parameters to your save URL.
+    # Usage: if you need parameters to generate your save action route (see save explaination below).
+    # Default: null.
+    saveURLParams: { "id" : "myId" }
+    
 ```
 
 You can add some parameters in your save route (see custom options).
