@@ -86,7 +86,7 @@
 				return $response;
 			}
 
-			// Cheks image type.
+			// Check image type.
 			$extension = $file->guessExtension();
 			$mime      = $file->getMimeType();
 			if( ( ( $mime == "image/gif" ) || //
@@ -172,6 +172,89 @@
 			$response->setData( $arrImage );
 
 			return $response;
+		}
+
+		/**
+		 * Upload an image.
+		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
+		 * @param string                                    $p_rootDir
+		 * @param string                                    $p_basePath
+		 * @param string                                    $p_folder
+		 * @param string                                    $p_path
+		 * @return \Symfony\Component\HttpFoundation\JsonResponse
+		 * @throws \Exception
+		 */
+		public function uploadFile( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder, $p_path )
+		{
+//			$arrExtension = array(
+//				"gif",
+//				"jpeg",
+//				"jpg",
+//				"png"
+//			);
+			$folder   = $this->obtainFolder( $p_rootDir, $p_folder );
+			$path     = $this->obtainPath( $p_basePath, $p_path );
+			$response = new JsonResponse ();
+			// ------------------------- DECLARE ---------------------------//
+
+			if( $p_file == null )
+			{
+				$response->setData( array(
+										"error" => "No file received."
+									) );
+
+				return $response;
+			}
+
+			$file = $p_file->get( "file" );
+
+			if( $file == null )
+			{
+				$response->setData( array(
+										"error" => "No file received."
+									) );
+
+				return $response;
+			}
+
+			if( $file->getSize() > UploadedFile::getMaxFilesize() )
+			{
+				$response->setData( array(
+										"error" => "File too big."
+									) );
+
+				return $response;
+			}
+
+			// Checks file type.
+			$extension = $file->guessExtension();
+			$mime      = $file->getMimeType();
+//			if( ( ( $mime == "image/gif" ) || //
+//				  ( $mime == "image/jpeg" ) || //
+//				  ( $mime == "image/pjpeg" ) || //
+//				  ( $mime == "image/x-png" ) || //
+//				  ( $mime == "image/png" ) ) && //
+//				in_array( $extension, $arrExtension )
+//			)
+//			{
+			// Generates random name.
+			$name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
+
+			// Save file in the folder.
+			$file->move( $folder, $name );
+
+			$response->setData( array(
+									"link" => $path . $name
+								) );
+
+			return $response;
+//			}
+
+//			$response->setData( array(
+//									"error" => "File not supported."
+//								) );
+
+//			return $response;
 		}
 
 		// -------------------------------------------------------------//

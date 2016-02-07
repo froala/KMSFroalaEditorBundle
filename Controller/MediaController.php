@@ -76,11 +76,24 @@
 		}
 
 		/**
-		 *
+		 * Upload a file.
+		 * @param \Symfony\Component\HttpFoundation\Request $p_request
+		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 */
-		public function uploadFileAction()
+		public function uploadFileAction(Request $p_request)
 		{
-			//------------------------- DECLARE ---------------------------//
+			$mediaManager = $this->get( "kms_froala_editor.media_manager" );
+			$path         = $p_request->request->get( "path" );
+			$folder       = $p_request->request->get( "folder" );
+			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$basePath     = $p_request->getBasePath();
+			// ------------------------- DECLARE ---------------------------//
+
+			// FIXME
+//			if( $request->isXmlHttpRequest() == true )
+//			{
+			return $mediaManager->uploadFile( $p_request->files, $rootDir, $basePath, $folder, $path );
+//			}
 		}
 
 	}
