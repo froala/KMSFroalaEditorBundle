@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "symfony/twig-bundle": "^2.3|^3.0",
-        "symfony/yaml": "^2.3|^3.0",
+        "symfony/yaml": "^2.3|^3.0"
     },
     "autoload": {
         "psr-4": { "KMS\\FroalaEditorBundle\\": "" }
