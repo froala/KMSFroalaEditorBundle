@@ -117,7 +117,8 @@ kms_froala_editor:
 Just add a froala type in your form:
 
 ``` php
-$builder->add( "yourField", "froala" );
+$builder->add( "yourField", "froala" ); // Symfony 2
+$builder->add( "yourField", FroalaEditorType::class ); // Symfony 3
 ```
 
 All configuration items can be overridden:
