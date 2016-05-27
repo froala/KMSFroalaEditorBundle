@@ -171,7 +171,7 @@
 
 			if( $this->m_version == 3 )
 			{
-				return TextareaType::class;
+				return "Symfony\Component\Form\Extension\Core\Type\TextareaType";
 			}
 
 			return "textarea";
