@@ -130,6 +130,8 @@
 			// Plugins.
 			$arrPlugin                       = $this->m_pluginProvider->obtainArrPluginToInclude( $arrPluginEnabled, //
 																								  $arrPluginDisabled );
+
+			$p_view->vars [ "arrOption" ][ "pluginsEnabled" ] = $arrPlugin;
 			$p_view->vars [ "arrPluginJS" ]  = $this->m_pluginProvider->obtainArrPluginJS( $arrPlugin );
 			$p_view->vars [ "arrPluginCSS" ] = $this->m_pluginProvider->obtainArrPluginCSS( $arrPlugin );
 		}

@@ -24,6 +24,7 @@
 				"code_beautifier"  => [ PluginProvider::KEY_CSS => 0 ],
 				"code_view"        => [ PluginProvider::KEY_CSS => 1 ],
 				"colors"           => [ PluginProvider::KEY_CSS => 1 ],
+				"draggable"        => [ PluginProvider::KEY_CSS => 1 ],
 				"emoticons"        => [ PluginProvider::KEY_CSS => 1 ],
 				"entities"         => [ PluginProvider::KEY_CSS => 0 ],
 				"file"             => [ PluginProvider::KEY_CSS => 1 ],

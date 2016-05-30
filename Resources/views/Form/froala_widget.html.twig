@@ -65,7 +65,13 @@
 				{% if value is iterable %}{{ option }} :
 					{% if value[0] is defined %} [ {% for k, v in value %}  "{{ v }}", {% endfor %} ],
 					{% else %} { {% for k, v in value %} {{ k }} : "{{ v }}", {% endfor %} }, {% endif %}
-				{% else %} {{ option }} : "{{ value }}", {% endif %}
+				{% elseif value is same as(true) %}
+					{{ option }} : true,
+				{% elseif value is same as(false) %}
+					{{ option }} : false,
+				{% else %}
+					{{ option }} : "{{ value }}",
+				{% endif %}
 			{% endfor %} })
 			.on( "froalaEditor.image.error", function ( e, editor, error )
 			{
