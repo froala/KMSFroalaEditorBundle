@@ -4,7 +4,7 @@
     "description": "Provides a Froala editor integration for Symfony 2/3.",
     "keywords": [ "froala", "editor", "wysiwyg" ],
     "license": "MIT",
-    "version": "2.1.0",
+    "version": "2.3.0",
     "authors": [
         {
             "name": "Simon Guionniere",
