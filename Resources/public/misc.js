@@ -1,24 +1,11 @@
 /**
  * Display errors.
- * @param p_message is the message to display.
+ * @param p_editor is the editor.
+ * @param p_error is the error object.
  */
-function froalaDisplayError( p_message )
+function froalaDisplayError(  p_editor, p_error )
 {
 	//------------------------- DECLARE ---------------------------//
 
-	alert( p_message );
-}
-
-/**
- * Loads a CSS file if not already included in the DOM.
- * @param p_path is the CSS file path.
- */
-function loadCSS( p_path )
-{
-	//------------------------- DECLARE ---------------------------//
-
-	if ( !$( "link[href=\"" + p_path + "\"]" ).length )
-	{
-		$( "<link href=\"" + p_path + "\" rel=\"stylesheet\">" ).appendTo( "head" );
-	}
+	alert( "Error " + p_error.code + " : " + p_error.message );
 }
