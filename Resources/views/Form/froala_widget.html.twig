@@ -1,30 +1,6 @@
 <!-- @formatter:off -->
 {% block froala_widget %}
 
-	{# JS. #}
-	{% if includeJQuery %}
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	{% endif %}
-
-	{% if includeCodeMirror %}
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
-	{% endif %}
-
-	{% if includeJS %}
-		<script src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
-		<script src="{{ asset( basePath ~ 'js/froala_editor.min.js' ) }}"></script>
-
-		<!--[if lt IE 9]>
-		<script src="{{ asset( basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
-		<![endif]-->
-		<script src="{{ asset( basePath ~ 'js/languages/' ~ arrOption.language ~ '.js' ) }}"></script>
-
-		{% for plugin in arrPluginJS %}
-			<script src="{{ asset( basePath ~ 'js/plugins/' ~ plugin ~ '.min.js' ) }}"></script>
-		{% endfor %}
-	{% endif %}
-
 	{# CSS. #}
 	{% if includeFontAwesome %}
 		<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -47,8 +23,32 @@
 	{# Editor textarea. #}
 	<textarea {{ block( "widget_attributes" ) }}>{{ value }}</textarea>
 
+	{# JS. #}
+	{% if includeJQuery %}
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	{% endif %}
+
+	{% if includeCodeMirror %}
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+	{% endif %}
+
+	{% if includeJS %}
+		<script src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
+		<script src="{{ asset( basePath ~ 'js/froala_editor.min.js' ) }}"></script>
+
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="{{ asset( basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
+		<![endif]-->
+		<script type="text/javascript" src="{{ asset( basePath ~ 'js/languages/' ~ arrOption.language ~ '.js' ) }}"></script>
+
+		{% for plugin in arrPluginJS %}
+			<script type="text/javascript" src="{{ asset( basePath ~ 'js/plugins/' ~ plugin ~ '.min.js' ) }}"></script>
+		{% endfor %}
+	{% endif %}
+
 	{# Load the editor. #}
-	<script>
+	<script type="text/javascript">
 
 		{# Go. #}
 		$( document ).ready( function () { $( "#{{ id }}" ).froalaEditor({

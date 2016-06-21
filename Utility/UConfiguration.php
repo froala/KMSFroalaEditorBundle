@@ -54,6 +54,7 @@
 			"spellcheck"                     => null, //
 			"tableCellMultipleStyles"        => null, //
 			"tableMultipleStyles"            => null, //
+			"tableResizer"        			 => null, //
 			"toolbarBottom"                  => null, //
 			"toolbarContainer"               => null, //
 			"toolbarInline"                  => null, //
@@ -132,7 +133,7 @@
 		);
 
 		public static $OPTIONS_STRING_CUSTOM = array(
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.3.0", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.3.3", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
