@@ -65,7 +65,7 @@
 		 */
 		private function formatOptions( array & $p_arrOption )
 		{
-			$basePath          = $p_arrOption [ "basePath" ];
+			$basePath          = $p_arrOption[ "basePath" ];
 			$imageUploadFolder = $p_arrOption[ "imageUploadFolder" ];
 			$fileUploadFolder  = $p_arrOption[ "fileUploadFolder" ];
 			//------------------------- DECLARE ---------------------------//

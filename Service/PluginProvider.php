@@ -1,6 +1,7 @@
 <?php
 
 	namespace KMS\FroalaEditorBundle\Service;
+	use Doctrine\Common\Util\Inflector;
 
 	/**
 	 * Class PluginProvider
@@ -122,6 +123,24 @@
 				{
 					$arrPlugin[] = $plugin;
 				}
+			}
+
+			return $arrPlugin;
+		}
+
+		/**
+		 * Obtains array of plugin to include (camelized).
+		 * @param array $p_arrPlugin
+		 * @return array
+		 */
+		public function obtainArrPluginCamelized( $p_arrPlugin )
+		{
+			$arrPlugin = array();
+			//------------------------- DECLARE ---------------------------//
+
+			foreach( $p_arrPlugin as $plugin )
+			{
+				$arrPlugin[] = Inflector::camelize( $plugin );
 			}
 
 			return $arrPlugin;
