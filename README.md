@@ -239,13 +239,13 @@ kms_froala_editor:
 
 You can add some parameters in your save route (see custom options).
 
-## TODO ?
+## TODO
 - Add some tests
 - Override Froala event and error display
 - Display the editor content with a Twig extension
 - Load JS at the end
 
-## Licence
+## License
 
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
 For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
