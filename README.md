@@ -239,7 +239,7 @@ kms_froala_editor:
 
 You can add some parameters in your save route (see custom options).
 
-### TODO ?
+## TODO ?
 - Add some tests
 - Override Froala event and error display
 - Display the editor content with a Twig extension
