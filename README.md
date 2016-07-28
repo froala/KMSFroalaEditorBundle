@@ -1,61 +1,56 @@
-#KMSFroalaEditorBundle
+# KMSFroalaEditorBundle
 
 [![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
-##Important note : Symfony 3 update##
+## Symfony 3 update
 
 This bundle is now compatible with Symfony 2 and 3 on the same branch (dev-master).
 
-##Important note 2 : migration from Froala v1 to v2##
+## Migration from Froala Editor v2
 
 Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
 To migrate from v1 to v2, you have to update your configuration file. Then, read [display editor content chapter](https://github.com/froala/KMSFroalaEditorBundle#step-7--display-editor-content). Just follow instructions bellow, it's easier and faster than before.
 
-##Licence
+## Installation
 
-This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
-For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
-
-##Quick installation guide
-
-###Step 1 : Add KMSFroalaEditorBundle to your composer.json (according to your needed version)
+#### Step 1 : Add KMSFroalaEditorBundle to your composer.json (according to your needed version)
 
 ```
 {
-    "require": {
-       "kms/froala-editor-bundle": "dev-master"
-    }
+  "require": {
+    "kms/froala-editor-bundle": "dev-master"
+  }
 }
 ```
 
-###Step 2 : Add the bundle to your AppKernel.php
+#### Step 2 : Add the bundle to your AppKernel.php
 
 ``` php
 // app/AppKernel.php
 
 public function registerBundles()
 {
-    $bundles = array(
-        // ...
-        new KMS\FroalaEditorBundle\KMSFroalaEditorBundle(),
-    );
+  $bundles = array(
+    // ...
+    new KMS\FroalaEditorBundle\KMSFroalaEditorBundle(),
+  );
 }
 ```
 
-###Step 3 : Import routes
+#### Step 3 : Import routes
 
 ``` yaml
 // app/config/routing.yml
 kms_froala_editor:
-    resource: "@KMSFroalaEditorBundle/Resources/config/routing.yml"
-    prefix:   /froalaeditor
+  resource: "@KMSFroalaEditorBundle/Resources/config/routing.yml"
+  prefix:   /froalaeditor
 ```
 
-###Step 4 : Install the bundle
+#### Step 4 : Install the bundle
 
 `$ composer update`
 
-###Step 5 : Configure the bundle (optional)
+#### Step 5 : Configure the bundle (optional)
 
 All Froala options ([list provided here](https://editor.froala.com/options)) are supported except "emoticonSet".
 Just add the option name with your value.
@@ -72,10 +67,10 @@ Example for each option types bellow:
 
 kms_froala_editor:
 
-    language: "nl"
-    toolbarInline: true
-    tableColors: [ "#FFFFFF", "#FF0000" ]
-    saveParams: { "id" : "myEditorField" }
+  language: "nl"
+  toolbarInline: true
+  tableColors: [ "#FFFFFF", "#FF0000" ]
+  saveParams: { "id" : "myEditorField" }
    
 ```
 
@@ -86,33 +81,32 @@ To provide a better integration with Symfony, some custom options are added, see
 
 kms_froala_editor:
     
-    # Froala license number if you want to use a purchased license.
-    serialNumber: "XXXX-XXXX-XXXX"
-    
-    # Disable JQuery inclusion.
-    includeJQuery: false
-    
-    # Disable CodeMirror inclusion.
-    includeCodeMirror: false
-    
-     # Disable Font Awesome inclusion.
-    includeFontAwesome: false
-    
-    # Disable all bundle javascripts inclusion (not concerning JQuery nor CodeMirror).
-    # Usage: if you are using Grunt or other and you want to include yourself all scripts. 
-    includeJS: false
-    
-    # Disable all bundle CSS inclusion (not concerning Font Awesome nor CodeMirror).
-    # Usage: if you are using Grunt or other and you want to include yourself all stylesheets. 
-    includeCSS: false
-    
-    # Change the froala base path.
-    # Usage: let me know, I don't think it's usefull.
-    basePath: "/my/custom/path".
-    
+  # Froala license number if you want to use a purchased license.
+  serialNumber: "XXXX-XXXX-XXXX"
+  
+  # Disable JQuery inclusion.
+  includeJQuery: false
+  
+  # Disable CodeMirror inclusion.
+  includeCodeMirror: false
+  
+   # Disable Font Awesome inclusion.
+  includeFontAwesome: false
+  
+  # Disable all bundle javascripts inclusion (not concerning JQuery nor CodeMirror).
+  # Usage: if you are using Grunt or other and you want to include yourself all scripts. 
+  includeJS: false
+  
+  # Disable all bundle CSS inclusion (not concerning Font Awesome nor CodeMirror).
+  # Usage: if you are using Grunt or other and you want to include yourself all stylesheets. 
+  includeCSS: false
+  
+  # Change the froala base path.
+  # Usage: let me know, I don't think it's usefull.
+  basePath: "/my/custom/path".
 ```
 
-###Step 6 : Add Froala to your form
+#### Step 6 : Add Froala to your form
 
 Just add a froala type in your form:
 
@@ -132,7 +126,7 @@ $builder->add( "yourField", "froala", array(
 ) );
 ```
 
-###Step 7 : Display editor content
+#### Step 7 : Display editor content
 
 To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
 
@@ -145,13 +139,13 @@ Also, you should make sure that you put the edited content inside an element tha
 
 ``` twig
 <div class="fr-view">
-    {{ myContentHtml | raw }}
+  {{ myContentHtml | raw }}
 </div>
 ```
 
-##More configuration
+## More configuration
 
-###Plugins
+#### Plugins
 
 All [Froala plugins](https://editor.froala.com/plugins) are enabled, but if you don't need one of them, you can disable some plugins...
 
@@ -159,9 +153,8 @@ All [Froala plugins](https://editor.froala.com/plugins) are enabled, but if you 
 // app/config.yml
 
 kms_froala_editor:
-    # Disable some plugins.
-    pluginsDisabled: [ "save", "fullscreen" ]
-    
+  # Disable some plugins.
+  pluginsDisabled: [ "save", "fullscreen" ]
 ```
 ... or chose only plugins to enable:
 
@@ -169,14 +162,13 @@ kms_froala_editor:
 // app/config.yml
 
 kms_froala_editor:
-    # Disable some plugins.
-    pluginsEnabled: [ "image", "file" ]
-    
+  # Disable some plugins.
+  pluginsEnabled: [ "image", "file" ]
 ```
 
 Plugins can be enabled/disabled for each Froala instance by passing the same array in the form builer.
 
-###Concept: Image upload/manager
+#### Concept: Image upload/manager
 
 This bundle provides an integration of the [Froala image upload concept](https://editor.froala.com/concepts/image-upload) to store your images on your own web server (see custom options for configuration like upload folder).
 
@@ -188,19 +180,17 @@ To provide a better integration with Symfony, some custom options are added, see
 // app/config.yml
 
 kms_froala_editor:
-    
-    # The image upload folder in your /web directory.
-    # Default: "/upload".
-    imageUploadFolder: "/my/upload/folder"
-    
-    # The image upload URL base.
-    # Usage: if you are using URL rewritting for your assets.
-    # Default: same value as provided as folder.
-    imageUploadPath: "/my/upload/path"
-    
+  # The image upload folder in your /web directory.
+  # Default: "/upload".
+  imageUploadFolder: "/my/upload/folder"
+  
+  # The image upload URL base.
+  # Usage: if you are using URL rewritting for your assets.
+  # Default: same value as provided as folder.
+  imageUploadPath: "/my/upload/path"
 ```
 
-###Concept: File upload
+#### Concept: File upload
 
 This bundle provides an integration of the [Froala file upload concept](https://editor.froala.com/concepts/file-upload) to store your files on your own web server (see custom options for configuration like upload folder).
 
@@ -212,19 +202,17 @@ To provide a better integration with Symfony, some custom options are added, see
 // app/config.yml
 
 kms_froala_editor:
-    
-    # The file upload folder in your /web directory.
-    # Default: "/upload".
-    fileUploadFolder: "/my/upload/folder"
-    
-     # The file upload URL base.
-    # Usage: if you are using URL rewritting for your assets.
-    # Default: same value as provided as folder.
-    fileUploadPath: "/my/upload/path"
-    
+  # The file upload folder in your /web directory.
+  # Default: "/upload".
+  fileUploadFolder: "/my/upload/folder"
+  
+   # The file upload URL base.
+  # Usage: if you are using URL rewritting for your assets.
+  # Default: same value as provided as folder.
+  fileUploadPath: "/my/upload/path"
 ```
 
-###Concept: Autosave
+#### Concept: Autosave
 
 The [Froala autosave concept](https://www.froala.com/wysiwyg-editor/docs/concepts/autosave) to automatically request a save action on your server is working, just enter the correct options in your configuration file:
 
@@ -232,10 +220,9 @@ The [Froala autosave concept](https://www.froala.com/wysiwyg-editor/docs/concept
 // app/config.yml
 
 kms_froala_editor:
-    saveURL: "my_save_route"
-    saveInterval: 2500
-    saveParam: "content"
-    
+  saveURL: "my_save_route"
+  saveInterval: 2500
+  saveParam: "content"
 ```
 
 To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
@@ -244,18 +231,21 @@ To provide a better integration with Symfony, some custom options are added, see
 // app/config.yml
 
 kms_froala_editor:
-    
-    # Add some parameters to your save URL.
-    # Usage: if you need parameters to generate your save action route (see save explaination below).
-    # Default: null.
-    saveURLParams: { "id" : "myId" }
-    
+  # Add some parameters to your save URL.
+  # Usage: if you need parameters to generate your save action route (see save explaination below).
+  # Default: null.
+  saveURLParams: { "id" : "myId" }
 ```
 
 You can add some parameters in your save route (see custom options).
 
-###TODO ?
+### TODO ?
 - Add some tests
 - Override Froala event and error display
 - Display the editor content with a Twig extension
 - Load JS at the end
+
+## Licence
+
+This bundle provides an integration of the WYSIWYG [Froala Editor](https://editor.froala.com/) free version.
+For a commercial use, please read the [Froala license agreement](https://editor.froala.com/license) and go to the [pricing page](https://editor.froala.com/pricing).
