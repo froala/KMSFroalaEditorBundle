@@ -133,7 +133,7 @@
 		);
 
 		public static $OPTIONS_STRING_CUSTOM = array(
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.3.3", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.3.4", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
