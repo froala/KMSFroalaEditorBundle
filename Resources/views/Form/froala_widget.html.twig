@@ -14,6 +14,10 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_editor.min.css' ) }}" />
 		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_style.min.css' ) }}" />
 
+		{% if arrOption[ "theme" ] is defined %}
+			<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/themes/' ~ arrOption[ "theme" ] ~ '.min.css' ) }}" />
+		{% endif %}
+
 		{% for plugin in arrPluginCSS %}
 			<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/plugins/' ~ plugin ~ '.min.css' ) }}" />
 		{% endfor %}
