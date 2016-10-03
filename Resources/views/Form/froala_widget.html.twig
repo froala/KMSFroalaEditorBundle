@@ -29,7 +29,7 @@
 
 	{# JS. #}
 	{% if includeJQuery %}
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	{% endif %}
 
 	{% if includeCodeMirror %}
@@ -38,8 +38,8 @@
 	{% endif %}
 
 	{% if includeJS %}
-		<script src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
-		<script src="{{ asset( basePath ~ 'js/froala_editor.min.js' ) }}"></script>
+		<script type="text/javascript"  src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
+		<script type="text/javascript"  src="{{ asset( basePath ~ 'js/froala_editor.min.js' ) }}"></script>
 
 		<!--[if lt IE 9]>
 		<script type="text/javascript" src="{{ asset( basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
@@ -49,6 +49,10 @@
 		{% for plugin in arrPluginJS %}
 			<script type="text/javascript" src="{{ asset( basePath ~ 'js/plugins/' ~ plugin ~ '.min.js' ) }}"></script>
 		{% endfor %}
+	{% endif %}
+
+	{% if customJS is defined %}
+		<script type="text/javascript"  src="{{ asset( customJS ) }}"></script>
 	{% endif %}
 
 	{# Load the editor. #}

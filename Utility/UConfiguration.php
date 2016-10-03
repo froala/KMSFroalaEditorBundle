@@ -138,7 +138,8 @@
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
 			"fileUploadPath"    => null, //
-			"serialNumber"      => null
+			"serialNumber"      => null, //
+			"customJS"      	=> null
 		);
 
 		public static $OPTIONS_ARRAY = array(
