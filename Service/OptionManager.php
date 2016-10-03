@@ -101,7 +101,7 @@
 			// Custom JS.
 			if( isset( $p_arrOption[ "customJS" ] ) )
 			{
-				$p_arrOption [ "customJS" ] = trim( $p_arrOption [ "customJS" ], '/' ) . '/';
+				$p_arrOption [ "customJS" ] = trim( $p_arrOption [ "customJS" ], '/' );
 			}
 		}
 
