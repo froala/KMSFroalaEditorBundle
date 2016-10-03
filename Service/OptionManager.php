@@ -97,6 +97,12 @@
 			{
 				$p_arrOption [ "fileUploadPath" ] = trim( $p_arrOption [ "fileUploadPath" ], '/' ) . '/';
 			}
+
+			// Custom JS.
+			if( isset( $p_arrOption[ "customJS" ] ) )
+			{
+				$p_arrOption [ "customJS" ] = trim( $p_arrOption [ "customJS" ], '/' ) . '/';
+			}
 		}
 
 		/**
