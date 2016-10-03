@@ -104,6 +104,10 @@ kms_froala_editor:
   # Change the froala base path.
   # Usage: let me know, I don't think it's usefull.
   basePath: "/my/custom/path".
+  
+  # Custom JS file.
+  # Usage: add custom plugins/buttons...
+  customJS: "/custom/js/path"
 ```
 
 #### Step 6 : Add Froala to your form
