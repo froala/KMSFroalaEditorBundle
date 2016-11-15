@@ -31,6 +31,7 @@
 				"file"             => [ PluginProvider::KEY_CSS => 1 ],
 				"font_family"      => [ PluginProvider::KEY_CSS => 0 ],
 				"font_size"        => [ PluginProvider::KEY_CSS => 0 ],
+//				"forms"        	   => [ PluginProvider::KEY_CSS => 0 ],
 				"fullscreen"       => [ PluginProvider::KEY_CSS => 1 ],
 				"image"            => [ PluginProvider::KEY_CSS => 1 ],
 				"image_manager"    => [ PluginProvider::KEY_CSS => 1 ],
