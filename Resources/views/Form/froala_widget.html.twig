@@ -72,6 +72,7 @@
 					{{ option }} : true,
 				{% elseif value is same as(false) %}
 					{{ option }} : false,
+				{% elseif value matches '/^\\d+$/' %}
 					{{ option }} : {{ value }},
 				{% else %}
 					{{ option }} : "{{ value }}",
