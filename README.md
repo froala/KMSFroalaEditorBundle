@@ -132,6 +132,8 @@ $builder->add( "yourField", "froala", array(
 
 #### Step 7 : Display editor content
 
+#### Manually
+
 To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
 
 ``` twig
@@ -145,6 +147,24 @@ Also, you should make sure that you put the edited content inside an element tha
 <div class="fr-view">
   {{ myContentHtml | raw }}
 </div>
+```
+
+### Using the Twig extension
+
+To use the Twig extension, you have to enable the PHP templating engine:
+
+``` yaml
+// app/config.yml
+
+framework:
+  templating:
+    engines: ['twig', 'php']
+```
+
+Then, simply call the display function (note that the front CSS file is not included if the parameter includeCSS is false ):
+
+``` twig
+{{ froala_display( myContentHtml ) }}
 ```
 
 ## More configuration
@@ -245,9 +265,6 @@ You can add some parameters in your save route (see custom options).
 
 ## TODO
 - Add some tests
-- Override Froala event and error display
-- Display the editor content with a Twig extension
-- Load JS at the end
 
 ## License
 
