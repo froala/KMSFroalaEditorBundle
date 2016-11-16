@@ -2,10 +2,6 @@
 
 	namespace KMS\FroalaEditorBundle\Service;
 
-	use Symfony\Component\Finder\Finder;
-	use Symfony\Component\HttpFoundation\File\UploadedFile;
-	use Symfony\Component\HttpFoundation\FileBag;
-	use Symfony\Component\HttpFoundation\JsonResponse;
 	use Symfony\Component\Routing\Router;
 
 	/**
