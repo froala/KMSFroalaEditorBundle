@@ -132,7 +132,7 @@ $builder->add( "yourField", "froala", array(
 
 #### Step 7 : Display editor content
 
-#### Manually
+##### - Manually
 
 To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
 
@@ -149,7 +149,7 @@ Also, you should make sure that you put the edited content inside an element tha
 </div>
 ```
 
-### Using the Twig extension
+##### - Using the Twig extension
 
 To use the Twig extension, you have to enable the PHP templating engine:
 
