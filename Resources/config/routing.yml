@@ -15,3 +15,8 @@ kms_froala_editor_load_images:
 kms_froala_editor_upload_file:
     path: /upload_file
     defaults: { _controller: KMSFroalaEditorBundle:Media:uploadFile }
+
+# Video upload
+kms_froala_editor_upload_video:
+    path: /upload_video
+    defaults: { _controller: KMSFroalaEditorBundle:Media:uploadVideo }

@@ -144,28 +144,28 @@
 		 */
 		public function loadImages( $p_rootDir, $p_basePath, $p_folder, $p_path )
 		{
-			$response = new JsonResponse ();
-			$arrImage = array();
-			$folder   = $this->obtainFolder( $p_rootDir, $p_folder );
-			$path     = $this->obtainPath( $p_basePath, $p_path );
-			$finder   = new Finder ();
+			$response     = new JsonResponse ();
+			$arrImage     = array();
+			$folder       = $this->obtainFolder( $p_rootDir, $p_folder );
+			$path         = $this->obtainPath( $p_basePath, $p_path );
+			$finder       = new Finder ();
+			$arrExtension = array(
+				"gif",
+				"jpeg",
+				"jpg",
+				"png"
+			);
 			// ------------------------- DECLARE ---------------------------//
 
-			// TODO: check that.
-			$arrTypes = array(
-				"image/gif",
-				"image/jpeg",
-				"image/pjpeg",
-				"image/jpeg",
-				"image/pjpeg",
-				"image/png",
-				"image/x-png"
-			);
 
 			$finder->files()->in( $folder );
 
 			foreach( $finder as $file )
 			{
+				if( ! in_array( $file->getExtension(), $arrExtension ) )
+				{
+					continue;
+				}
 				$arrImage [] = array( "url" => $path . $file->getFilename(), "thumb" => $path . $file->getFilename() );
 			}
 
@@ -185,6 +185,65 @@
 		 * @throws \Exception
 		 */
 		public function uploadFile( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder, $p_path )
+		{
+			$folder   = $this->obtainFolder( $p_rootDir, $p_folder );
+			$path     = $this->obtainPath( $p_basePath, $p_path );
+			$response = new JsonResponse ();
+			// ------------------------- DECLARE ---------------------------//
+
+			if( $p_file == null )
+			{
+				$response->setData( array(
+										"error" => "No file received."
+									) );
+
+				return $response;
+			}
+
+			$file = $p_file->get( "file" );
+
+			if( $file == null )
+			{
+				$response->setData( array(
+										"error" => "No file received."
+									) );
+
+				return $response;
+			}
+
+			if( $file->getSize() > UploadedFile::getMaxFilesize() )
+			{
+				$response->setData( array(
+										"error" => "File too big."
+									) );
+
+				return $response;
+			}
+
+			// Generates random name.
+			$name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
+
+			// Save file in the folder.
+			$file->move( $folder, $name );
+
+			$response->setData( array(
+									"link" => $path . $name
+								) );
+
+			return $response;
+		}
+
+		/**
+		 * Upload a video.
+		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
+		 * @param string                                    $p_rootDir
+		 * @param string                                    $p_basePath
+		 * @param string                                    $p_folder
+		 * @param string                                    $p_path
+		 * @return \Symfony\Component\HttpFoundation\JsonResponse
+		 * @throws \Exception
+		 */
+		public function uploadVideo( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder, $p_path )
 		{
 //			$arrExtension = array(
 //				"gif",
@@ -271,6 +330,7 @@
 		{
 			// ------------------------- DECLARE ---------------------------//
 
+			// TODO: use web directory specified by user if different.
 			return $p_rootDir . "/../web/" . $p_folder;
 		}
 

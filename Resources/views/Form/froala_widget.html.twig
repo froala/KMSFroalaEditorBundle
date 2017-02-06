@@ -11,7 +11,7 @@
 	{% endif %}
 
 	{% if includeCSS %}
-		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_editor.min.css' ) }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_editor.pkgd.min.css' ) }}" />
 		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_style.min.css' ) }}" />
 
 		{% if arrOption[ "theme" ] is defined %}
@@ -39,7 +39,7 @@
 
 	{% if includeJS %}
 		<script type="text/javascript"  src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
-		<script type="text/javascript"  src="{{ asset( basePath ~ 'js/froala_editor.min.js' ) }}"></script>
+		<script type="text/javascript"  src="{{ asset( basePath ~ 'js/froala_editor.pkgd.min.js' ) }}"></script>
 
 		<!--[if lt IE 9]>
 		<script type="text/javascript" src="{{ asset( basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
@@ -93,7 +93,11 @@
 			.on( "froalaEditor.file.error", function ( e, editor, error, responses )
 			{
 				froalaDisplayError(  editor, error );
-			});
+			} )
+			.on( "froalaEditor.video.error", function ( e, editor, error, responses )
+			{
+				froalaDisplayError(  editor, error );
+			} );
 		});
 	</script>
 

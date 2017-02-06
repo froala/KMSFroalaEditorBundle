@@ -230,7 +230,7 @@ kms_froala_editor:
   # Default: "/upload".
   fileUploadFolder: "/my/upload/folder"
   
-   # The file upload URL base.
+  # The file upload URL base.
   # Usage: if you are using URL rewritting for your assets.
   # Default: same value as provided as folder.
   fileUploadPath: "/my/upload/path"

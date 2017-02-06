@@ -26,6 +26,7 @@
 			"fullPage"                       => null, //
 			"htmlAllowComments"              => null, //
 			"htmlSimpleAmpersand"            => null, //
+			"htmlUntouched"                  => null, //
 			"iframe"                         => null, //
 			"imageMove"                      => null, //
 			"imageMultipleStyles"            => null, //
@@ -99,6 +100,8 @@
 			"tableResizingLimit"       => null, //
 			"toolbarStickyOffset"      => null, //
 			"typingTimer"              => null, //
+			"videoDefaultWidth"        => null, //
+			"videoMaxSize"             => null, //
 			"zIndex"                   => null
 		);
 
@@ -131,17 +134,22 @@
 			"theme"                    => null, //
 			"videoDefaultAlign"        => null, //
 			"videoDefaultDisplay"      => null, //
+			"videoUploadMethod"        => null, //
+			"videoUploadParam"         => null, //
+			"videoUploadURL"           => "kms_froala_editor_upload_video", //
 			"width"                    => null
 		);
 
 		public static $OPTIONS_STRING_CUSTOM = array(
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.4.0", //
+			"customJS"          => null, //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.4.2", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
 			"fileUploadPath"    => null, //
 			"serialNumber"      => null, //
-			"customJS"          => null
+			"videoUploadFolder" => "/upload", //
+			"videoUploadPath"   => null
 		);
 
 		public static $OPTIONS_ARRAY = array(
@@ -180,6 +188,7 @@
 			"toolbarButtonsMD"          => array(), //
 			"toolbarButtonsSM"          => array(), //
 			"toolbarButtonsXS"          => array(), //
+			"videoAllowedTypes"         => array(), //
 			"videoEditButtons"          => array(), //
 			"videoInsertButtons"        => array(), //
 			"videoSizeButtons"          => array()
@@ -208,7 +217,9 @@
 			"requestHeaders"           => array(), //
 			"saveParams"               => array(), //
 			"tableStyles"              => array(), //
-			"tableCellStyles"          => array()
+			"tableCellStyles"          => array(), //
+			"videoUploadParams"        => array(), //
+			"videoUploadToS3"          => array()
 		);
 
 		public static $OPTIONS_OBJECT_CUSTOM = array(
@@ -217,6 +228,7 @@
 			"imageUploadURLParams"        => array(), //
 			"saveURLParams"               => array(), //
 			"fileUploadURLParams"         => array(), //
+			"videoUploadURLParams"        => array(), //
 		);
 
 		/**

@@ -96,4 +96,25 @@
 //			}
 		}
 
+		/**
+		 * Upload a video.
+		 * @param \Symfony\Component\HttpFoundation\Request $p_request
+		 * @return \Symfony\Component\HttpFoundation\JsonResponse
+		 */
+		public function uploadVideoAction(Request $p_request)
+		{
+			$mediaManager = $this->get( "kms_froala_editor.media_manager" );
+			$path         = $p_request->request->get( "path" );
+			$folder       = $p_request->request->get( "folder" );
+			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$basePath     = $p_request->getBasePath();
+			// ------------------------- DECLARE ---------------------------//
+
+			// FIXME
+//			if( $request->isXmlHttpRequest() == true )
+//			{
+			return $mediaManager->uploadVideo( $p_request->files, $rootDir, $basePath, $folder, $path );
+//			}
+		}
+
 	}

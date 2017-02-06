@@ -50,6 +50,7 @@
 			$this->generateRoutes( $p_arrOption );
 			$this->addImageCustomParams( $p_arrOption );
 			$this->addFileCustomParams( $p_arrOption );
+			$this->addVideoCustomParams( $p_arrOption );
 		}
 		// -------------------------------------------------------------//
 		// --------------------------- PRIVATE -------------------------//
@@ -64,11 +65,13 @@
 			$basePath          = $p_arrOption[ "basePath" ];
 			$imageUploadFolder = $p_arrOption[ "imageUploadFolder" ];
 			$fileUploadFolder  = $p_arrOption[ "fileUploadFolder" ];
+			$videoUploadFolder = $p_arrOption[ "videoUploadFolder" ];
 			//------------------------- DECLARE ---------------------------//
 
 			$p_arrOption [ "basePath" ]          = trim( $basePath, '/' ) . '/';
 			$p_arrOption [ "imageUploadFolder" ] = trim( $imageUploadFolder, '/' ) . '/';
 			$p_arrOption [ "fileUploadFolder" ]  = trim( $fileUploadFolder, '/' ) . '/';
+			$p_arrOption [ "videoUploadFolder" ] = trim( $videoUploadFolder, '/' ) . '/';
 
 			// Image folder and path.
 			if( isset( $p_arrOption[ "imageUploadPath" ] ) == false || //
@@ -94,6 +97,18 @@
 				$p_arrOption [ "fileUploadPath" ] = trim( $p_arrOption [ "fileUploadPath" ], '/' ) . '/';
 			}
 
+			// Video folder and path.
+			if( isset( $p_arrOption[ "videoUploadPath" ] ) == false || //
+				$p_arrOption[ "videoUploadPath" ] == null
+			)
+			{
+				$p_arrOption[ "videoUploadPath" ] = $p_arrOption[ "videoUploadFolder" ];
+			}
+			else
+			{
+				$p_arrOption [ "videoUploadPath" ] = trim( $p_arrOption [ "videoUploadPath" ], '/' ) . '/';
+			}
+
 			// Custom JS.
 			if( isset( $p_arrOption[ "customJS" ] ) )
 			{
@@ -112,6 +127,7 @@
 			$imageManagerLoadURL   = $p_arrOption[ "imageManagerLoadURL" ];
 			$imageUploadURL        = $p_arrOption[ "imageUploadURL" ];
 			$fileUploadURL         = $p_arrOption[ "fileUploadURL" ];
+			$videoUploadURL        = $p_arrOption[ "videoUploadURL" ];
 
 			$saveURL                     =
 				isset( $p_arrOption[ "saveURL" ] ) ? $p_arrOption[ "saveURL" ] : null;
@@ -125,6 +141,8 @@
 				isset( $p_arrOption[ "saveURLParams" ] ) ? $p_arrOption[ "saveURLParams" ] : array();
 			$fileUploadURLParams         =
 				isset( $p_arrOption[ "fileUploadURLParams" ] ) ? $p_arrOption[ "fileUploadURLParams" ] : array();
+			$videoUploadURLParams        =
+				isset( $p_arrOption[ "videoUploadURLParams" ] ) ? $p_arrOption[ "videoUploadURLParams" ] : array();
 			//------------------------- DECLARE ---------------------------//
 
 			if( $imageManagerDeleteURL != null )
@@ -152,6 +170,11 @@
 			if( $fileUploadURL != null )
 			{
 				$p_arrOption[ "fileUploadURL" ] = $this->m_router->generate( $fileUploadURL, $fileUploadURLParams );
+			}
+
+			if( $videoUploadURL != null )
+			{
+				$p_arrOption[ "videoUploadURL" ] = $this->m_router->generate( $videoUploadURL, $videoUploadURLParams );
 			}
 		}
 
@@ -189,6 +212,21 @@
 			//------------------------- DECLARE ---------------------------//
 
 			$p_arrOption[ "fileUploadParams" ] = array_merge( $fileUploadParams, $arrCustomParams );
+		}
+
+		/**
+		 * Add some custom options.
+		 * @param array $p_arrOption
+		 */
+		private function addVideoCustomParams( array & $p_arrOption )
+		{
+			$videoUploadParams =
+				isset( $p_arrOption[ "videoUploadParams" ] ) ? $p_arrOption[ "videoUploadParams" ] : array();
+			$arrCustomParams   =
+				array( "folder" => $p_arrOption[ "videoUploadFolder" ], "path" => $p_arrOption[ "videoUploadPath" ] );
+			//------------------------- DECLARE ---------------------------//
+
+			$p_arrOption[ "videoUploadParams" ] = array_merge( $videoUploadParams, $arrCustomParams );
 		}
 
 	}
