@@ -52,7 +52,7 @@ kms_froala_editor:
 
 #### Step 5 : Configure the bundle (optional)
 
-All Froala options ([list provided here](https://editor.froala.com/options)) are supported except "emoticonSet".
+All Froala options ([list provided here](https://editor.froala.com/options)) are supported.
 Just add the option name with your value.
 If you want to keep the Froala default value, don't provide anything in your config file.
 For options wich require an array, provide an value array.
