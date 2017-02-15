@@ -325,7 +325,7 @@
 			foreach( $array as $option => $defaultValue )
 			{
 				$p_nodeBuilder =
-					$p_nodeBuilder->arrayNode( $option )->prototype( 'scalar' )->end()->defaultValue( $defaultValue )
+					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end()->defaultValue( $defaultValue )
 								  ->end();
 			}
 		}
@@ -341,7 +341,7 @@
 			foreach( $array as $option => $defaultValue )
 			{
 				$p_nodeBuilder =
-					$p_nodeBuilder->arrayNode( $option )->prototype( 'scalar' )->end()->defaultValue( $defaultValue )
+					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end()->defaultValue( $defaultValue )
 								  ->end();
 			}
 		}

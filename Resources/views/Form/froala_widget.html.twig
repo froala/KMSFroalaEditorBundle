@@ -65,18 +65,7 @@
 				key : "{{ serialNumber }}",
 			{% endif %}
 			{% for option, value in arrOption %}
-				{% if value is iterable %}{{ option }} :
-					{% if value[0] is defined %} [ {% for k, v in value %}  "{{ v }}", {% endfor %} ],
-					{% else %} { {% for k, v in value %} {{ k }} : "{{ v }}", {% endfor %} }, {% endif %}
-				{% elseif value is same as(true) %}
-					{{ option }} : true,
-				{% elseif value is same as(false) %}
-					{{ option }} : false,
-				{% elseif value matches '/^\\d+$/' %}
-					{{ option }} : {{ value }},
-				{% else %}
-					{{ option }} : "{{ value }}",
-				{% endif %}
+				{{ option }} : {% include "KMSFroalaEditorBundle:Form:value.html.twig" %}
 			{% endfor %} })
 			.on( "froalaEditor.image.error", function ( e, editor, error )
 			{

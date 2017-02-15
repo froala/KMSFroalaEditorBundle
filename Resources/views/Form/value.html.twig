@@ -1,0 +1,6 @@
+{% if value is iterable %}JSON.parse( "{{ value | json_encode | raw | escape('js')  }}" ),
+{% elseif value is same as(true) %}true,
+{% elseif value is same as(false) %}false,
+{% elseif value matches '/^\\d+$/' %}{{ value }},
+{% else %}"{{ value }}",
+{% endif %}
