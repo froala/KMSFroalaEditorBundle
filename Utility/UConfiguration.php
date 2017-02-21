@@ -178,6 +178,7 @@
 			"pasteDeniedAttrs"          => array(), //
 			"pasteDeniedTags"           => array(), //
 			"pluginsEnabled"            => array(), //
+			"quickInsertButtons"        => array(), //
 			"quickInsertTags"           => array(), //
 			"shortcutsEnabled"          => array(), //
 			"tableColors"               => array(), //
