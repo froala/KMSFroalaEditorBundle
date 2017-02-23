@@ -65,7 +65,8 @@
 			foreach( UConfiguration::getArrOptionAll() as $option )
 			{
 				if( empty( $p_arrConfig [ $option ] ) == false || //
-					$p_arrConfig [ $option ] === false
+					$p_arrConfig [ $option ] === false || //
+					$p_arrConfig [ $option ] === 0
 				)
 				{
 					$p_container->setParameter( Configuration::$NODE_ROOT . '.' . $option, $p_arrConfig [ $option ] );
