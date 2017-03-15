@@ -50,7 +50,8 @@
 				"special_characters" => [ PluginProvider::KEY_CSS => 1 ],
 				"table"              => [ PluginProvider::KEY_CSS => 1 ],
 				"url"                => [ PluginProvider::KEY_CSS => 0 ],
-				"video"              => [ PluginProvider::KEY_CSS => 1 ]
+				"video"              => [ PluginProvider::KEY_CSS => 1 ],
+				"word_paste"         => [ PluginProvider::KEY_CSS => 0 ]
 			);
 
 		/**

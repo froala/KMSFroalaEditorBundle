@@ -65,8 +65,7 @@
 			$this->m_container      = $p_container;
 			$this->m_optionManager  = $p_optionManager;
 			$this->m_pluginProvider = $p_pluginProvider;
-
-			$this->m_version = $p_kernel::MAJOR_VERSION;
+			$this->m_version        = $p_kernel::MAJOR_VERSION;
 		}
 
 		// -------------------------------------------------------------//
@@ -128,12 +127,15 @@
 			$p_view->vars [ "arrOption" ] = $arrOption;
 
 			// Plugins.
-			$arrPlugin                       = $this->m_pluginProvider->obtainArrPluginToInclude( $arrPluginEnabled, //
-																								  $arrPluginDisabled );
+			$arrPlugin = $this->m_pluginProvider->obtainArrPluginToInclude( $arrPluginEnabled, //
+																			$arrPluginDisabled );
 
-			$p_view->vars [ "arrOption" ][ "pluginsEnabled" ] = $this->m_pluginProvider->obtainArrPluginCamelized( $arrPlugin );
-			$p_view->vars [ "arrPluginJS" ]  = $this->m_pluginProvider->obtainArrPluginJS( $arrPlugin );
-			$p_view->vars [ "arrPluginCSS" ] = $this->m_pluginProvider->obtainArrPluginCSS( $arrPlugin );
+			$p_view->vars [ "arrOption" ][ "pluginsEnabled" ] =
+				$this->m_pluginProvider->obtainArrPluginCamelized( $arrPlugin );
+			$p_view->vars [ "arrPluginJS" ]                   =
+				$this->m_pluginProvider->obtainArrPluginJS( $arrPlugin );
+			$p_view->vars [ "arrPluginCSS" ]                  =
+				$this->m_pluginProvider->obtainArrPluginCSS( $arrPlugin );
 		}
 
 		/**

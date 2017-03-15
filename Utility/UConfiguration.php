@@ -142,7 +142,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.4.2", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.5.1", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
@@ -161,6 +161,7 @@
 			"fontSize"                  => array(), //
 			"htmlAllowedAttrs"          => array(), //
 			"htmlAllowedEmptyTags"      => array(), //
+			"htmlAllowedStyleProps"     => array(), //
 			"htmlAllowedTags"           => array(), //
 			"htmlIgnoreCSSProperties"   => array(), //
 			"htmlDoNotWrapTags"         => array(), //
@@ -175,6 +176,7 @@
 			"linkEditButtons"           => array(), //
 			"linkInsertButtons"         => array(), //
 			"linkList"                  => array(), //
+			"pasteAllowedStyleProps"    => array(), //
 			"pasteDeniedAttrs"          => array(), //
 			"pasteDeniedTags"           => array(), //
 			"pluginsEnabled"            => array(), //
@@ -192,7 +194,10 @@
 			"videoAllowedTypes"         => array(), //
 			"videoEditButtons"          => array(), //
 			"videoInsertButtons"        => array(), //
-			"videoSizeButtons"          => array()
+			"videoSizeButtons"          => array(), //
+			"wordAllowedStyleProps"     => array(), //
+			"wordDeniedAttrs"           => array(), //
+			"wordDeniedTags"            => array()
 		);
 
 		public static $OPTIONS_ARRAY_CUSTOM = array(
