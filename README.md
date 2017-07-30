@@ -56,7 +56,7 @@ kms_froala_editor:
 
 #### Step 5 : Configure the bundle
 
-## Required
+#### Required
 
 Firstly, you have to select your language, other options are optionals (see below).
 
@@ -69,7 +69,7 @@ kms_froala_editor:
    
 ```
 
-## Optionals
+#### Optionals
 
 All Froala options ([list provided here](https://editor.froala.com/options)) are supported.
 Just add the option name with your value.
