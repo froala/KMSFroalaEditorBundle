@@ -58,7 +58,7 @@ kms_froala_editor:
 
 #### Required
 
-Firstly, you have to select your language, other options are optionals (see below).
+Firstly, you have to select your language, other settings are optionals (see below).
 
 ``` yaml
 // app/config.yml
