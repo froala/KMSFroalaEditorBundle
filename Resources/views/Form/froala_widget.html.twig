@@ -19,7 +19,7 @@
 		{% endif %}
 
 		{% for plugin in arrPluginCSS %}
-			<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/plugins/' ~ plugin ~ '.min.css' ) }}" />
+			<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/' ~ plugin ~ '.min.css' ) }}" />
 		{% endfor %}
 
 	{% endif %}
@@ -47,7 +47,7 @@
 		<script type="text/javascript" src="{{ asset( basePath ~ 'js/languages/' ~ arrOption.language ~ '.js' ) }}"></script>
 
 		{% for plugin in arrPluginJS %}
-			<script type="text/javascript" src="{{ asset( basePath ~ 'js/plugins/' ~ plugin ~ '.min.js' ) }}"></script>
+			<script type="text/javascript" src="{{ asset( basePath ~ 'js/' ~ plugin ~ '.min.js' ) }}"></script>
 		{% endfor %}
 	{% endif %}
 

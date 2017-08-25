@@ -21,43 +21,67 @@
 		 */
 		private static $ARR_PLUGIN_CONFIG =
 			array(
-				"align"              => [ PluginProvider::KEY_CSS => 0 ],
-				"char_counter"       => [ PluginProvider::KEY_CSS => 1 ],
-				"code_beautifier"    => [ PluginProvider::KEY_CSS => 0 ],
-				"code_view"          => [ PluginProvider::KEY_CSS => 1 ],
-				"colors"             => [ PluginProvider::KEY_CSS => 1 ],
-				"draggable"          => [ PluginProvider::KEY_CSS => 1 ],
-				"emoticons"          => [ PluginProvider::KEY_CSS => 1 ],
-				"entities"           => [ PluginProvider::KEY_CSS => 0 ],
-				"file"               => [ PluginProvider::KEY_CSS => 1 ],
-				"font_family"        => [ PluginProvider::KEY_CSS => 0 ],
-				"font_size"          => [ PluginProvider::KEY_CSS => 0 ],
-				//				"forms"        	   => [ PluginProvider::KEY_CSS => 0 ],
-				"fullscreen"         => [ PluginProvider::KEY_CSS => 1 ],
-				"help"               => [ PluginProvider::KEY_CSS => 1 ],
-				"image"              => [ PluginProvider::KEY_CSS => 1 ],
-				"image_manager"      => [ PluginProvider::KEY_CSS => 1 ],
-				"inline_style"       => [ PluginProvider::KEY_CSS => 0 ],
-				"line_breaker"       => [ PluginProvider::KEY_CSS => 1 ],
-				"link"               => [ PluginProvider::KEY_CSS => 0 ],
-				"lists"              => [ PluginProvider::KEY_CSS => 0 ],
-				"paragraph_format"   => [ PluginProvider::KEY_CSS => 0 ],
-				"paragraph_style"    => [ PluginProvider::KEY_CSS => 0 ],
-				"print"              => [ PluginProvider::KEY_CSS => 0 ],
-				"quick_insert"       => [ PluginProvider::KEY_CSS => 1 ],
-				"quote"              => [ PluginProvider::KEY_CSS => 0 ],
-				"save"               => [ PluginProvider::KEY_CSS => 0 ],
-				"special_characters" => [ PluginProvider::KEY_CSS => 1 ],
-				"table"              => [ PluginProvider::KEY_CSS => 1 ],
-				"url"                => [ PluginProvider::KEY_CSS => 0 ],
-				"video"              => [ PluginProvider::KEY_CSS => 1 ],
-				"word_paste"         => [ PluginProvider::KEY_CSS => 0 ]
+				// Plugins.
+				"align"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"char_counter"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"code_beautifier"    => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"code_view"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"colors"             => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"draggable"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"emoticons"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"entities"           => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"file"               => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"font_family"        => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"font_size"          => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				//				"forms"        	   => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"fullscreen"         => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"help"               => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"image"              => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"image_manager"      => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"inline_style"       => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"line_breaker"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"link"               => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"lists"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"paragraph_format"   => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"paragraph_style"    => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"print"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"quick_insert"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"quote"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"save"               => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"special_characters" => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"table"              => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"url"                => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"video"              => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"word_paste"         => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+
+				// Third party.
+				"image_aviary"       => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
+				"spell_checker"      => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ]
 			);
+
+		/**
+		 * Can be easier but can handle further configurations.
+		 * @const array
+		 */
+		private static $ARR_THIRD_PARTY_CONFIG =
+			array();
 
 		/**
 		 * @const string
 		 */
 		const KEY_CSS = "css";
+		/**
+		 * @const string
+		 */
+		const KEY_FOLDER = "css";
+		/**
+		 * @const string
+		 */
+		const VALUE_PLUGINS = "plugins";
+		/**
+		 * @const string
+		 */
+		const VALUE_THIRD_PARTY = "third_party";
 
 
 		//-------------------------------------------------------------//
@@ -108,9 +132,15 @@
 		 */
 		public function obtainArrPluginJS( $p_arrPlugin )
 		{
+			$arrPlugin = array();
 			//------------------------- DECLARE ---------------------------//
 
-			return $p_arrPlugin;
+			foreach( $p_arrPlugin as $plugin )
+			{
+				$arrPlugin[] = $this->obtainConfiguration( $plugin, PluginProvider::KEY_FOLDER ) . "/" . $plugin;
+			}
+
+			return $arrPlugin;
 		}
 
 		/**
@@ -127,7 +157,7 @@
 			{
 				if( $this->obtainConfiguration( $plugin, PluginProvider::KEY_CSS ) == 1 )
 				{
-					$arrPlugin[] = $plugin;
+					$arrPlugin[] = $this->obtainConfiguration( $plugin, PluginProvider::KEY_FOLDER ) . "/" . $plugin;
 				}
 			}
 

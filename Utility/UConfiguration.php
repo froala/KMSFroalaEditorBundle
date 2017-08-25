@@ -25,6 +25,7 @@
 			"fontSizeSelection"              => null, //
 			"fullPage"                       => null, //
 			"htmlAllowComments"              => null, //
+			"htmlExecuteScripts"             => null, //
 			"htmlSimpleAmpersand"            => null, //
 			"htmlUntouched"                  => null, //
 			"iframe"                         => null, //
@@ -67,7 +68,8 @@
 			"videoMove"                      => null, //
 			"videoResize"                    => null, //
 			"videoSplitHTML"                 => null, //
-			"videoTextNear"                  => null
+			"videoTextNear"                  => null, //
+			"wordPasteModal"                 => null
 		);
 
 		public static $OPTIONS_BOOLEAN_CUSTOM = array(
@@ -91,8 +93,10 @@
 			"imageManagerScrollOffset" => null, //
 			"imageMaxSize"             => null, //
 			"imageMinWidth"            => null, //
+			"indentMargin"             => null, //
 			"lineBreakerOffset"        => null, //
 			"saveInterval"             => null, //
+			"tabIndex"                 => null, //
 			"tabSpaces"                => null, //
 			"tableColorsStep"          => null, //
 			"tableInsertMaxSize"       => null, //
@@ -106,6 +110,7 @@
 		);
 
 		public static $OPTIONS_STRING = array(
+			"aviaryKey"                => null, //
 			"colorsDefaultTab"         => null, //
 			"direction"                => null, //
 			"enter"                    => null, //
@@ -130,6 +135,7 @@
 			"saveMethod"               => null, //
 			"saveParam"                => null, //
 			"saveURL"                  => null, //
+			"scaytCustomerId"          => null, //
 			"scrollableContainer"      => null, //
 			"theme"                    => null, //
 			"videoDefaultAlign"        => null, //
@@ -142,7 +148,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.5.1", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.6.5", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
@@ -191,6 +197,7 @@
 			"toolbarButtonsMD"          => array(), //
 			"toolbarButtonsSM"          => array(), //
 			"toolbarButtonsXS"          => array(), //
+			"videoAllowedProviders"     => array(), //
 			"videoAllowedTypes"         => array(), //
 			"videoEditButtons"          => array(), //
 			"videoInsertButtons"        => array(), //
@@ -205,6 +212,7 @@
 		);
 
 		public static $OPTIONS_OBJECT = array(
+			"aviaryOptions"            => array(), //
 			"codeMirrorOptions"        => array(), //
 			"codeBeautifierOptions"    => array(), //
 			"fileUploadParams"         => array(), //
@@ -222,6 +230,7 @@
 			"paragraphStyles"          => array(), //
 			"requestHeaders"           => array(), //
 			"saveParams"               => array(), //
+			"scaytOptions"             => array(), //
 			"tableStyles"              => array(), //
 			"tableCellStyles"          => array(), //
 			"videoUploadParams"        => array(), //
