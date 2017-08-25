@@ -1,5 +1,9 @@
 # KMSFroalaEditorBundle
 
+[![Packagist](https://img.shields.io/packagist/v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![Packagist](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![Packagist](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+
 [![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
 ## Symfony 3 update
@@ -50,7 +54,22 @@ kms_froala_editor:
 
 `$ composer update`
 
-#### Step 5 : Configure the bundle (optional)
+#### Step 5 : Configure the bundle
+
+#### Required
+
+Firstly, you have to select your language, other settings are optionals (see below).
+
+``` yaml
+// app/config.yml
+
+kms_froala_editor:
+
+  language: "nl"
+   
+```
+
+#### Optionals
 
 All Froala options ([list provided here](https://editor.froala.com/options)) are supported.
 Just add the option name with your value.
@@ -67,7 +86,6 @@ Example for each option types bellow:
 
 kms_froala_editor:
 
-  language: "nl"
   toolbarInline: true
   tableColors: [ "#FFFFFF", "#FF0000" ]
   saveParams: { "id" : "myEditorField" }
