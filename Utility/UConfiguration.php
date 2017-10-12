@@ -37,6 +37,7 @@
 			"imageRoundPercent"              => null, //
 			"imageSplitHTML"                 => null, //
 			"imageTextNear"                  => null, //
+			"imageUpload"                    => null, //
 			"imageOutputSize"                => null, //
 			"imagePasteProcess"              => null, //
 			"initOnClick"                    => null, //
@@ -148,7 +149,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.6.5", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.0", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
