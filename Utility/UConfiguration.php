@@ -20,6 +20,7 @@
 			"editInPopup"                    => null, //
 			"editorClass"                    => null, //
 			"emoticonsUseImage"              => null, //
+			"fileUpload"                     => null, //
 			"fileUseSelectedText"            => null, //
 			"fontFamilySelection"            => null, //
 			"fontSizeSelection"              => null, //
@@ -38,6 +39,7 @@
 			"imageSplitHTML"                 => null, //
 			"imageTextNear"                  => null, //
 			"imageUpload"                    => null, //
+			"imageUploadRemoteUrls"          => null, //
 			"imageOutputSize"                => null, //
 			"imagePasteProcess"              => null, //
 			"initOnClick"                    => null, //
@@ -70,6 +72,7 @@
 			"videoResize"                    => null, //
 			"videoSplitHTML"                 => null, //
 			"videoTextNear"                  => null, //
+			"videoUpload"                    => null, //
 			"wordPasteModal"                 => null
 		);
 
@@ -114,12 +117,14 @@
 			"aviaryKey"                => null, //
 			"colorsDefaultTab"         => null, //
 			"direction"                => null, //
+			"embedlyScriptPath"        => null, //
 			"enter"                    => null, //
 			"entities"                 => null, //
 			"fileUploadMethod"         => null, //
 			"fileUploadParam"          => null, //
 			"fileUploadURL"            => "kms_froala_editor_upload_file", //
 			"iframeStyle"              => null, //
+			"imageCORSProxy"           => null, //
 			"imageDefaultAlign"        => null, //
 			"imageDefaultDisplay"      => null, //
 			"imageManagerDeleteMethod" => null, //
@@ -149,7 +154,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.0", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.1", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
