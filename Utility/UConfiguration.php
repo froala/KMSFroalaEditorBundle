@@ -214,7 +214,8 @@
 		);
 
 		public static $OPTIONS_ARRAY_CUSTOM = array(
-			"pluginsDisabled" => array(),
+			"pluginsDisabled" => array(), //
+      "events" => array()
 		);
 
 		public static $OPTIONS_OBJECT = array(
