@@ -154,7 +154,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.2", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.3", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
@@ -215,7 +215,7 @@
 
 		public static $OPTIONS_ARRAY_CUSTOM = array(
 			"pluginsDisabled" => array(), //
-      "events" => array()
+			"events"          => array()
 		);
 
 		public static $OPTIONS_OBJECT = array(
@@ -297,7 +297,7 @@
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
-         * @param boolean
+		 * @param                                                          boolean
 		 */
 		public static function addArrOptionBoolean( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
@@ -307,10 +307,10 @@
 			foreach( $array as $option => $defaultValue )
 			{
 				$p_nodeBuilder = $p_nodeBuilder->booleanNode( $option );
-				if ( $addDefaultValue )
+				if( $addDefaultValue )
 				{
-                    $p_nodeBuilder->defaultValue( $defaultValue );
-                }
+					$p_nodeBuilder->defaultValue( $defaultValue );
+				}
 
 				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
@@ -318,9 +318,9 @@
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
-         * @param boolean
+		 * @param                                                          boolean
 		 */
-		public static function addArrOptionInteger( NodeBuilder $p_nodeBuilder, $addDefaultValue = true  )
+		public static function addArrOptionInteger( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
 			//------------------------- DECLARE ---------------------------//
 
@@ -328,10 +328,10 @@
 			{
 				$p_nodeBuilder = $p_nodeBuilder->integerNode( $option );
 
-				if ($addDefaultValue)
-                {
-                    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
-                }
+				if( $addDefaultValue )
+				{
+					$p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+				}
 
 				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
@@ -339,7 +339,7 @@
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
-         * @param boolean
+		 * @param                                                          boolean
 		 */
 		public static function addArrOptionString( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
@@ -349,9 +349,9 @@
 			foreach( $array as $option => $defaultValue )
 			{
 				$p_nodeBuilder = $p_nodeBuilder->scalarNode( $option );
-				if ($addDefaultValue)
+				if( $addDefaultValue )
 				{
-				    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+					$p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
 				}
 				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
@@ -359,7 +359,7 @@
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
-         * @param boolean
+		 * @param                                                          boolean
 		 */
 		public static function addArrOptionArray( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
@@ -371,18 +371,18 @@
 				$p_nodeBuilder =
 					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end();
 
-				if ($addDefaultValue)
-                {
-                    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
-                }
+				if( $addDefaultValue )
+				{
+					$p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+				}
 
-                $p_nodeBuilder = $p_nodeBuilder->end();
+				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
-         * @param boolean
+		 * @param                                                          boolean
 		 */
 		public static function addArrOptionObject( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
@@ -394,12 +394,12 @@
 				$p_nodeBuilder =
 					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end();
 
-				if ($addDefaultValue)
-                {
-                    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
-                }
+				if( $addDefaultValue )
+				{
+					$p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+				}
 
-                $p_nodeBuilder = $p_nodeBuilder->end();
+				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 

@@ -58,35 +58,40 @@
 		 * @param array                                                   $p_arrConfig
 		 */
 		private function loadConfig( ContainerBuilder $p_container, array $p_arrConfig )
-        {
-            // ------------------------- DECLARE ---------------------------//
+		{
+			// ------------------------- DECLARE ---------------------------//
 
-            // Load defined options in config file.
-            foreach (UConfiguration::getArrOptionAll() as $option) {
-                if (empty($p_arrConfig [$option]) == false || //
-                  $p_arrConfig [$option] === false || //
-                  $p_arrConfig [$option] === 0
-                ) {
-                    $p_container->setParameter(Configuration::$NODE_ROOT.'.'.$option, $p_arrConfig [$option]);
-                }
+			// Load defined options in config file.
+			foreach( UConfiguration::getArrOptionAll() as $option )
+			{
+				if( empty( $p_arrConfig [ $option ] ) == false || //
+					$p_arrConfig [ $option ] === false || //
+					$p_arrConfig [ $option ] === 0
+				)
+				{
+					$p_container->setParameter( Configuration::$NODE_ROOT . '.' . $option, $p_arrConfig [ $option ] );
+				}
 
-            }
+			}
 
-            $parameterProfiles = array();
+			$parameterProfiles = array();
 
-            foreach ($p_arrConfig['profiles'] as $key => $profile) {
-                $parameterProfiles[$key] = array();
-                foreach ($profile as $optionKey => $optionValue) {
-                    if (empty($optionValue) == false || //
-                      $optionValue === false ||  //
-                      $optionValue === 0
-                    ) {
-                        $parameterProfiles[$key][$optionKey] = $optionValue;
-                    }
-                }
-            }
+			foreach( $p_arrConfig[ 'profiles' ] as $key => $profile )
+			{
+				$parameterProfiles[ $key ] = array();
+				foreach( $profile as $optionKey => $optionValue )
+				{
+					if( empty( $optionValue ) == false || //
+						$optionValue === false ||  //
+						$optionValue === 0
+					)
+					{
+						$parameterProfiles[ $key ][ $optionKey ] = $optionValue;
+					}
+				}
+			}
 
-            $p_container->setParameter(Configuration::$NODE_ROOT.'.profiles', $parameterProfiles);
+			$p_container->setParameter( Configuration::$NODE_ROOT . '.profiles', $parameterProfiles );
 
 
 		}

@@ -102,23 +102,27 @@
 			$arrOption         = array();
 			$arrPluginEnabled  = isset( $p_options [ "pluginsEnabled" ] ) ? $p_options [ "pluginsEnabled" ] : array();
 			$arrPluginDisabled = isset( $p_options [ "pluginsDisabled" ] ) ? $p_options [ "pluginsDisabled" ] : array();
-			$profile           = isset( $p_options [ "profile"] ) ? $p_options [ "profile" ] : null;
+			$arrEvent          = isset( $p_options [ "events" ] ) ? $p_options [ "events" ] : array();
+			$profile           = isset( $p_options [ "profile" ] ) ? $p_options [ "profile" ] : null;
 			// ------------------------- DECLARE ---------------------------//
 
-            if ($profile && $this->m_container->hasParameter(Configuration::$NODE_ROOT . '.profiles'))
-            {
+			if( $profile && $this->m_container->hasParameter( Configuration::$NODE_ROOT . '.profiles' ) )
+			{
 
-                  $profiles = $this->m_container->getParameter(Configuration::$NODE_ROOT . '.profiles');
+				$profiles = $this->m_container->getParameter( Configuration::$NODE_ROOT . '.profiles' );
 
-                  if (array_key_exists($profile, $profiles))
-                  {
-                      $profileConfig = $profiles[$profile];
-                      $p_options = array_merge($p_options, $profileConfig);
-                  } else {
-                      throw new \Exception( 'Could not find profile "' . $profile . '", defined profiles: [' . join(',', $profiles ).']' );
-                  }
+				if( array_key_exists( $profile, $profiles ) )
+				{
+					$profileConfig = $profiles[ $profile ];
+					$p_options     = array_merge( $p_options, $profileConfig );
+				}
+				else
+				{
+					throw new \Exception( 'Could not find profile "' . $profile . '", defined profiles: [' .
+										  join( ',', $profiles ) . ']' );
+				}
 
-            }
+			}
 
 			// Prepare options.
 			$this->m_optionManager->prepareOptions( $p_options );
@@ -138,7 +142,7 @@
 					}
 				}
 			}
-		
+
 			// Options.
 			$p_view->vars [ "arrOption" ] = $arrOption;
 
@@ -152,6 +156,7 @@
 				$this->m_pluginProvider->obtainArrPluginJS( $arrPlugin );
 			$p_view->vars [ "arrPluginCSS" ]                  =
 				$this->m_pluginProvider->obtainArrPluginCSS( $arrPlugin );
+			$p_view->vars [ "events" ]                        = $arrEvent;
 		}
 
 		/**
@@ -179,7 +184,7 @@
 			}
 
 
-            $arrDefined[] = 'profile';
+			$arrDefined[] = 'profile';
 			$p_resolver->setDefined( $arrDefined );
 			$p_resolver->setDefaults( $arrDefault );
 
