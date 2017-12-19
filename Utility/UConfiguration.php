@@ -161,7 +161,7 @@
 			"fileUploadPath"    => null, //
 			"serialNumber"      => null, //
 			"videoUploadFolder" => "/upload", //
-			"videoUploadPath"   => null
+			"videoUploadPath"   => null,
 		);
 
 		public static $OPTIONS_ARRAY = array(
@@ -214,8 +214,8 @@
 		);
 
 		public static $OPTIONS_ARRAY_CUSTOM = array(
-			"pluginsDisabled" => array(),
-            "events" => array()
+			"pluginsDisabled" => array(), //
+      "events" => array()
 		);
 
 		public static $OPTIONS_OBJECT = array(
@@ -297,49 +297,71 @@
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
+         * @param boolean
 		 */
-		public static function addArrOptionBoolean( NodeBuilder $p_nodeBuilder )
+		public static function addArrOptionBoolean( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
 			$array = array_merge( UConfiguration::$OPTIONS_BOOLEAN, UConfiguration::$OPTIONS_BOOLEAN_CUSTOM );
 			//------------------------- DECLARE ---------------------------//
 
 			foreach( $array as $option => $defaultValue )
 			{
-				$p_nodeBuilder = $p_nodeBuilder->booleanNode( $option )->defaultValue( $defaultValue )->end();
+				$p_nodeBuilder = $p_nodeBuilder->booleanNode( $option );
+				if ( $addDefaultValue )
+				{
+                    $p_nodeBuilder->defaultValue( $defaultValue );
+                }
+
+				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
+         * @param boolean
 		 */
-		public static function addArrOptionInteger( NodeBuilder $p_nodeBuilder )
+		public static function addArrOptionInteger( NodeBuilder $p_nodeBuilder, $addDefaultValue = true  )
 		{
 			//------------------------- DECLARE ---------------------------//
 
 			foreach( UConfiguration::$OPTIONS_INTEGER as $option => $defaultValue )
 			{
-				$p_nodeBuilder = $p_nodeBuilder->integerNode( $option )->defaultValue( $defaultValue )->end();
+				$p_nodeBuilder = $p_nodeBuilder->integerNode( $option );
+
+				if ($addDefaultValue)
+                {
+                    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+                }
+
+				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
+         * @param boolean
 		 */
-		public static function addArrOptionString( NodeBuilder $p_nodeBuilder )
+		public static function addArrOptionString( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
 			$array = array_merge( UConfiguration::$OPTIONS_STRING, UConfiguration::$OPTIONS_STRING_CUSTOM );
 			//------------------------- DECLARE ---------------------------//
 
 			foreach( $array as $option => $defaultValue )
 			{
-				$p_nodeBuilder = $p_nodeBuilder->scalarNode( $option )->defaultValue( $defaultValue )->end();
+				$p_nodeBuilder = $p_nodeBuilder->scalarNode( $option );
+				if ($addDefaultValue)
+				{
+				    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+				}
+				$p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
+         * @param boolean
 		 */
-		public static function addArrOptionArray( NodeBuilder $p_nodeBuilder )
+		public static function addArrOptionArray( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
 			$array = array_merge( UConfiguration::$OPTIONS_ARRAY, UConfiguration::$OPTIONS_ARRAY_CUSTOM );
 			//------------------------- DECLARE ---------------------------//
@@ -347,15 +369,22 @@
 			foreach( $array as $option => $defaultValue )
 			{
 				$p_nodeBuilder =
-					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end()->defaultValue( $defaultValue )
-								  ->end();
+					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end();
+
+				if ($addDefaultValue)
+                {
+                    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+                }
+
+                $p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 
 		/**
 		 * @param \Symfony\Component\Config\Definition\Builder\NodeBuilder $p_nodeBuilder
+         * @param boolean
 		 */
-		public static function addArrOptionObject( NodeBuilder $p_nodeBuilder )
+		public static function addArrOptionObject( NodeBuilder $p_nodeBuilder, $addDefaultValue = true )
 		{
 			$array = array_merge( UConfiguration::$OPTIONS_OBJECT, UConfiguration::$OPTIONS_OBJECT_CUSTOM );
 			//------------------------- DECLARE ---------------------------//
@@ -363,8 +392,14 @@
 			foreach( $array as $option => $defaultValue )
 			{
 				$p_nodeBuilder =
-					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end()->defaultValue( $defaultValue )
-								  ->end();
+					$p_nodeBuilder->arrayNode( $option )->prototype( 'variable' )->end();
+
+				if ($addDefaultValue)
+                {
+                    $p_nodeBuilder = $p_nodeBuilder->defaultValue( $defaultValue );
+                }
+
+                $p_nodeBuilder = $p_nodeBuilder->end();
 			}
 		}
 

@@ -3,7 +3,8 @@
 	namespace KMS\FroalaEditorBundle\DependencyInjection;
 
 	use KMS\FroalaEditorBundle\Utility\UConfiguration;
-	use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+    use Symfony\Component\Config\Definition\Builder\NodeBuilder;
+    use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 	use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 	/**
@@ -38,13 +39,33 @@
 
 			// Add all available configuration nodes.
 			$nodeBuilder = $rootNode->addDefaultsIfNotSet()->children();
-			UConfiguration::addArrOptionBoolean( $nodeBuilder );
-			UConfiguration::addArrOptionInteger( $nodeBuilder );
-			UConfiguration::addArrOptionString( $nodeBuilder );
-			UConfiguration::addArrOptionArray( $nodeBuilder );
-			UConfiguration::addArrOptionObject( $nodeBuilder );
+			$this->addFroalaConfigTree( $nodeBuilder );
+			// "profiles" are treated separetely as they repeat main option structures
+			$profileSubTreeBuilder = $nodeBuilder
+              ->arrayNode('profiles')
+              ->useAttributeAsKey('name')
+              ->prototype('array')
+                    ->children();
+			$this->addFroalaConfigTree( $profileSubTreeBuilder , false );
+			$profileSubTreeBuilder->end()->end();
 			$nodeBuilder->end();
 
 			return $treeBuilder;
 		}
+
+        /**
+         * Add all options to configuration subtree
+         * 
+         * @param NodeBuilder $nodeBuilder
+         */
+		private function addFroalaConfigTree( & $nodeBuilder , $addDefaultValue = true )
+        {
+
+            UConfiguration::addArrOptionBoolean( $nodeBuilder , $addDefaultValue );
+            UConfiguration::addArrOptionInteger( $nodeBuilder , $addDefaultValue );
+            UConfiguration::addArrOptionString( $nodeBuilder, $addDefaultValue );
+            UConfiguration::addArrOptionArray( $nodeBuilder , $addDefaultValue );
+            UConfiguration::addArrOptionObject( $nodeBuilder , $addDefaultValue );
+
+        }
 	}
