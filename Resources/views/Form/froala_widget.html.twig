@@ -86,7 +86,11 @@
 			.on( "froalaEditor.video.error", function ( e, editor, error, responses )
 			{
 				froalaDisplayError(  editor, error );
-			} );
+			} )
+			{% for event, func in events %}
+				.on("{{ event }}", {{ func }})
+            {% endfor %}
+			;
 		});
 	</script>
 
