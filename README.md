@@ -6,9 +6,9 @@
 
 [![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
 
-## Symfony 3 update
+## Symfony 3 & 4 update
 
-This bundle is now compatible with Symfony 2 and 3 on the same branch (dev-master).
+This bundle is now compatible with Symfony 2, 3 and 4 on the same branch (dev-master).
 
 ## Migration to Froala Editor v2
 
@@ -134,7 +134,7 @@ Just add a froala type in your form:
 
 ``` php
 $builder->add( "yourField", "froala" ); // Symfony 2
-$builder->add( "yourField", FroalaEditorType::class ); // Symfony 3
+$builder->add( "yourField", FroalaEditorType::class ); // Symfony 3 & 4
 ```
 
 All configuration items can be overridden:

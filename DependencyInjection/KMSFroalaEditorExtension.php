@@ -47,7 +47,7 @@
 			// ------------------------- DECLARE ---------------------------//
 
 			$p_container->setParameter( "twig.form.resources", array_merge( array(
-																				"KMSFroalaEditorBundle:Form:froala_widget.html.twig"
+																				"@KMSFroalaEditor/Form/froala_widget.html.twig"
 																			),
 																			$p_container->getParameter( "twig.form.resources" ) ) );
 		}
