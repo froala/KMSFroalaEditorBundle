@@ -48,6 +48,8 @@
 			"linkAlwaysNoFollow"             => null, //
 			"linkConvertEmailAddress"        => null, //
 			"linkMultipleStyles"             => null, //
+			"linkNoOpener"                   => null, //
+			"linkNoReferrer"                 => null, //
 			"linkText"                       => null, //
 			"multiLine"                      => null, //
 			"paragraphFormatSelection"       => null, //
@@ -123,6 +125,7 @@
 			"fileUploadMethod"         => null, //
 			"fileUploadParam"          => null, //
 			"fileUploadURL"            => "kms_froala_editor_upload_file", //
+			"iframeDefaultStyle"       => null, //
 			"iframeStyle"              => null, //
 			"imageCORSProxy"           => null, //
 			"imageDefaultAlign"        => null, //
@@ -154,7 +157,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.3", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.5", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
