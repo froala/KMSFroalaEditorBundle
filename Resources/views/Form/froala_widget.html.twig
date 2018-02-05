@@ -65,7 +65,7 @@
 				key : "{{ serialNumber }}",
 			{% endif %}
 			{% for option, value in arrOption %}
-				{{ option }} : {% include "KMSFroalaEditorBundle:Form:value.html.twig" %}
+				{{ option }} : {% include "@KMSFroalaEditor/Form/value.html.twig" %}
 			{% endfor %} })
 			.on( "froalaEditor.image.error", function ( e, editor, error )
 			{

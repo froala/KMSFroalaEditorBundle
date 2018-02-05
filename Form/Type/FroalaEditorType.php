@@ -197,7 +197,7 @@
 		{
 			// ------------------------- DECLARE ---------------------------//
 
-			if( $this->m_version == 3 )
+			if( $this->m_version >= 3 )
 			{
 				return "Symfony\Component\Form\Extension\Core\Type\TextareaType";
 			}
