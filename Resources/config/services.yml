@@ -29,6 +29,7 @@ services:
 
 # kms/froala-editor-bundle/Resources/config/services.yml
     KMS\FroalaEditorBundle\Controller\MediaController:
+        synthetic: true
         public: true
         arguments:
             $p_mediaManager: '@kms_froala_editor.media_manager'
