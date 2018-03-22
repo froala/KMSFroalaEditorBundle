@@ -30,5 +30,6 @@ services:
 # kms/froala-editor-bundle/Resources/config/services.yml
     kms_froala_editor.media_controller:
         class: "KMS\\FroalaEditorBundle\\Controller\\MediaController"
-        arguments: [ "@kms_froala_editor.media_manager" ]
+        arguments:
+            $p_mediaManager: "@kms_froala_editor.media_manager"
         public: true
