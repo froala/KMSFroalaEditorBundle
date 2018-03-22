@@ -29,6 +29,5 @@ services:
 
   # Media controller.
   KMS\FroalaEditorBundle\Controller\MediaController:
-    public: true
     arguments:
-        $p_mediaManager: "@kms_froala_editor.media_manager"
+      $p_mediaManager: "@kms_froala_editor.media_manager"
