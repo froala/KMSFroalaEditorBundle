@@ -11,6 +11,7 @@
 	 */
 	abstract class UConfiguration
 	{
+		//TODO: add paragraphDefaultSelection option.
 
 		public static $OPTIONS_BOOLEAN = array(
 			"charCounterCount"               => null, //
@@ -157,7 +158,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.5", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.7.6", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
@@ -174,6 +175,7 @@
 			"emoticonsSet"              => array(), //
 			"fileAllowedTypes"          => array(), //
 			"fontSize"                  => array(), //
+			"helpSets"                  => array(), //
 			"htmlAllowedAttrs"          => array(), //
 			"htmlAllowedEmptyTags"      => array(), //
 			"htmlAllowedStyleProps"     => array(), //

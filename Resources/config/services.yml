@@ -26,3 +26,9 @@ services:
         arguments: [ "@service_container" ]
         tags:
             - { name: twig.extension }
+
+# kms/froala-editor-bundle/Resources/config/services.yml
+    KMS\FroalaEditorBundle\Controller\MediaController:
+        public: true
+        arguments:
+            $p_mediaManager: '@kms_froala_editor.media_manager'

@@ -51,7 +51,7 @@
 
 			if( $includeCSS )
 			{
-				$url = $this->m_container->get( "templating.helper.assets" )->getUrl( trim( $basePath, '/' ) . '/' .
+				$url = $this->m_container->get( "assets.packages" )->getUrl( trim( $basePath, '/' ) . '/' .
 																					  "css/froala_style.min.css" );
 				$str .= "<link href=\"" . $url . "\" rel=\"stylesheet\" type=\"text/css\" />";
 			}
