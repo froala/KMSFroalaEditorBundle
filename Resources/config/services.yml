@@ -28,8 +28,7 @@ services:
             - { name: twig.extension }
 
 # kms/froala-editor-bundle/Resources/config/services.yml
-    KMS\FroalaEditorBundle\Controller\MediaController:
-        synthetic: true
+    kms_froala_editor.media_controller:
+        class: "KMS\\FroalaEditorBundle\\Controller\\MediaController"
         public: true
-        arguments:
-            $p_mediaManager: '@kms_froala_editor.media_manager'
+        arguments: [ "@kms_froala_editor.media_manager" ]
