@@ -13,6 +13,7 @@
 	{
 
 		public static $OPTIONS_BOOLEAN = array(
+			"autofocus"                      => null, //
 			"charCounterCount"               => null, //
 			"codeBeautifier"                 => null, //
 			"codeMirror"                     => null, //
@@ -52,6 +53,7 @@
 			"linkNoReferrer"                 => null, //
 			"linkText"                       => null, //
 			"multiLine"                      => null, //
+			"paragraphDefaultSelection"      => null, //
 			"paragraphFormatSelection"       => null, //
 			"paragraphMultipleStyles"        => null, //
 			"pasteAllowLocalImages"          => null, //
@@ -125,6 +127,7 @@
 			"fileUploadMethod"         => null, //
 			"fileUploadParam"          => null, //
 			"fileUploadURL"            => "kms_froala_editor_upload_file", //
+			"fontSizeUnit"             => null, //
 			"iframeDefaultStyle"       => null, //
 			"iframeStyle"              => null, //
 			"imageCORSProxy"           => null, //
@@ -146,6 +149,7 @@
 			"saveURL"                  => null, //
 			"scaytCustomerId"          => null, //
 			"scrollableContainer"      => null, //
+			"tableDefaultWidth"        => null, //
 			"theme"                    => null, //
 			"videoDefaultAlign"        => null, //
 			"videoDefaultDisplay"      => null, //
@@ -228,6 +232,7 @@
 			"fileUploadParams"         => array(), //
 			"fileUploadToS3"           => array(), //
 			"fontFamily"               => array(), //
+			"helpSets"                 => array(), //
 			"imageManagerDeleteParams" => array(), //
 			"imageManagerLoadParams"   => array(), //
 			"imageStyles"              => array(), //
