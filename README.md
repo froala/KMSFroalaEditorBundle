@@ -4,8 +4,6 @@
 [![Packagist](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![Packagist](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 
-[![knpbundles.com](http://knpbundles.com/froala/KMSFroalaEditorBundle/badge)](http://knpbundles.com/froala/KMSFroalaEditorBundle)
-
 ## Symfony 3 & 4 update
 
 This bundle is now compatible with Symfony 2, 3 and 4 on the same branch (dev-master).
@@ -159,7 +157,7 @@ To preserve the look of the edited HTML outside of the editor you have to includ
 <link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
 ```
 
-Also, you should make sure that you put the edited content inside an element that has the class froala-view:
+Also, you should make sure that you put the edited content inside an element that has the class fr-view:
 
 ``` twig
 <div class="fr-view">
