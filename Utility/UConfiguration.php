@@ -128,6 +128,7 @@
 			"fileUploadParam"          => null, //
 			"fileUploadURL"            => "kms_froala_editor_upload_file", //
 			"fontSizeUnit"             => null, //
+			"iconsTemplate"            => null, //
 			"iframeDefaultStyle"       => null, //
 			"iframeStyle"              => null, //
 			"imageCORSProxy"           => null, //
