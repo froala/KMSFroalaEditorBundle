@@ -29,7 +29,7 @@
 			$path         = $p_request->request->get( "path" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-            $publicDir    = $p_request->request->get("public_dir");
+			$publicDir    = $p_request->request->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
@@ -51,7 +51,7 @@
 			$imageSrc     = $p_request->request->get( "src" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-            $publicDir    = $p_request->request->get("public_dir");
+			$publicDir    = $p_request->request->get("public_dir");
 			// ------------------------- DECLARE ---------------------------//
 
 			$mediaManager->deleteImage( $imageSrc, $rootDir, $publicDir, $folder );
@@ -70,7 +70,7 @@
 			$path         = $p_request->query->get( "path" );
 			$folder       = $p_request->query->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-            $publicDir    = $p_request->query->get("public_dir");
+			$publicDir    = $p_request->query->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 
 			// ------------------------- DECLARE ---------------------------//
@@ -89,7 +89,7 @@
 			$path         = $p_request->request->get( "path" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-            $publicDir    = $p_request->request->get("public_dir");
+			$publicDir    = $p_request->request->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
@@ -111,7 +111,7 @@
 			$path         = $p_request->request->get( "path" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
-            $publicDir    = $p_request->request->get("public_dir");
+			$publicDir    = $p_request->request->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
