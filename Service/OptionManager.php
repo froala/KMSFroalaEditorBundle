@@ -191,7 +191,7 @@
 			$imageManagerDeleteParams =
 				isset( $p_arrOption[ "imageManagerDeleteParams" ] ) ? $p_arrOption[ "imageManagerDeleteParams" ] : array();
 			$arrCustomParams          =
-				array( "folder" => $p_arrOption[ "imageUploadFolder" ], "path" => $p_arrOption[ "imageUploadPath" ] );
+				array( "folder" => $p_arrOption[ "imageUploadFolder" ], "path" => $p_arrOption[ "imageUploadPath" ], "public_dir" => $p_arrOption[ "publicDir" ] );
 			//------------------------- DECLARE ---------------------------//
 
 			$p_arrOption[ "imageUploadParams" ]        = array_merge( $imageUploadParams, $arrCustomParams );
@@ -208,7 +208,7 @@
 			$fileUploadParams =
 				isset( $p_arrOption[ "fileUploadParams" ] ) ? $p_arrOption[ "fileUploadParams" ] : array();
 			$arrCustomParams  =
-				array( "folder" => $p_arrOption[ "fileUploadFolder" ], "path" => $p_arrOption[ "fileUploadPath" ] );
+				array( "folder" => $p_arrOption[ "fileUploadFolder" ], "path" => $p_arrOption[ "fileUploadPath" ], "public_dir" => $p_arrOption[ "publicDir" ] );
 			//------------------------- DECLARE ---------------------------//
 
 			$p_arrOption[ "fileUploadParams" ] = array_merge( $fileUploadParams, $arrCustomParams );
@@ -223,7 +223,7 @@
 			$videoUploadParams =
 				isset( $p_arrOption[ "videoUploadParams" ] ) ? $p_arrOption[ "videoUploadParams" ] : array();
 			$arrCustomParams   =
-				array( "folder" => $p_arrOption[ "videoUploadFolder" ], "path" => $p_arrOption[ "videoUploadPath" ] );
+				array( "folder" => $p_arrOption[ "videoUploadFolder" ], "path" => $p_arrOption[ "videoUploadPath" ], "public_dir" => $p_arrOption[ "publicDir" ] );
 			//------------------------- DECLARE ---------------------------//
 
 			$p_arrOption[ "videoUploadParams" ] = array_merge( $videoUploadParams, $arrCustomParams );

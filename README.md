@@ -250,6 +250,10 @@ kms_froala_editor:
   # Usage: if you are using URL rewritting for your assets.
   # Default: same value as provided as folder.
   fileUploadPath: "/my/upload/path"
+  
+  # Your public directory, from the root directory.
+  # Default: "/web"
+  publicDir: "/public"
 ```
 
 #### Concept: Autosave

@@ -38,13 +38,14 @@
 		 * Upload an image.
 		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
 		 * @param string                                    $p_rootDir
+		 * @param string                                    $p_publicDir
 		 * @param string                                    $p_basePath
 		 * @param string                                    $p_folder
 		 * @param string                                    $p_path
 		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 * @throws \Exception
 		 */
-		public function uploadImage( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder, $p_path )
+		public function uploadImage( FileBag $p_file, $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
 		{
 			$arrExtension = array(
 				"gif",
@@ -52,7 +53,7 @@
 				"jpg",
 				"png"
 			);
-			$folder       = $this->obtainFolder( $p_rootDir, $p_folder );
+			$folder       = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
 			$path         = $this->obtainPath( $p_basePath, $p_path );
 			$response     = new JsonResponse ();
 			// ------------------------- DECLARE ---------------------------//
@@ -121,11 +122,12 @@
 		 * Delete an image.
 		 * @param string $p_imageSrc
 		 * @param string $p_rootDir
+		 * @param string $p_publicDir
 		 * @param string $p_folder
 		 */
-		public function deleteImage( $p_imageSrc, $p_rootDir, $p_folder )
+		public function deleteImage( $p_imageSrc, $p_rootDir, $p_publicDir, $p_folder )
 		{
-			$folder      = $this->obtainFolder( $p_rootDir, $p_folder );
+			$folder      = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
 			$arrExploded = explode( '/', $p_imageSrc );
 			// ------------------------- DECLARE ---------------------------//
 
@@ -136,17 +138,18 @@
 		/**
 		 * Load images.
 		 * @param string $p_rootDir
+		 * @param string $p_publicDir
 		 * @param string $p_basePath
 		 * @param string $p_folder
 		 * @param string $p_path
 		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 * @throws \Exception
 		 */
-		public function loadImages( $p_rootDir, $p_basePath, $p_folder, $p_path )
+		public function loadImages( $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
 		{
 			$response     = new JsonResponse ();
 			$arrImage     = array();
-			$folder       = $this->obtainFolder( $p_rootDir, $p_folder );
+			$folder       = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
 			$path         = $this->obtainPath( $p_basePath, $p_path );
 			$finder       = new Finder ();
 			$arrExtension = array(
@@ -178,15 +181,16 @@
 		 * Upload an image.
 		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
 		 * @param string                                    $p_rootDir
+		 * @param string                                    $p_publicDir
 		 * @param string                                    $p_basePath
 		 * @param string                                    $p_folder
 		 * @param string                                    $p_path
 		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 * @throws \Exception
 		 */
-		public function uploadFile( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder, $p_path )
+		public function uploadFile( FileBag $p_file, $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
 		{
-			$folder   = $this->obtainFolder( $p_rootDir, $p_folder );
+			$folder   = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
 			$path     = $this->obtainPath( $p_basePath, $p_path );
 			$response = new JsonResponse ();
 			// ------------------------- DECLARE ---------------------------//
@@ -237,13 +241,14 @@
 		 * Upload a video.
 		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
 		 * @param string                                    $p_rootDir
+		 * @param string                                    $p_publicDir
 		 * @param string                                    $p_basePath
 		 * @param string                                    $p_folder
 		 * @param string                                    $p_path
 		 * @return \Symfony\Component\HttpFoundation\JsonResponse
 		 * @throws \Exception
 		 */
-		public function uploadVideo( FileBag $p_file, $p_rootDir, $p_basePath, $p_folder, $p_path )
+		public function uploadVideo( FileBag $p_file, $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
 		{
 //			$arrExtension = array(
 //				"gif",
@@ -251,7 +256,7 @@
 //				"jpg",
 //				"png"
 //			);
-			$folder   = $this->obtainFolder( $p_rootDir, $p_folder );
+			$folder   = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
 			$path     = $this->obtainPath( $p_basePath, $p_path );
 			$response = new JsonResponse ();
 			// ------------------------- DECLARE ---------------------------//
@@ -323,15 +328,15 @@
 		/**
 		 * Obtain the physical folder.
 		 * @param string $p_rootDir
+		 * @param string $p_publicDir
 		 * @param string $p_folder
 		 * @return string
 		 */
-		private function obtainFolder( $p_rootDir, $p_folder )
+		private function obtainFolder( $p_rootDir, $p_publicDir, $p_folder )
 		{
 			// ------------------------- DECLARE ---------------------------//
 
-			// TODO: use web directory specified by user if different.
-			return $p_rootDir . "/../web/" . $p_folder;
+            return sprintf('%s/..%s/%s', $p_rootDir, $p_publicDir, $p_folder);
 		}
 
 		/**
