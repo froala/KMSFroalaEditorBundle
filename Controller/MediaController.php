@@ -29,13 +29,14 @@
 			$path         = $p_request->request->get( "path" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$publicDir    = $p_request->request->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
 			// FIXME
 //			if( $request->isXmlHttpRequest() == true )
 //			{
-				return $mediaManager->uploadImage( $p_request->files, $rootDir, $basePath, $folder, $path );
+				return $mediaManager->uploadImage( $p_request->files, $rootDir, $publicDir, $basePath, $folder, $path );
 //			}
 		}
 
@@ -50,9 +51,10 @@
 			$imageSrc     = $p_request->request->get( "src" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$publicDir    = $p_request->request->get("public_dir");
 			// ------------------------- DECLARE ---------------------------//
 
-			$mediaManager->deleteImage( $imageSrc, $rootDir, $folder );
+			$mediaManager->deleteImage( $imageSrc, $rootDir, $publicDir, $folder );
 
 			return new Response ();
 		}
@@ -68,11 +70,12 @@
 			$path         = $p_request->query->get( "path" );
 			$folder       = $p_request->query->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$publicDir    = $p_request->query->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 
 			// ------------------------- DECLARE ---------------------------//
 
-			return $mediaManager->loadImages( $rootDir, $basePath, $folder, $path );
+			return $mediaManager->loadImages( $rootDir, $publicDir, $basePath, $folder, $path );
 		}
 
 		/**
@@ -86,13 +89,14 @@
 			$path         = $p_request->request->get( "path" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$publicDir    = $p_request->request->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
 			// FIXME
 //			if( $request->isXmlHttpRequest() == true )
 //			{
-			return $mediaManager->uploadFile( $p_request->files, $rootDir, $basePath, $folder, $path );
+			return $mediaManager->uploadFile( $p_request->files, $rootDir, $publicDir, $basePath, $folder, $path );
 //			}
 		}
 
@@ -107,13 +111,14 @@
 			$path         = $p_request->request->get( "path" );
 			$folder       = $p_request->request->get( "folder" );
 			$rootDir      = $this->get( "kernel" )->getRootDir();
+			$publicDir    = $p_request->request->get("public_dir");
 			$basePath     = $p_request->getBasePath();
 			// ------------------------- DECLARE ---------------------------//
 
 			// FIXME
 //			if( $request->isXmlHttpRequest() == true )
 //			{
-			return $mediaManager->uploadVideo( $p_request->files, $rootDir, $basePath, $folder, $path );
+			return $mediaManager->uploadVideo( $p_request->files, $rootDir, $publicDir, $basePath, $folder, $path );
 //			}
 		}
 

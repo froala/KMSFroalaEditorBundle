@@ -19,6 +19,7 @@ services:
 # Media manager.
     kms_froala_editor.media_manager:
         class: "KMS\\FroalaEditorBundle\\Service\\MediaManager"
+        public: true
 
 # Twig extension.
     kms_froala_editor.froala_extension:

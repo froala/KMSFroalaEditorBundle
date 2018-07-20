@@ -169,6 +169,7 @@
 			"serialNumber"      => null, //
 			"videoUploadFolder" => "/upload", //
 			"videoUploadPath"   => null,
+			"publicDir"         => "/web",
 		);
 
 		public static $OPTIONS_ARRAY = array(
