@@ -194,7 +194,10 @@
 				array( "folder" => $p_arrOption[ "imageUploadFolder" ], "path" => $p_arrOption[ "imageUploadPath" ], "public_dir" => $p_arrOption[ "publicDir" ] );
 			//------------------------- DECLARE ---------------------------//
 
-			$p_arrOption[ "imageUploadParams" ]        = array_merge( $imageUploadParams, $arrCustomParams );
+            //Always adding these params breaks s3 signing in some cases
+            if (!array_key_exists('imageUploadToS3', $p_arrOption)) {
+                $p_arrOption[ "imageUploadParams" ]        = array_merge( $imageUploadParams, $arrCustomParams );
+            }
 			$p_arrOption[ "imageManagerLoadParams" ]   = array_merge( $imageManagerLoadParams, $arrCustomParams );
 			$p_arrOption[ "imageManagerDeleteParams" ] = array_merge( $imageManagerDeleteParams, $arrCustomParams );
 		}
