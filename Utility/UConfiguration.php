@@ -77,6 +77,7 @@
 			"videoSplitHTML"                 => null, //
 			"videoTextNear"                  => null, //
 			"videoUpload"                    => null, //
+			"wordPasteKeepFormatting "	 => null, //
 			"wordPasteModal"                 => null
 		);
 
