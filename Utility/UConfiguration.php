@@ -18,6 +18,7 @@
 			"codeBeautifier"                 => null, //
 			"codeMirror"                     => null, //
 			"disableRightClick"              => null, //
+			"documentReady"                  => null, //
 			"editInPopup"                    => null, //
 			"editorClass"                    => null, //
 			"emoticonsUseImage"              => null, //
@@ -52,6 +53,7 @@
 			"linkNoOpener"                   => null, //
 			"linkNoReferrer"                 => null, //
 			"linkText"                       => null, //
+			"listAdvancedTypes"              => null, //
 			"multiLine"                      => null, //
 			"paragraphDefaultSelection"      => null, //
 			"paragraphFormatSelection"       => null, //
@@ -74,10 +76,11 @@
 			"useClasses"                     => null, //
 			"videoMove"                      => null, //
 			"videoResize"                    => null, //
+			"videoResponsive"                => null, //
 			"videoSplitHTML"                 => null, //
 			"videoTextNear"                  => null, //
 			"videoUpload"                    => null, //
-			"wordPasteKeepFormatting "	 => null, //
+			"wordPasteKeepFormatting "       => null, //
 			"wordPasteModal"                 => null
 		);
 
