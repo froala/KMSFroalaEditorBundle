@@ -32,6 +32,7 @@
 			"htmlSimpleAmpersand"            => null, //
 			"htmlUntouched"                  => null, //
 			"iframe"                         => null, //
+			"imageAddNewLine"                => null, //
 			"imageMove"                      => null, //
 			"imageMultipleStyles"            => null, //
 			"imagePaste"                     => null, //
@@ -166,7 +167,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.9.2", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.9.3", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
