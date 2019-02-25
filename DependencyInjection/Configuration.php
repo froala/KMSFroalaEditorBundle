@@ -33,8 +33,13 @@
 		 */
 		public function getConfigTreeBuilder()
 		{
-			$treeBuilder = new TreeBuilder ();
-			$rootNode    = $treeBuilder->root( Configuration::$NODE_ROOT );
+            $treeBuilder = new TreeBuilder(Configuration::$NODE_ROOT);
+            if (method_exists($treeBuilder, 'getRootNode')) {
+                $rootNode = $treeBuilder->getRootNode();
+            } else {
+                // BC layer for symfony/config 4.1 and older
+                $rootNode = $treeBuilder->root(Configuration::$NODE_ROOT);
+            }
 			// ------------------------- DECLARE ---------------------------//
 
 			// Add all available configuration nodes.
