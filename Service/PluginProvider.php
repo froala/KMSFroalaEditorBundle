@@ -59,7 +59,8 @@
 				// Third party.
 				"embedly"            => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
 				"image_aviary"       => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
-				"spell_checker"      => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ]
+				"spell_checker"      => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
+				"font_awesome" 	     => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ]
 
 			);
 
