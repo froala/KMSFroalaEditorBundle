@@ -123,11 +123,11 @@
 		private function generateRoutes( array & $p_arrOption )
 		{
 			// Manage user entries, image has default values (can be set to null by user), but save and parameters has no default values.
-			$imageManagerDeleteURL = $p_arrOption[ "imageManagerDeleteURL" ];
-			$imageManagerLoadURL   = $p_arrOption[ "imageManagerLoadURL" ];
-			$imageUploadURL        = $p_arrOption[ "imageUploadURL" ];
-			$fileUploadURL         = $p_arrOption[ "fileUploadURL" ];
-			$videoUploadURL        = $p_arrOption[ "videoUploadURL" ];
+			$imageManagerDeleteURL = isset( $p_arrOption[ "imageManagerDeleteURL" ]) ? $p_arrOption[ "imageManagerDeleteURL" ] : null;
+			$imageManagerLoadURL   = isset( $p_arrOption[ "imageManagerLoadURL" ]) ? $p_arrOption[ "imageManagerLoadURL" ]: null;
+			$imageUploadURL        = isset( $p_arrOption[ "imageUploadURL" ]) ? $p_arrOption[ "imageUploadURL" ] : null;
+			$fileUploadURL         = isset( $p_arrOption[ "fileUploadURL" ]) ? $p_arrOption[ "fileUploadURL" ] : null;
+			$videoUploadURL        = isset( $p_arrOption[ "videoUploadURL" ]) ? $p_arrOption[ "videoUploadURL" ] : null;
 
 			$saveURL                     =
 				isset( $p_arrOption[ "saveURL" ] ) ? $p_arrOption[ "saveURL" ] : null;
