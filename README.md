@@ -25,24 +25,22 @@ To migrate from v1 to v2, you have to update your configuration file. Then, read
 }
 ```
 
-#### Step 2 : Add the bundle to your AppKernel.php
+#### Step 2 : Add the bundle to your bundles.php
 
 ``` php
-// app/AppKernel.php
+// config/bundles.php
 
-public function registerBundles()
-{
-  $bundles = array(
-    // ...
-    new KMS\FroalaEditorBundle\KMSFroalaEditorBundle(),
-  );
-}
+return [
+    //..
+    //..
+    KMS\FroalaEditorBundle\KMSFroalaEditorBundle::class => ['all' => true],
+];
 ```
 
 #### Step 3 : Import routes
 
 ``` yaml
-// app/config/routing.yml
+// config/routes.yaml
 kms_froala_editor:
   resource: "@KMSFroalaEditorBundle/Resources/config/routing.yml"
   prefix:   /froalaeditor
@@ -59,7 +57,8 @@ kms_froala_editor:
 Firstly, you have to select your language, other settings are optionals (see below).
 
 ``` yaml
-// app/config.yml
+// config/packages/config.yaml
+// if file doesn't exist, create one at path config/packages/config.yaml
 
 kms_froala_editor:
 
@@ -80,7 +79,7 @@ Note that some options needs some plugins (all information provided in the [Froa
 Example for each option types bellow:
 
 ``` yaml
-// app/config.yml
+// config/packages/config.yaml
 
 kms_froala_editor:
 
@@ -93,7 +92,7 @@ kms_froala_editor:
 To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
 
 ``` yaml
-// app/config.yml
+// config/packages/config.yaml
 
 kms_froala_editor:
     
@@ -131,6 +130,8 @@ kms_froala_editor:
 Just add a froala type in your form:
 
 ``` php
+use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType; // Symfony 4
+//..
 $builder->add( "yourField", "froala" ); // Symfony 2
 $builder->add( "yourField", FroalaEditorType::class ); // Symfony 3 & 4
 ```

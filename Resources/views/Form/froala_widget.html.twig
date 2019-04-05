@@ -11,7 +11,7 @@
 	{% endif %}
 
 	{% if includeCSS %}
-		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_editor.pkgd.min.css' ) }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_editor.min.css' ) }}" />
 		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_style.min.css' ) }}" />
 
 		{% if arrOption[ "theme" ] is defined %}
@@ -28,9 +28,6 @@
 	<textarea {{ block( "widget_attributes" ) }}>{{ value }}</textarea>
 
 	{# JS. #}
-	{% if includeJQuery %}
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	{% endif %}
 
 	{% if includeCodeMirror %}
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
@@ -59,39 +56,41 @@
 	<script type="text/javascript">
 
 		{# Go. #}
-		$( document ).ready( function () { $( "#{{ id }}" ).froalaEditor({
-			{# Add license. #}
-			{% if serialNumber is defined %}
-				key : "{{ serialNumber }}",
-			{% endif %}
-			{% for option, value in arrOption %}
-				{{ option }} : {% include "@KMSFroalaEditor/Form/value.html.twig" %}
-			{% endfor %} })
-			.on( "froalaEditor.image.error", function ( e, editor, error )
-			{
-				froalaDisplayError(  editor, error );
-			} )
-			.on( "froalaEditor.imageManager.error", function ( e, editor, error )
-			{
-				froalaDisplayError(  editor, error );
-			} )
-			.on( "froalaEditor.save.error", function ( e, editor, error )
-			{
-				froalaDisplayError(  editor, error );
-			} )
-			.on( "froalaEditor.file.error", function ( e, editor, error, responses )
-			{
-				froalaDisplayError(  editor, error );
-			} )
-			.on( "froalaEditor.video.error", function ( e, editor, error, responses )
-			{
-				froalaDisplayError(  editor, error );
-			} )
-			{% for event, func in events %}
-				.on("{{ event }}", {{ func }})
-            {% endfor %}
-			;
-		});
+		document.addEventListener("DOMContentLoaded", function() { 
+			(function(){
+				const editInstance = new FroalaEditor( "#{{ id }}",{
+					{# Add license. #}
+					{% if serialNumber is defined %}
+						key : "{{ serialNumber }}",
+					{% endif %}
+					{% for option, value in arrOption %}
+						{{ option }} : {% include "@KMSFroalaEditor/Form/value.html.twig" %}
+					{% endfor %} 
+					
+					events: {
+						'image.error': function ( error ) {
+							froalaDisplayError(  this, error );
+						},
+						'imageManager.error': function ( error ) {
+							 froalaDisplayError(  this, error );
+						},
+						'save.error': function ( error ) {
+							 froalaDisplayError(  this, error );
+						},
+						'file.error': function ( error, responses ) {
+							froalaDisplayError(  this, error );
+						},
+						'video.error': function ( error, responses ) {
+							froalaDisplayError(  this, error );
+						}
+						{% for event, func in events %}
+						,'{{ event }}': {{ func }}
+						{% endfor %}	
+					}})
+				})();
+
+				
+			});
 	</script>
 
 {% endblock %}
