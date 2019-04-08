@@ -88,7 +88,6 @@
 		public static $OPTIONS_BOOLEAN_CUSTOM = array(
 			"includeJS"          => true, //
 			"includeCSS"         => true, //
-			"includeJQuery"      => true, //
 			"includeFontAwesome" => true, //
 			"includeCodeMirror"  => true
 		);
@@ -167,7 +166,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.9.3", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_3.0.0-alpha", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //

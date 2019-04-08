@@ -1,0 +1,29 @@
+{
+  "name": "froala/wysiwyg-editor",
+  "description": "A beautiful Javascript WYSIWYG HTML rich text editor. High performance and modern design make it easy to use for developers and loved by users.",
+  "type": "component",
+  "homepage": "https://www.froala.com/wysiwyg-editor",
+  "license": "proprietary",
+  "support": {
+    "issues": "https://www.froala.com/wysiwyg-editor/contact"
+  },
+  "keywords": [
+    "froala",
+    "froala-editor",
+    "froala-wysiwyg",
+    "html",
+    "text",
+    "editor",
+    "wysiwyg",
+    "rich editor",
+    "rich text editor",
+    "rte",
+    "javascript"
+  ],
+  "authors": [
+    {
+      "name": "Froala Labs",
+      "email": "support@froala.com"
+    }
+  ]
+}
