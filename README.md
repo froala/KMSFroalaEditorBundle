@@ -99,14 +99,8 @@ kms_froala_editor:
   # Froala license number if you want to use a purchased license.
   serialNumber: "XXXX-XXXX-XXXX"
   
-  # Disable JQuery inclusion.
-  includeJQuery: false
-  
   # Disable CodeMirror inclusion.
   includeCodeMirror: false
-  
-   # Disable Font Awesome inclusion.
-  includeFontAwesome: false
   
   # Disable all bundle javascripts inclusion (not concerning JQuery nor CodeMirror).
   # Usage: if you are using Grunt or other and you want to include yourself all scripts. 
