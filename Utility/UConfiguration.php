@@ -88,6 +88,7 @@
 		public static $OPTIONS_BOOLEAN_CUSTOM = array(
 			"includeJS"          => true, //
 			"includeCSS"         => true, //
+			"includeFontAwesome" => true,
 			"includeCodeMirror"  => true
 		);
 
