@@ -38,7 +38,7 @@
         "js/plugins/*.min.js",
         "js/third_party/*.min.js",
         "js/froala_editor.min.js",
-        "js/froala_editor.pkgd.min.js",
+        "js/froala_editor.pkgd.legacy.min.js",
         "css/froala_editor.min.css",
         "css/froala_editor.pkgd.min.css",
         "css/froala_style.min.css",
