@@ -45,7 +45,7 @@
     "css/third_party/font_awesome.min.css",
     "css/third_party/image_tui.min.css",
     "js/froala_editor.min.js",
-    "js/froala_editor.pkgd.min.js",
+    "js/froala_editor.pkgd.legacy.min.js",
     "js/plugins/align.min.js",
     "js/plugins/char_counter.min.js",
     "js/plugins/code_beautifier.min.js",
