@@ -3,7 +3,6 @@
 	namespace KMS\FroalaEditorBundle\Controller;
 
 	use KMS\FroalaEditorBundle\Service\MediaManager;
-    use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 	use Symfony\Component\HttpFoundation\Request;
 	use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\HttpKernel\KernelInterface;
@@ -13,7 +12,7 @@
 	 * Class MediaController
 	 * @package KMS\FroalaEditorBundle\Controller
 	 */
-	class MediaController extends AbstractController
+	class MediaController
 	{
         /**
          * @var MediaManager
