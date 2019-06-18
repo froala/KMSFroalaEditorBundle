@@ -1,22 +1,22 @@
 # Image upload
 kms_froala_editor_upload_image:
     path: /upload_image
-    defaults: { _controller: KMSFroalaEditorBundle:Media:uploadImage }
+    controller: KMS\FroalaEditorBundle\Controller\MediaController::uploadImageAction
 
 kms_froala_editor_delete_image:
     path: /delete_image
-    defaults: { _controller: KMSFroalaEditorBundle:Media:deleteImage }
+    controller: KMS\FroalaEditorBundle\Controller\MediaController::deleteImageAction
 
 kms_froala_editor_load_images:
     path: /load_images
-    defaults: { _controller: KMSFroalaEditorBundle:Media:loadImages }
+    controller: KMS\FroalaEditorBundle\Controller\MediaController::loadImagesAction
 
 # File upload
 kms_froala_editor_upload_file:
     path: /upload_file
-    defaults: { _controller: KMSFroalaEditorBundle:Media:uploadFile }
+    controller: KMS\FroalaEditorBundle\Controller\MediaController::uploadFileAction
 
 # Video upload
 kms_froala_editor_upload_video:
     path: /upload_video
-    defaults: { _controller: KMSFroalaEditorBundle:Media:uploadVideo }
+    controller: KMS\FroalaEditorBundle\Controller\MediaController::uploadVideoAction
