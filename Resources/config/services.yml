@@ -2,7 +2,7 @@ services:
 # Controller.
     KMS\FroalaEditorBundle\Controller\MediaController:
         arguments: [ "@kms_froala_editor.media_manager", "@kernel" ]
-        public: true
+        tags: ['controller.service_arguments']
 
 # Form type.
     kms_froala_editor.form.type:
