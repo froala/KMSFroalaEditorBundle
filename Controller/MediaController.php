@@ -62,10 +62,10 @@
 		 */
 		public function deleteImage(Request $p_request)
 		{
-			$imageSrc     = $p_request->request->get( "src" );
-			$folder       = $p_request->request->get( "folder" );
+			$imageSrc     = urldecode($p_request->request->get( "src" ));
+			$folder       = urldecode($p_request->request->get( "folder" ));
 			$rootDir      = $this->kernel->getProjectDir();
-			$publicDir    = $p_request->request->get("public_dir");
+			$publicDir    = urldecode($p_request->request->get("public_dir"));
 			// ------------------------- DECLARE ---------------------------//
 
 			$this->mediaManager->deleteImage( $imageSrc, $rootDir, $publicDir, $folder );
