@@ -182,7 +182,7 @@
 			"colorsBackground"          => array(), //
 			"colorsText"                => array(), //
 			"emoticonsSet"              => array(), //
-			"emoticonsButtons"	    => array(),
+			"emoticonsButtons"	        => array(), //
 			"fileAllowedTypes"          => array(), //
 			"fontSize"                  => array(), //
 			"htmlAllowedAttrs"          => array(), //
@@ -243,12 +243,12 @@
 			"imageManagerDeleteParams" => array(), //
 			"imageManagerLoadParams"   => array(), //
 			"imageStyles"              => array(), //
-			"imageTUIOptions"	   => array(),
+			"imageTUIOptions"	       => array(), //
 			"imageUploadParams"        => array(), //
 			"imageUploadToS3"          => array(), //
-			"inlineClasses"		   => array(),
+			"inlineClasses"		       => array(), //
 			"inlineStyles"             => array(), //
-			"lineHeights"		   => array(),
+			"lineHeights"		       => array(), //
 			"linkAttributes"           => array(), //
 			"linkStyles"               => array(), //
 			"paragraphFormat"          => array(), //
