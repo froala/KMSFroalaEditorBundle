@@ -2,7 +2,7 @@
 
 	namespace KMS\FroalaEditorBundle\Service;
 
-	use Doctrine\Common\Util\Inflector;
+	use Doctrine\Common\Inflector\Inflector;
 
 	/**
 	 * Class PluginProvider
