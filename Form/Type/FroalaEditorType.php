@@ -6,13 +6,12 @@
 	use KMS\FroalaEditorBundle\Service\OptionManager;
 	use KMS\FroalaEditorBundle\Service\PluginProvider;
 	use KMS\FroalaEditorBundle\Utility\UConfiguration;
-	use Symfony\Component\DependencyInjection\ContainerInterface;
-	use Symfony\Component\Form\AbstractType;
-	use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-	use Symfony\Component\Form\FormBuilderInterface;
+    use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+    use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+    use Symfony\Component\Form\FormBuilderInterface;
 	use Symfony\Component\Form\FormInterface;
 	use Symfony\Component\Form\FormView;
-	use Symfony\Component\HttpKernel\Kernel;
 	use Symfony\Component\OptionsResolver\OptionsResolver;
 
 	/**
@@ -27,10 +26,10 @@
 		// --------------------------- MEMBERS -------------------------//
 		// -------------------------------------------------------------//
 
-		/**
-		 * @var \Symfony\Component\DependencyInjection\ContainerInterface
-		 */
-		private $m_container;
+        /**
+         * @var \Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface
+         */
+		private $parameterBag;
 
 		/**
 		 * @var \KMS\FroalaEditorBundle\Service\OptionManager
@@ -42,30 +41,17 @@
 		 */
 		private $m_pluginProvider;
 
-		/**
-		 * @var int
-		 */
-		private $m_version;
-
 		// -------------------------------------------------------------//
 		// -------------------------- CONSTRUCTOR ----------------------//
 		// -------------------------------------------------------------//
 
-		/**
-		 * FroalaEditorType constructor.
-		 * @param \Symfony\Component\HttpKernel\Kernel                      $p_kernel
-		 * @param \Symfony\Component\DependencyInjection\ContainerInterface $p_container
-		 * @param \KMS\FroalaEditorBundle\Service\OptionManager             $p_optionManager
-		 * @param \KMS\FroalaEditorBundle\Service\PluginProvider            $p_pluginProvider
-		 */
-		public function __construct( Kernel $p_kernel, ContainerInterface $p_container, OptionManager $p_optionManager, PluginProvider $p_pluginProvider )
+		public function __construct( ParameterBagInterface $parameterBag, OptionManager $p_optionManager, PluginProvider $p_pluginProvider )
 		{
 			// ------------------------- DECLARE ---------------------------//
 
-			$this->m_container      = $p_container;
+			$this->parameterBag     = $parameterBag;
 			$this->m_optionManager  = $p_optionManager;
 			$this->m_pluginProvider = $p_pluginProvider;
-			$this->m_version        = $p_kernel::MAJOR_VERSION;
 		}
 
 		// -------------------------------------------------------------//
@@ -106,10 +92,10 @@
 			$profile           = isset( $p_options [ "profile" ] ) ? $p_options [ "profile" ] : null;
 			// ------------------------- DECLARE ---------------------------//
 
-			if( $profile && $this->m_container->hasParameter( Configuration::$NODE_ROOT . '.profiles' ) )
+			if( $profile && $this->parameterBag->has( Configuration::$NODE_ROOT . '.profiles' ) )
 			{
 
-				$profiles = $this->m_container->getParameter( Configuration::$NODE_ROOT . '.profiles' );
+				$profiles = $this->parameterBag->get( Configuration::$NODE_ROOT . '.profiles' );
 
 				if( array_key_exists( $profile, $profiles ) )
 				{
@@ -172,10 +158,10 @@
 			{
 
 				// If defined in config file, set default value to form, else set option as available.
-				if( $this->m_container->hasParameter( Configuration::$NODE_ROOT . '.' . $option ) )
+				if( $this->parameterBag->has( Configuration::$NODE_ROOT . '.' . $option ) )
 				{
 					$arrDefault[ $option ] =
-						$this->m_container->getParameter( Configuration::$NODE_ROOT . '.' . $option );
+						$this->parameterBag->get( Configuration::$NODE_ROOT . '.' . $option );
 				}
 				else
 				{
@@ -195,24 +181,7 @@
 		 */
 		public function getParent()
 		{
-			// ------------------------- DECLARE ---------------------------//
-
-			if( $this->m_version >= 3 )
-			{
-				return "Symfony\Component\Form\Extension\Core\Type\TextareaType";
-			}
-
-			return "textarea";
-		}
-
-		/**
-		 * @return string
-		 */
-		public function getName()
-		{
-			//------------------------- DECLARE ---------------------------//
-
-			return "froala";
+            return TextareaType::class;
 		}
 
 		/**
