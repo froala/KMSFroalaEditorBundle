@@ -250,8 +250,8 @@ kms_froala_editor:
   fileUploadPath: "/my/upload/path"
   
   # Your public directory, from the root directory.
-  # Default: "/web"
-  publicDir: "/public"
+  # Default: "/public"
+  publicDir: "/home"
 ```
 
 #### Concept: Autosave
