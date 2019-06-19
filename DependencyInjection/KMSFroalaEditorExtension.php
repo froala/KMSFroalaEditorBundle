@@ -34,22 +34,7 @@
 
 			$loader->load( "services.yml" );
 
-			$this->loadResources( $p_container );
 			$this->loadConfig( $p_container, $arrConfig );
-		}
-
-		/**
-		 * Load resources.
-		 * @param \Symfony\Component\DependencyInjection\ContainerBuilder $p_container
-		 */
-		private function loadResources( ContainerBuilder $p_container )
-		{
-			// ------------------------- DECLARE ---------------------------//
-
-			$p_container->setParameter( "twig.form.resources", array_merge( array(
-																				"@KMSFroalaEditor/Form/froala_widget.html.twig"
-																			),
-																			$p_container->getParameter( "twig.form.resources" ) ) );
 		}
 
 		/**
