@@ -1,4 +1,9 @@
 services:
+# Command.
+    KMS\FroalaEditorBundle\Command\InstallCommand:
+        tags:
+            - { name: "console.command", command: "froala:install" }
+
 # Controller.
     KMS\FroalaEditorBundle\Controller\MediaController:
         arguments: [ "@kms_froala_editor.media_manager", "@kernel" ]
