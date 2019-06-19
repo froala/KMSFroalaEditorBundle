@@ -336,7 +336,7 @@
 		{
 			// ------------------------- DECLARE ---------------------------//
 
-			return sprintf('%s/..%s/%s', $p_rootDir, $p_publicDir, $p_folder);
+			return sprintf('%s%s/%s', $p_rootDir, $p_publicDir, $p_folder);
 		}
 
 		/**
