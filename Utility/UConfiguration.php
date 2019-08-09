@@ -88,8 +88,7 @@
 		public static $OPTIONS_BOOLEAN_CUSTOM = array(
 			"includeJS"          => true, //
 			"includeCSS"         => true, //
-			"includeJQuery"      => true, //
-			"includeFontAwesome" => true, //
+			"includeFontAwesome" => true,
 			"includeCodeMirror"  => true
 		);
 
@@ -167,7 +166,7 @@
 
 		public static $OPTIONS_STRING_CUSTOM = array(
 			"customJS"          => null, //
-			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor_2.9.4", //
+			"basePath"          => "/bundles/kmsfroalaeditor/froala_editor", //
 			"imageUploadFolder" => "/upload", //
 			"imageUploadPath"   => null, //
 			"fileUploadFolder"  => "/upload", //
@@ -175,7 +174,7 @@
 			"serialNumber"      => null, //
 			"videoUploadFolder" => "/upload", //
 			"videoUploadPath"   => null,
-			"publicDir"         => "/web",
+			"publicDir"         => "/public",
 		);
 
 		public static $OPTIONS_ARRAY = array(
@@ -183,6 +182,7 @@
 			"colorsBackground"          => array(), //
 			"colorsText"                => array(), //
 			"emoticonsSet"              => array(), //
+			"emoticonsButtons"	        => array(), //
 			"fileAllowedTypes"          => array(), //
 			"fontSize"                  => array(), //
 			"htmlAllowedAttrs"          => array(), //
@@ -243,9 +243,12 @@
 			"imageManagerDeleteParams" => array(), //
 			"imageManagerLoadParams"   => array(), //
 			"imageStyles"              => array(), //
+			"imageTUIOptions"	       => array(), //
 			"imageUploadParams"        => array(), //
 			"imageUploadToS3"          => array(), //
+			"inlineClasses"		       => array(), //
 			"inlineStyles"             => array(), //
+			"lineHeights"		       => array(), //
 			"linkAttributes"           => array(), //
 			"linkStyles"               => array(), //
 			"paragraphFormat"          => array(), //
