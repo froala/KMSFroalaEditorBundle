@@ -4,12 +4,14 @@
 
 	use KMS\FroalaEditorBundle\DependencyInjection\Configuration;
 	use Symfony\Component\DependencyInjection\ContainerInterface;
+    use Twig\Extension\AbstractExtension;
+    use Twig\TwigFunction;
 
-	/**
+    /**
 	 * Class FroalaExtension
 	 * @package KMS\FroalaEditorBundle\Twig\Extension
 	 */
-	class FroalaExtension extends \Twig_Extension
+	class FroalaExtension extends AbstractExtension
 	{
 
 		//-------------------------------------------------------------//
@@ -71,19 +73,8 @@
 		 */
 		public function getFunctions()
 		{
-			//------------------------- DECLARE ---------------------------//
-
-			return array( "froala_display" => new \Twig_SimpleFunction( "froala_display", array( $this,
-																								 'froalaDisplay'
-			), array( 'is_safe' => array( 'html' ) ) )
-			);
-		}
-
-		/**
-		 * @return string
-		 */
-		public function getName()
-		{
-			return 'froala_extension';
+			return [
+			    new TwigFunction('froala_display', [$this, 'froalaDisplay'], ['is_safe' => ['html']]),
+            ];
 		}
 	}
