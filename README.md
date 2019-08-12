@@ -7,7 +7,7 @@
 
 ## Introduction
 
-This bundles aims to easily integrate & use the Froala editor in Symfony 4.3+.
+This bundle aims to easily integrate & use the Froala editor in Symfony 4.3+.
 
 If you want to use it with Symfony < 4.3, see [v2 docs](https://github.com/froala/KMSFroalaEditorBundle/tree/v2).
 v2.x is compatible with Symfony 2.x to 4.x, but some deprecations are not fixed and static files are integrated to the
