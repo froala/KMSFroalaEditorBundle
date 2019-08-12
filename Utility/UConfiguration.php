@@ -13,6 +13,7 @@
 	{
 
 		public static $OPTIONS_BOOLEAN = array(
+			"attribution"                    => null, //
 			"autofocus"                      => null, //
 			"charCounterCount"               => null, //
 			"codeBeautifier"                 => null, //
