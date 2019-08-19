@@ -1,17 +1,20 @@
 # KMSFroalaEditorBundle
 
-[![Packagist](https://img.shields.io/packagist/v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
-[![Packagist](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
-[![Packagist](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![Package version](https://img.shields.io/packagist/v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![Downloads](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![PHP Version](https://img.shields.io/packagist/php-v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![License](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 
 ## Symfony 3 & 4 update
 
-This bundle is now compatible with Symfony 2, 3 and 4 on the same branch (dev-master).
+This bundle is now compatible with Symfony 2, 3 and 4 on the same branch (v2).  
+If you're looking for an up-to-date version of the bundle, check the [master branch](https://github.com/froala/KMSFroalaEditorBundle).  
+The current v2 may not be fixed (including Symfony deprecations).
 
 ## Migration to Froala Editor v2
 
 Froala released a new version of its editor, this update is the opportunity to redo the major part of this bundle.
-To migrate from v1 to v2, you have to update your configuration file. Then, read [display editor content chapter](https://github.com/froala/KMSFroalaEditorBundle#step-7--display-editor-content). Just follow instructions bellow, it's easier and faster than before.
+To migrate from v1 to v2, you have to update your configuration file. Then, read [display editor content chapter](#step-7--display-editor-content). Just follow instructions below, it's easier and faster than before.
 
 ## Installation
 
@@ -71,12 +74,12 @@ kms_froala_editor:
 All Froala options ([list provided here](https://editor.froala.com/options)) are supported.
 Just add the option name with your value.
 If you want to keep the Froala default value, don't provide anything in your config file.
-For options wich require an array, provide an value array.
-For options wich require an object, provide an key/value array.
+For options which require an array, provide an value array.
+For options which require an object, provide an key/value array.
 
-Note that some options needs some plugins (all information provided in the [Froala documentation](https://editor.froala.com/options)).
+Note that some options need some plugins (all information provided in the [Froala documentation](https://editor.froala.com/options)).
 
-Example for each option types bellow:
+Example for each option types below:
 
 ``` yaml
 // config/packages/config.yaml
@@ -89,7 +92,7 @@ kms_froala_editor:
    
 ```
 
-To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+To provide a better integration with Symfony, some custom options are added, see the full list below: 
 
 ``` yaml
 // config/packages/config.yaml
@@ -215,7 +218,7 @@ This bundle provides an integration of the [Froala image upload concept](https:/
 
 If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader).
 
-To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+To provide a better integration with Symfony, some custom options are added, see the full list below: 
 
 ``` yaml
 // app/config.yml
@@ -237,7 +240,7 @@ This bundle provides an integration of the [Froala file upload concept](https://
 
 If you want to use your own uploader, you can override the configuration (if you need to do that, please explain me why to improve the provided uploader).
 
-To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+To provide a better integration with Symfony, some custom options are added, see the full list below: 
 
 ``` yaml
 // app/config.yml
@@ -270,7 +273,7 @@ kms_froala_editor:
   saveParam: "content"
 ```
 
-To provide a better integration with Symfony, some custom options are added, see the full list bellow: 
+To provide a better integration with Symfony, some custom options are added, see the full list below: 
 
 ``` yaml
 // app/config.yml
