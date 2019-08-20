@@ -3,7 +3,7 @@
 [![Package version](https://img.shields.io/packagist/v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![Downloads](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![PHP Version](https://img.shields.io/packagist/php-v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
-[![License](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![Licence](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 
 ## Introduction
 
@@ -12,6 +12,31 @@ This bundle aims to easily integrate & use the Froala editor in Symfony 4.3+.
 If you want to use it with Symfony < 4.3, see [v2 docs](https://github.com/froala/KMSFroalaEditorBundle/tree/v2).
 v2.x is compatible with Symfony 2.x to 4.x, but some deprecations are not fixed and static files are integrated to the
 bundle.
+
+## Table of Contents
+
+1. [Migration to Froala Editor bundle v3 from v2](#migration-to-froala-editor-bundle-v3-from-v2)
+1. [Installation](#installation)
+    1. [Step 1: Install the bundle using composer](#step-1-install-the-bundle-using-composer)
+    1. [Step 2: Add the bundle to your bundles.php](#step-2-add-the-bundle-to-your-bundlesphp)
+    1. [Step 3: Import routes](#step-3-import-routes)
+    1. [Step 4: Load Twig form widget](#step-4-load-twig-form-widget)
+    1. [Step 5: Configure the bundle](#step-5-configure-the-bundle)
+        1. [Required](#required)
+        1. [Other options](#other-options)
+    1. [Step 6: Add Froala to your form](#step-6-add-froala-to-your-form)
+    1. [Step 7: Install asset files](#step-7-install-asset-files)
+    1. [Step 8: Display editor content](#step-8-display-editor-content)
+        1. [Manually](#manually)
+        1. [Using the Twig extension](#using-the-twig-extension)
+1. [More configuration](#more-configuration)
+    1. [Plugins](#plugins)
+    1. [Concept: Image upload/manager](#concept-image-uploadmanager)
+    1. [Concept: File upload](#concept-file-upload)
+    1. [Concept: Autosave](#concept-autosave)
+    1. [Webpack Encore configuration](#webpack-encore-configuration)
+1. [TODO](#todo)
+1. [Licence](#licence)
 
 ## Migration to Froala Editor bundle v3 from v2
 
@@ -97,7 +122,7 @@ To provide a better integration with Symfony, some custom options are added, see
 ```yaml
 // config/packages/config.yaml
 kms_froala_editor:
-    # Froala license number if you want to use a purchased license.
+    # Froala licence number if you want to use a purchased licence.
     serialNumber: "XXXX-XXXX-XXXX"
 
     # Disable CodeMirror inclusion.
@@ -297,12 +322,46 @@ kms_froala_editor:
 
 You can add some parameters in your save route (see custom options).
 
+### Webpack Encore configuration
+
+If you want to load Froala asset files using npm/yarn and Webpack Encore, here's how to do it:
+
+```javascript
+import FroalaEditor from 'froala-editor';
+import 'froala-editor/css/froala_editor.pkgd.min.css';
+import 'froala-editor/css/froala_style.min.css';
+
+// Load your languages
+import 'froala-editor/js/languages/fr.js';
+
+// Load all plugins, or specific ones
+import 'froala-editor/js/plugins.pkgd.min.js';
+import 'froala-editor/css/plugins.pkgd.min.css';
+
+window.FroalaEditor = FroalaEditor;
+
+function froalaDisplayError(p_editor, error ) {
+    alert(`Error ${error.code}: ${error.message}`);
+}
+```
+
+Now you can disable Froala bundle CSS/JS inclusion:
+
+```yaml
+# config/packages/kms_froala_editor.yaml
+kms_froala_editor:
+    includeJS: false
+    includeCSS: false
+```
+
+Don't forget to import the generated Encore CSS/JS files in your HTML if needed.
+
 ## TODO
 
 - Add some tests
 
-## License
+## Licence
 
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://www.froala.com/wysiwyg-editor) commercial version.
-Please read the [Froala license agreement](https://www.froala.com/wysiwyg-editor/terms) and go to the [pricing page](https://www.froala.com/wysiwyg-editor/pricing)
+Please read the [Froala licence agreement](https://www.froala.com/wysiwyg-editor/terms) and go to the [pricing page](https://www.froala.com/wysiwyg-editor/pricing)
 if you don't have a licence.
