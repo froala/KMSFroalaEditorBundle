@@ -2,7 +2,7 @@
 
 [![Package version](https://img.shields.io/packagist/v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![Downloads](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
-[![PHP Version](https://img.shields.io/packagist/php-v/leapt/core-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![PHP Version](https://img.shields.io/packagist/php-v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![Licence](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 
 ## Introduction
