@@ -71,7 +71,7 @@ return [
 ### Step 3: Import routes
 
 ```yaml
-// config/routes.yaml
+# config/routes/kms_froala_editor.yaml
 kms_froala_editor:
     resource: '@KMSFroalaEditorBundle/Resources/config/routing.yml'
     prefix:   /froalaeditor
@@ -80,6 +80,7 @@ kms_froala_editor:
 ### Step 4: Load Twig form widget
 
 ```yaml
+# In config/packages/twig.yaml or config/packages/kms_froala_editor.yaml
 twig:
     form_themes:
         - '@KMSFroalaEditor/Form/froala_widget.html.twig'
@@ -92,7 +93,7 @@ twig:
 First, you have to select your language, other settings are optional (see below).
 
 ```yaml
-// config/packages/config.yaml
+# config/packages/kms_froala_editor.yaml
 kms_froala_editor:
     language: 'nl'
 ```
@@ -110,7 +111,7 @@ Note that some options need some plugins (all information provided in the [Froal
 Example for each option type below:
 
 ```yaml
-// config/packages/config.yaml
+# config/packages/kms_froala_editor.yaml
 kms_froala_editor:
     toolbarInline: true
     tableColors: [ "#FFFFFF", "#FF0000" ]
@@ -120,7 +121,7 @@ kms_froala_editor:
 To provide a better integration with Symfony, some custom options are added, see the full list below: 
 
 ```yaml
-// config/packages/config.yaml
+# config/packages/kms_froala_editor.yaml
 kms_froala_editor:
     # Froala licence number if you want to use a purchased licence.
     serialNumber: "XXXX-XXXX-XXXX"
