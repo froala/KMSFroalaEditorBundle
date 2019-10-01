@@ -104,8 +104,11 @@
 				}
 				else
 				{
-					throw new \Exception( 'Could not find profile "' . $profile . '", defined profiles: [' .
-										  join( ',', $profiles ) . ']' );
+                    throw new \InvalidArgumentException(sprintf(
+                        'Unrecognized profile "%s". Available profiles are "%s".',
+                        $profile,
+                        implode('"", "', array_keys($profiles))
+                    ));
 				}
 
 			}
