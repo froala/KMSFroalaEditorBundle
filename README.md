@@ -29,6 +29,7 @@ bundle.
     1. [Step 8: Display editor content](#step-8-display-editor-content)
         1. [Manually](#manually)
         1. [Using the Twig extension](#using-the-twig-extension)
+    1. [Step 9: Profiles (custom configurations)](#step-9-profiles-custom-configurations)
 1. [More configuration](#more-configuration)
     1. [Plugins](#plugins)
     1. [Concept: Image upload/manager](#concept-image-uploadmanager)
@@ -228,6 +229,35 @@ Then, simply call the display function (note that the front CSS file is not incl
 ```twig
 {{ froala_display(myContentHtml) }}
 ```
+
+### Step 9: Profiles (custom configurations)
+
+You can define several configuration profiles that will be reused in your forms, without repeating these configurations.
+
+When using a profile, the root configuration options will be used & overridden:
+
+```yaml
+# config/packages/kms_froala_editor.yaml
+kms_froala_editor:
+    heightMax: 400
+    attribution: false
+    profiles:
+        profile_1:
+            heightMax: 500
+```
+
+```php
+use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
+
+$builder->add('yourField', FroalaEditorType::class, [
+    'profile' => 'profile_1',
+]);
+```
+
+In this example, `profile_1` profile will have these configuration options set:
+
+* `heightMax`: 500
+* `attribution`: false
 
 ## More configuration
 
