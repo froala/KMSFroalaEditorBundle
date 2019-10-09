@@ -13,6 +13,8 @@ If you want to use it with Symfony < 4.3, see [v2 docs](https://github.com/froal
 v2.x is compatible with Symfony 2.x to 4.x, but some deprecations are not fixed and static files are integrated to the
 bundle.
 
+The changelog is available here: [CHANGELOG-3.x.md](CHANGELOG-3.x.md).
+
 ## Table of Contents
 
 1. [Migration to Froala Editor bundle v3 from v2](#migration-to-froala-editor-bundle-v3-from-v2)
