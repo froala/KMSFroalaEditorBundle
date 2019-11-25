@@ -1,6 +1,11 @@
 CHANGELOG FOR 3.X
 =================
 
+3.0.3
+-----
+
+* Added support for Symfony 5.0+ and Twig 3
+
 3.0.2
 -----
 
