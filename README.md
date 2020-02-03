@@ -74,7 +74,7 @@ return [
 ### Step 3: Import routes
 
 ```yaml
-# config/routes/kms_froala_editor.yaml
+# config\routes.yaml 
 kms_froala_editor:
     resource: '@KMSFroalaEditorBundle/Resources/config/routing.yml'
     prefix:   /froalaeditor
@@ -83,7 +83,7 @@ kms_froala_editor:
 ### Step 4: Load Twig form widget
 
 ```yaml
-# In config/packages/twig.yaml or config/packages/kms_froala_editor.yaml
+# In config/packages/twig.yaml
 twig:
     form_themes:
         - '@KMSFroalaEditor/Form/froala_widget.html.twig'
@@ -94,13 +94,79 @@ twig:
 #### Required
 
 First, you have to select your language, other settings are optional (see below).
+If you don't have this file you can create one.
 
 ```yaml
-# config/packages/kms_froala_editor.yaml
+# config\packages\config.yaml 
 kms_froala_editor:
     language: 'nl'
 ```
 
+
+### Step 6: Add Froala to your form
+
+Just add a Froala type in your form:
+
+```php
+use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
+
+$builder-add( "Froalaeditor", FroalaEditorType::class,[
+                'mapped' => false,  
+                ]);
+```
+
+All configuration items can be overridden:
+
+```php
+$builder->add('Froalaeditor', FroalaEditorType::class, [
+    "language" => "fr",
+    "toolbarInline" => true,
+    "tableColors" => [ "#FFFFFF", "#FF0000" ],
+    "saveParams" => [ "id" => "myEditorField" ]
+]);
+```
+
+### Step 7: Install asset files
+
+To install the asset files, there is `froala:install` command that downloads the last version available of Froala Editor
+and puts it by default in the `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/` directory:
+
+```bash
+bin/console froala:install
+```
+
+There are a few arguments/options available:
+
+* First (and only) argument (optional): the absolute path where the files will be put after download.
+Defaults to `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/`.
+* Option `tag`: the version of Froala that will be installed (eg. `v3.0.1`). Defaults to `master`.
+* Option `clear` (no value expected, disabled by default): Allow the command to clear a previous install if the path already exists.
+
+After you launched the install command, you have to link assets, eg.:
+
+```bash
+bin/console assets:install --symlink public
+```
+>Note: Make sure the Froala editor asset files are accessible by your application
+
+### Step 8: Display editor content
+
+#### Manually
+
+To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
+
+```twig
+<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
+<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
+```
+
+Also, you should make sure that you put the edited content inside an element that has the class fr-view:
+
+```twig
+<div class="fr-view">
+    {{ myContentHtml|raw }}
+</div>
+```
 #### Other options
 
 All Froala options ([list provided here](https://www.froala.com/wysiwyg-editor/docs/options)) are supported.
@@ -153,67 +219,6 @@ kms_froala_editor:
     customJS: "/custom/js/path"
 ```
 
-### Step 6: Add Froala to your form
-
-Just add a Froala type in your form:
-
-```php
-use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
-
-$builder->add('yourField', FroalaEditorType::class);
-```
-
-All configuration items can be overridden:
-
-```php
-$builder->add('yourField', FroalaEditorType::class, [
-    "language" => "fr",
-    "toolbarInline" => true,
-    "tableColors" => [ "#FFFFFF", "#FF0000" ],
-    "saveParams" => [ "id" => "myEditorField" ]
-]);
-```
-
-### Step 7: Install asset files
-
-To install the asset files, there is `froala:install` command that downloads the last version available of Froala Editor
-and puts it by default in the `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/` directory:
-
-```bash
-bin/console froala:install
-```
-
-There are a few arguments/options available:
-
-* First (and only) argument (optional): the absolute path where the files will be put after download.
-Defaults to `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/`.
-* Option `tag`: the version of Froala that will be installed (eg. `v3.0.1`). Defaults to `master`.
-* Option `clear` (no value expected, disabled by default): Allow the command to clear a previous install if the path already exists.
-
-After you launched the install command, you have to link assets, eg.:
-
-```bash
-bin/console assets:install --symlink public
-```
-
-### Step 8: Display editor content
-
-#### Manually
-
-To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
-
-```twig
-<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
-<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
-```
-
-Also, you should make sure that you put the edited content inside an element that has the class fr-view:
-
-```twig
-<div class="fr-view">
-    {{ myContentHtml|raw }}
-</div>
-```
 
 #### Using the Twig extension
 
