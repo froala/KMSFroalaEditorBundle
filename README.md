@@ -74,7 +74,7 @@ return [
 ### Step 3: Import routes
 
 ```yaml
-# config\routes.yaml 
+# config/routes.yaml 
 kms_froala_editor:
     resource: '@KMSFroalaEditorBundle/Resources/config/routing.yml'
     prefix:   /froalaeditor
@@ -97,7 +97,7 @@ First, you have to select your language, other settings are optional (see below)
 If you don't have this file you can create one.
 
 ```yaml
-# config\packages\config.yaml 
+# config/packages/kms_froala_editor.yaml 
 kms_froala_editor:
     language: 'nl'
 ```
@@ -110,7 +110,7 @@ Just add a Froala type in your form:
 ```php
 use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
 
-$builder-add( "Froalaeditor", FroalaEditorType::class,[
+$builder-add( 'yourField', FroalaEditorType::class,[
                 'mapped' => false,  
                 ]);
 ```
@@ -118,7 +118,7 @@ $builder-add( "Froalaeditor", FroalaEditorType::class,[
 All configuration items can be overridden:
 
 ```php
-$builder->add('Froalaeditor', FroalaEditorType::class, [
+$builder->add('yourField', FroalaEditorType::class, [
     "language" => "fr",
     "toolbarInline" => true,
     "tableColors" => [ "#FFFFFF", "#FF0000" ],
@@ -147,7 +147,6 @@ After you launched the install command, you have to link assets, eg.:
 ```bash
 bin/console assets:install --symlink public
 ```
->Note: Make sure the Froala editor asset files are accessible by your application
 
 ### Step 8: Display editor content
 
