@@ -43,7 +43,7 @@ The changelog is available here: [CHANGELOG-3.x.md](CHANGELOG-3.x.md).
 
 ## Migration to Froala Editor bundle v3 from v2
 
-The Froala Editor bundle got a major upgrade from v2 to v3. It now supports only Symfony 4.3+ and requires PHP 7.1.3+.
+The Froala Editor bundle got a major upgrade from v2 to v3. It now supports only Symfony 4.3+ and requires PHP 7.2+.
 
 As the static files are no longer included (so you don't have to upgrade this bundle for each Froala release) you can
 import assets the way you need (using the install command described below or eg. from your public directory).
