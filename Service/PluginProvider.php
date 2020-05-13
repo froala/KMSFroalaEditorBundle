@@ -2,7 +2,10 @@
 
 	namespace KMS\FroalaEditorBundle\Service;
 
-	use Doctrine\Common\Inflector\Inflector;
+	use Doctrine\Inflector\CachedWordInflector;
+    use Doctrine\Inflector\Inflector;
+    use Doctrine\Inflector\RulesetInflector;
+    use Doctrine\Inflector\Rules\English;
 
 	/**
 	 * Class PluginProvider
@@ -70,6 +73,11 @@
 		private static $ARR_THIRD_PARTY_CONFIG =
 			array();
 
+        /**
+         * @var Inflector
+         */
+		protected $inflector;
+
 		/**
 		 * @const string
 		 */
@@ -97,8 +105,15 @@
 		 */
 		public function __construct()
 		{
-			//------------------------- DECLARE ---------------------------//
-		}
+            $this->inflector = new Inflector(
+                new CachedWordInflector(new RulesetInflector(
+                    English\Rules::getSingularRuleset()
+                )),
+                new CachedWordInflector(new RulesetInflector(
+                    English\Rules::getPluralRuleset()
+                ))
+            );
+        }
 
 		//-------------------------------------------------------------//
 		//--------------------------- METHODS -------------------------//
@@ -180,7 +195,7 @@
 
 			foreach( $p_arrPlugin as $plugin )
 			{
-				$arrPlugin[] = Inflector::camelize( $plugin );
+				$arrPlugin[] = $this->inflector->camelize( $plugin );
 			}
 
 			return $arrPlugin;

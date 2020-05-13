@@ -1,6 +1,13 @@
 CHANGELOG FOR 3.X
 =================
 
+3.1.0
+-----
+
+* Minimum PHP version set to 7.2
+* Upgraded `doctrine/inflector` requirement from `^1.3` to `^1.4|2.0` to fix deprecations
+* Added first test
+
 3.0.3
 -----
 
