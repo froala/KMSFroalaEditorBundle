@@ -98,6 +98,7 @@
 			"colorsStep"               => null, //
 			"emoticonsStep"            => null, //
 			"fileMaxSize"              => null, //
+			"filesManagerMaxSize"      => null, //
 			"height"                   => null, //
 			"heightMax"                => null, //
 			"heightMin"                => null, //
@@ -132,6 +133,7 @@
 			"fileUploadMethod"         => null, //
 			"fileUploadParam"          => null, //
 			"fileUploadURL"            => "kms_froala_editor_upload_file", //
+			"filesManagerUploadURL"	   => null, //
 			"fontSizeUnit"             => null, //
 			"iconsTemplate"            => null, //
 			"iframeDefaultStyle"       => null, //
@@ -185,6 +187,7 @@
 			"emoticonsSet"              => array(), //
 			"emoticonsButtons"	        => array(), //
 			"fileAllowedTypes"          => array(), //
+			"filesManagerAllowedTypes"  => array(), //
 			"fontSize"                  => array(), //
 			"htmlAllowedAttrs"          => array(), //
 			"htmlAllowedEmptyTags"      => array(), //
@@ -238,8 +241,11 @@
 			"codeMirrorOptions"        => array(), //
 			"codeBeautifierOptions"    => array(), //
 			"fileUploadParams"         => array(), //
+			"filesManagerUploadParams" => array(), //
 			"fileUploadToS3"           => array(), //
+			"filesManagerUploadToS3"   => array(), //
 			"fontFamily"               => array(), //
+			"googleOptions"            => array(), //
 			"helpSets"                 => array(), //
 			"imageManagerDeleteParams" => array(), //
 			"imageManagerLoadParams"   => array(), //
