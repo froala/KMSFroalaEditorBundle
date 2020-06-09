@@ -34,6 +34,7 @@
 				"emoticons"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
 				"entities"           => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
 				"file"               => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+				"files_manager"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
 				"font_family"        => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
 				"font_size"          => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
 				//				"forms"        	   => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
