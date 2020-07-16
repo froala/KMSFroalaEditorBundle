@@ -55,7 +55,7 @@
 	<script type="text/javascript">
 
 		{# Go. #}
-		document.addEventListener("DOMContentLoaded", function() {
+		const {{ id }}_function = function() {
 			(function(){
 				const editInstance = new FroalaEditor( "#{{ id }}",{
 					{# Add license. #}
@@ -89,7 +89,12 @@
 			})();
 
 
-		});
+		}
+
+		document.addEventListener("DOMContentLoaded", {{ id }}_function);
+		if (document.readyState === "interactive" || document.readyState === "complete" ) {
+			{{ id }}_function();
+		}
 	</script>
 
 {% endblock %}
