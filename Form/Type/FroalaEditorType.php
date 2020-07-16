@@ -72,7 +72,10 @@
 
 			foreach( $p_options as $key => $option )
 			{
-				$p_builder->setAttribute( $key, $option );
+			    if(0 !== strpos($key, 'froala_')) {
+                    continue;
+                }
+                $p_builder->setAttribute( $key, $option );
 			}
 		}
 
@@ -83,13 +86,21 @@
 		 */
 		public function buildView( FormView $p_view, FormInterface $p_form, array $p_options )
 		{
+            $p_options = array_filter(
+                $p_options,
+                function ($key) {
+                    return strpos($key, 'froala_') === 0;
+                },
+                ARRAY_FILTER_USE_KEY
+            );
+
 			$arrKey            = UConfiguration::getArrOption();
 			$arrKeyCustom      = UConfiguration::getArrOptionCustom();
 			$arrOption         = array();
-			$arrPluginEnabled  = isset( $p_options [ "pluginsEnabled" ] ) ? $p_options [ "pluginsEnabled" ] : array();
-			$arrPluginDisabled = isset( $p_options [ "pluginsDisabled" ] ) ? $p_options [ "pluginsDisabled" ] : array();
-			$arrEvent          = isset( $p_options [ "events" ] ) ? $p_options [ "events" ] : array();
-			$profile           = isset( $p_options [ "profile" ] ) ? $p_options [ "profile" ] : null;
+			$arrPluginEnabled  = isset( $p_options [ "froala_pluginsEnabled" ] ) ? $p_options [ "froala_pluginsEnabled" ] : array();
+			$arrPluginDisabled = isset( $p_options [ "froala_pluginsDisabled" ] ) ? $p_options [ "froala_pluginsDisabled" ] : array();
+			$arrEvent          = isset( $p_options [ "froala_events" ] ) ? $p_options [ "froala_events" ] : array();
+			$profile           = isset( $p_options [ "froala_profile" ] ) ? $p_options [ "froala_profile" ] : null;
 			// ------------------------- DECLARE ---------------------------//
 
 			if( $profile && $this->parameterBag->has( Configuration::$NODE_ROOT . '.profiles' ) )
@@ -100,7 +111,9 @@
 				if( array_key_exists( $profile, $profiles ) )
 				{
 					$profileConfig = $profiles[ $profile ];
-					$p_options     = array_merge( $p_options, $profileConfig );
+					foreach($profileConfig as $profileKey => $profileOption) {
+					    $p_options['froala_' . $profileKey] = $profileOption;
+                    }
 				}
 				else
 				{
@@ -113,11 +126,16 @@
 
 			}
 
+			$finalOptions = [];
+			foreach($p_options as $key => $value) {
+			    $finalOptions[substr($key, strlen('froala_'))] = $value;
+            }
+
 			// Prepare options.
-			$this->m_optionManager->prepareOptions( $p_options );
+			$this->m_optionManager->prepareOptions( $finalOptions );
 
 			// Separate Froala options from custom, to iterate properly in twig widget.
-			foreach( $p_options as $key => $option )
+			foreach( $finalOptions as $key => $option )
 			{
 				if( in_array( $key, $arrKey ) )
 				{
@@ -127,25 +145,25 @@
 				{
 					if( in_array( $key, $arrKeyCustom ) )
 					{
-						$p_view->vars [ $key ] = $option;
+						$p_view->vars [ 'froala_' . $key ] = $option;
 					}
 				}
 			}
 
 			// Options.
-			$p_view->vars [ "arrOption" ] = $arrOption;
+			$p_view->vars [ "froala_arrOption" ] = $arrOption;
 
 			// Plugins.
 			$arrPlugin = $this->m_pluginProvider->obtainArrPluginToInclude( $arrPluginEnabled, //
 																			$arrPluginDisabled );
 
-			$p_view->vars [ "arrOption" ][ "pluginsEnabled" ] =
+			$p_view->vars [ "froala_arrOption" ][ "pluginsEnabled" ] =
 				$this->m_pluginProvider->obtainArrPluginCamelized( $arrPlugin );
-			$p_view->vars [ "arrPluginJS" ]                   =
+			$p_view->vars [ "froala_arrPluginJS" ]                   =
 				$this->m_pluginProvider->obtainArrPluginJS( $arrPlugin );
-			$p_view->vars [ "arrPluginCSS" ]                  =
+			$p_view->vars [ "froala_arrPluginCSS" ]                  =
 				$this->m_pluginProvider->obtainArrPluginCSS( $arrPlugin );
-			$p_view->vars [ "events" ]                        = $arrEvent;
+			$p_view->vars [ "froala_events" ]                        = $arrEvent;
 		}
 
 		/**
@@ -159,21 +177,21 @@
 
 			foreach( UConfiguration::getArrOptionAll() as $option )
 			{
-
+                $optionName = 'froala_' . $option;
 				// If defined in config file, set default value to form, else set option as available.
 				if( $this->parameterBag->has( Configuration::$NODE_ROOT . '.' . $option ) )
 				{
-					$arrDefault[ $option ] =
+					$arrDefault[ $optionName ] =
 						$this->parameterBag->get( Configuration::$NODE_ROOT . '.' . $option );
 				}
 				else
 				{
-					$arrDefined[] = $option;
+					$arrDefined[] = $optionName;
 				}
 			}
 
 
-			$arrDefined[] = 'profile';
+			$arrDefined[] = 'froala_profile';
 			$p_resolver->setDefined( $arrDefined );
 			$p_resolver->setDefaults( $arrDefault );
 
