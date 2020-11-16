@@ -1,6 +1,12 @@
 CHANGELOG FOR 3.X
 =================
 
+3.1.1
+-----
+
+* Added configuration options for file manager plugin
+* Added support for PHP 8
+
 3.1.0
 -----
 

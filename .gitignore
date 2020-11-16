@@ -44,5 +44,6 @@ Temporary Items
 .apdisk
 
 .idea
+.phpunit.result.cache
 composer.lock
 vendor
