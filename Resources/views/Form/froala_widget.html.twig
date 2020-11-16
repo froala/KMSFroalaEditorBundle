@@ -2,23 +2,23 @@
 {% block froala_widget %}
 
 	{# CSS. #}
-	{% if includeFontAwesome %}
+	{% if froala_includeFontAwesome %}
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	{% endif %}
-	{% if includeCodeMirror %}
+	{% if froala_includeCodeMirror %}
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css" />
 	{% endif %}
 
-	{% if includeCSS %}
-		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_editor.pkgd.min.css' ) }}" />
-		<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/froala_style.min.css' ) }}" />
+	{% if froala_includeCSS %}
+		<link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/froala_editor.pkgd.min.css' ) }}" />
+		<link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/froala_style.min.css' ) }}" />
 
-		{% if arrOption[ "theme" ] is defined %}
-			<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/themes/' ~ arrOption[ "theme" ] ~ '.min.css' ) }}" />
+		{% if froala_arrOption[ "theme" ] is defined %}
+			<link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/themes/' ~ froala_arrOption[ "theme" ] ~ '.min.css' ) }}" />
 		{% endif %}
 
-		{% for plugin in arrPluginCSS %}
-			<link rel="stylesheet" type="text/css" href="{{ asset( basePath ~ 'css/' ~ plugin ~ '.min.css' ) }}" />
+		{% for plugin in froala_arrPluginCSS %}
+			<link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/' ~ froala_plugin ~ '.min.css' ) }}" />
 		{% endfor %}
 
 	{% endif %}
@@ -28,26 +28,26 @@
 
 	{# JS. #}
 
-	{% if includeCodeMirror %}
+	{% if froala_includeCodeMirror %}
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
 	{% endif %}
 
-	{% if includeJS %}
+	{% if froala_includeJS %}
 		<script type="text/javascript"  src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
-		<script type="text/javascript"  src="{{ asset( basePath ~ 'js/froala_editor.pkgd.min.js' ) }}"></script>
+		<script type="text/javascript"  src="{{ asset( froala_basePath ~ 'js/froala_editor.pkgd.min.js' ) }}"></script>
 
 		<!--[if lt IE 9]>
-		<script type="text/javascript" src="{{ asset( basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
+		<script type="text/javascript" src="{{ asset( froala_basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
 		<![endif]-->
-		<script type="text/javascript" src="{{ asset( basePath ~ 'js/languages/' ~ arrOption.language ~ '.js' ) }}"></script>
+		<script type="text/javascript" src="{{ asset( froala_basePath ~ 'js/languages/' ~ froala_arrOption.language ~ '.js' ) }}"></script>
 
-		{% for plugin in arrPluginJS %}
-			<script type="text/javascript" src="{{ asset( basePath ~ 'js/' ~ plugin ~ '.min.js' ) }}"></script>
+		{% for plugin in froala_arrPluginJS %}
+			<script type="text/javascript" src="{{ asset( froala_basePath ~ 'js/' ~ plugin ~ '.min.js' ) }}"></script>
 		{% endfor %}
 	{% endif %}
 
-	{% if customJS is defined %}
+	{% if froala_customJS is defined %}
 		<script type="text/javascript"  src="{{ asset( customJS ) }}"></script>
 	{% endif %}
 
@@ -55,41 +55,46 @@
 	<script type="text/javascript">
 
 		{# Go. #}
-		document.addEventListener("DOMContentLoaded", function() { 
+		const {{ id }}_function = function() {
 			(function(){
 				const editInstance = new FroalaEditor( "#{{ id }}",{
 					{# Add license. #}
-					{% if serialNumber is defined %}
-						key : "{{ serialNumber }}",
-					{% endif %}
-					{% for option, value in arrOption %}
-						{{ option }} : {% include "@KMSFroalaEditor/Form/value.html.twig" %}
-					{% endfor %} 
-					
-					events: {
-						'image.error': function ( error ) {
-							froalaDisplayError(  this, error );
-						},
-						'imageManager.error': function ( error ) {
-							 froalaDisplayError(  this, error );
-						},
-						'save.error': function ( error ) {
-							 froalaDisplayError(  this, error );
-						},
-						'file.error': function ( error, responses ) {
-							froalaDisplayError(  this, error );
-						},
-						'video.error': function ( error, responses ) {
-							froalaDisplayError(  this, error );
-						}
-						{% for event, func in events %}
-						,'{{ event }}': {{ func }}
-						{% endfor %}	
-					}})
-				})();
+					{% if froala_serialNumber is defined %}
+					key : "{{ froala_serialNumber }}",
+				{% endif %}
+				{% for option, value in froala_arrOption %}
+				{{ option }} : {% include "@KMSFroalaEditor/Form/value.html.twig" %}
+				{% endfor %}
 
-				
-			});
+				events: {
+					'image.error': function ( error ) {
+						froalaDisplayError(  this, error );
+					},
+					'imageManager.error': function ( error ) {
+						froalaDisplayError(  this, error );
+					},
+					'save.error': function ( error ) {
+						froalaDisplayError(  this, error );
+					},
+					'file.error': function ( error, responses ) {
+						froalaDisplayError(  this, error );
+					},
+					'video.error': function ( error, responses ) {
+						froalaDisplayError(  this, error );
+					}
+					{% for event, func in froala_events %}
+				,'{{ event }}': {{ func }}
+					{% endfor %}
+				}})
+			})();
+
+
+		}
+
+		document.addEventListener("DOMContentLoaded", {{ id }}_function);
+		if (document.readyState === "interactive" || document.readyState === "complete" ) {
+			{{ id }}_function();
+		}
 	</script>
 
 {% endblock %}
