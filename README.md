@@ -1,6 +1,7 @@
 # KMSFroalaEditorBundle
 
 [![Package version](https://img.shields.io/packagist/v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
+[![Build Status](https://img.shields.io/github/workflow/status/froala/KMSFroalaEditorBundle/Continuous%20Integration/master)](https://github.com/froala/KMSFroalaEditorBundle/actions?query=workflow%3A%22Continuous+Integration%22)
 [![Downloads](https://img.shields.io/packagist/dt/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![PHP Version](https://img.shields.io/packagist/php-v/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
 [![Licence](https://img.shields.io/packagist/l/kms/froala-editor-bundle.svg)](https://packagist.org/packages/kms/froala-editor-bundle)
