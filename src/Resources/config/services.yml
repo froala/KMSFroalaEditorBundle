@@ -1,38 +1,38 @@
 services:
-# Command.
+    # Command.
     KMS\FroalaEditorBundle\Command\InstallCommand:
         tags:
             - { name: "console.command", command: "froala:install" }
 
-# Controller.
+    # Controller.
     KMS\FroalaEditorBundle\Controller\MediaController:
         arguments: [ "@kms_froala_editor.media_manager", "@kernel" ]
         public: true
 
-# Form type.
+    # Form type.
     kms_froala_editor.form.type:
         class: "KMS\\FroalaEditorBundle\\Form\\Type\\FroalaEditorType"
         arguments: [ "@parameter_bag", "@kms_froala_editor.option_manager", "@kms_froala_editor.plugin_provider" ]
         tags:
             - { name: "form.type" }
 
-# Plugin provider.
+    # Option manager.
     kms_froala_editor.option_manager:
         class: "KMS\\FroalaEditorBundle\\Service\\OptionManager"
         arguments: [ "@router" ]
 
-# Plugin provider.
+    # Plugin provider.
     kms_froala_editor.plugin_provider:
         class: "KMS\\FroalaEditorBundle\\Service\\PluginProvider"
 
-# Media manager.
+    # Media manager.
     kms_froala_editor.media_manager:
         class: "KMS\\FroalaEditorBundle\\Service\\MediaManager"
         public: true
 
-# Twig extension.
+    # Twig extension.
     kms_froala_editor.froala_extension:
         class: "KMS\\FroalaEditorBundle\\Twig\\FroalaExtension"
-        arguments: [ "@service_container" ]
+        arguments: [ "@parameter_bag", "@assets.packages" ]
         tags:
             - { name: twig.extension }

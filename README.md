@@ -236,16 +236,8 @@ Also, you should make sure that you put the edited content inside an element tha
 
 #### Using the Twig extension
 
-To use the Twig extension, you have to enable the PHP templating engine:
-
-```yaml
-# config/packages/kms_froala_editor.yaml
-framework:
-    templating:
-        engines: ['twig', 'php']
-```
-
-Then, simply call the display function (note that the front CSS file is not included if the parameter includeCSS is false):
+To use the Twig extension, simply call the display function (note that the front CSS file is not included
+if the parameter includeCSS is false):
 
 ```twig
 {{ froala_display(myContentHtml) }}
