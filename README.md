@@ -196,7 +196,7 @@ $builder->add('field', FroalaEditorType::class, [
 ### Step 7: Install asset files
 
 To install the asset files, there is `froala:install` command that downloads the last version available of Froala Editor
-and puts it by default in the `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/` directory:
+and puts it by default in the `vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/` directory:
 
 ```bash
 bin/console froala:install
@@ -205,7 +205,7 @@ bin/console froala:install
 There are a few arguments/options available:
 
 * First (and only) argument (optional): the absolute path where the files will be put after download.
-Defaults to `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/`.
+Defaults to `vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/`.
 * Option `tag`: the version of Froala that will be installed (eg. `v3.0.1`). Defaults to `master`.
 * Option `clear` (no value expected, disabled by default): Allow the command to clear a previous install if the path already exists.
 
@@ -420,5 +420,6 @@ Note there are a few helpers to maintain code quality, that you can run using th
 
 ```bash
 composer cs:dry # Code style check
+composer phpstan # Static analysis
 vendor/bin/simple-phpunit # Run tests
 ```
