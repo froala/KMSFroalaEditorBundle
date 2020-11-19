@@ -48,10 +48,13 @@ The changelogs are available here:
     1. [Webpack Encore configuration](#webpack-encore-configuration)
 1. [TODO](#todo)
 1. [Licence](#licence)
+1. [Contributing](#contributing)
 
 ## Migration to Froala Editor bundle v4 from v3
 
 It now supports only Symfony 4.4+ & 5.0+.
+
+If you somehow override/inherit a class from the bundle, be careful as some parameter & return types have been added.
 
 All form type options must now be prefixed by `froala_`:
 
@@ -416,3 +419,14 @@ Don't forget to import the generated Encore CSS/JS files in your HTML if needed.
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://www.froala.com/wysiwyg-editor) commercial version.
 Please read the [Froala licence agreement](https://www.froala.com/wysiwyg-editor/terms) and go to the [pricing page](https://www.froala.com/wysiwyg-editor/pricing)
 if you don't have a licence.
+
+## Contributing
+
+Feel free to contribute, like sending [pull requests](https://github.com/froala/KMSFroalaEditorBundle/pulls) to add features/tests.
+
+Note there are a few helpers to maintain code quality, that you can run using these commands:
+
+```bash
+composer cs:dry # Code style check
+vendor/bin/simple-phpunit # Run tests
+```

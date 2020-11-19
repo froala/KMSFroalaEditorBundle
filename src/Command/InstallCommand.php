@@ -16,7 +16,7 @@ class InstallCommand extends Command
     {
         $this
             ->setName('froala:install')
-            ->addArgument('path', InputArgument::OPTIONAL, 'Absolute path where to install Froala editor', dirname(__DIR__) . '/Resources/public/froala_editor')
+            ->addArgument('path', InputArgument::OPTIONAL, 'Absolute path where to install Froala editor', \dirname(__DIR__) . '/Resources/public/froala_editor')
             ->addOption('tag', null, InputOption::VALUE_REQUIRED, 'Froala editor tag to install (eg. "v3.0.0")', 'master')
             ->addOption('clear', null, InputOption::VALUE_NONE, 'Allow the command to clear a previous install if the path already exists')
         ;
@@ -65,7 +65,7 @@ class InstallCommand extends Command
             if (false === $zip->open($zipPath)) {
                 throw new \RuntimeException(sprintf('Cannot open zip file "%s".', $zipPath));
             }
-            for ($i = 0; $i < $zip->numFiles; $i++) {
+            for ($i = 0; $i < $zip->numFiles; ++$i) {
                 $filename = $zip->getNameIndex($i);
                 $zipFile = sprintf('zip://%s#%s', $zipPath, $filename);
                 // Remove the first directory (eg. "wysiwyg-editor-master") from the file path

@@ -26,8 +26,13 @@
         "twig/twig": "^1.1|^2.0|^3.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16.7",
         "symfony/phpunit-bridge": "^4.4|^5.0",
         "symfony/yaml": "^4.4|^5.0"
+    },
+    "scripts": {
+        "cs:dry": "php-cs-fixer fix --diff --diff-format=udiff --dry-run --no-interaction --ansi",
+        "cs:fix": "php-cs-fixer fix --ansi"
     },
     "autoload": {
         "psr-4": {

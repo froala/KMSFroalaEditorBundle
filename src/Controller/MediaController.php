@@ -1,136 +1,84 @@
 <?php
 
-	namespace KMS\FroalaEditorBundle\Controller;
+namespace KMS\FroalaEditorBundle\Controller;
 
-	use KMS\FroalaEditorBundle\Service\MediaManager;
-	use Symfony\Component\HttpFoundation\Request;
-	use Symfony\Component\HttpFoundation\Response;
-    use Symfony\Component\HttpKernel\KernelInterface;
+use KMS\FroalaEditorBundle\Service\MediaManager;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
+
+class MediaController
+{
+    /**
+     * @var MediaManager
+     */
+    protected $mediaManager;
 
     /**
-	 * Media controller.
-	 * Class MediaController
-	 * @package KMS\FroalaEditorBundle\Controller
-	 */
-	class MediaController
-	{
-        /**
-         * @var MediaManager
-         */
-        protected $mediaManager;
+     * @var KernelInterface
+     */
+    protected $kernel;
 
-        /**
-         * @var KernelInterface
-         */
-        protected $kernel;
+    public function __construct(MediaManager $mediaManager, KernelInterface $kernel)
+    {
+        $this->mediaManager = $mediaManager;
+        $this->kernel = $kernel;
+    }
 
-        public function __construct(MediaManager $mediaManager, KernelInterface $kernel)
-        {
-            $this->mediaManager = $mediaManager;
-            $this->kernel = $kernel;
-        }
+    public function uploadImage(Request $request): JsonResponse
+    {
+        $path = $request->request->get('path');
+        $folder = $request->request->get('folder');
+        $rootDir = $this->kernel->getProjectDir();
+        $publicDir = $request->request->get('public_dir');
+        $basePath = $request->getBasePath();
 
-        // -------------------------------------------------------------//
-		// --------------------------- METHODS -------------------------//
-		// -------------------------------------------------------------//
+        return $this->mediaManager->uploadImage($request->files, $rootDir, $publicDir, $basePath, $folder, $path);
+    }
 
-		/**
-		 * Upload an image.
-		 * @param \Symfony\Component\HttpFoundation\Request $p_request
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 */
-		public function uploadImage(Request $p_request)
-		{
-			$path         = $p_request->request->get( "path" );
-			$folder       = $p_request->request->get( "folder" );
-			$rootDir      = $this->kernel->getProjectDir();
-			$publicDir    = $p_request->request->get("public_dir");
-			$basePath     = $p_request->getBasePath();
-			// ------------------------- DECLARE ---------------------------//
+    public function deleteImage(Request $request): Response
+    {
+        $imageSrc = urldecode($request->request->get('src'));
+        $folder = urldecode($request->request->get('folder'));
+        $rootDir = $this->kernel->getProjectDir();
+        $publicDir = urldecode($request->request->get('public_dir'));
 
-			// FIXME
-//			if( $request->isXmlHttpRequest() == true )
-//			{
-				return $this->mediaManager->uploadImage( $p_request->files, $rootDir, $publicDir, $basePath, $folder, $path );
-//			}
-		}
+        $this->mediaManager->deleteImage($imageSrc, $rootDir, $publicDir, $folder);
 
-		/**
-		 * Delete an image.
-		 * @param \Symfony\Component\HttpFoundation\Request $p_request
-		 * @return \Symfony\Component\HttpFoundation\Response
-		 */
-		public function deleteImage(Request $p_request)
-		{
-			$imageSrc     = urldecode($p_request->request->get( "src" ));
-			$folder       = urldecode($p_request->request->get( "folder" ));
-			$rootDir      = $this->kernel->getProjectDir();
-			$publicDir    = urldecode($p_request->request->get("public_dir"));
-			// ------------------------- DECLARE ---------------------------//
+        return new Response();
+    }
 
-			$this->mediaManager->deleteImage( $imageSrc, $rootDir, $publicDir, $folder );
+    public function loadImages(Request $request): JsonResponse
+    {
+        $path = $request->query->get('path');
+        $folder = $request->query->get('folder');
+        $rootDir = $this->kernel->getProjectDir();
+        $publicDir = $request->query->get('public_dir');
+        $basePath = $request->getBasePath();
 
-			return new Response ();
-		}
+        return $this->mediaManager->loadImages($rootDir, $publicDir, $basePath, $folder, $path);
+    }
 
-		/**
-		 * Load images.
-		 * @param \Symfony\Component\HttpFoundation\Request $p_request
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 */
-		public function loadImages(Request $p_request)
-		{
-			$path         = $p_request->query->get( "path" );
-			$folder       = $p_request->query->get( "folder" );
-            $rootDir      = $this->kernel->getProjectDir();
-			$publicDir    = $p_request->query->get("public_dir");
-			$basePath     = $p_request->getBasePath();
+    public function uploadFile(Request $request): JsonResponse
+    {
+        $path = $request->request->get('path');
+        $folder = $request->request->get('folder');
+        $rootDir = $this->kernel->getProjectDir();
+        $publicDir = $request->request->get('public_dir');
+        $basePath = $request->getBasePath();
 
-			// ------------------------- DECLARE ---------------------------//
+        return $this->mediaManager->uploadFile($request->files, $rootDir, $publicDir, $basePath, $folder, $path);
+    }
 
-			return $this->mediaManager->loadImages( $rootDir, $publicDir, $basePath, $folder, $path );
-		}
+    public function uploadVideo(Request $request): JsonResponse
+    {
+        $path = $request->request->get('path');
+        $folder = $request->request->get('folder');
+        $rootDir = $this->kernel->getProjectDir();
+        $publicDir = $request->request->get('public_dir');
+        $basePath = $request->getBasePath();
 
-		/**
-		 * Upload a file.
-		 * @param \Symfony\Component\HttpFoundation\Request $p_request
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 */
-		public function uploadFile(Request $p_request)
-		{
-			$path         = $p_request->request->get( "path" );
-			$folder       = $p_request->request->get( "folder" );
-            $rootDir      = $this->kernel->getProjectDir();
-			$publicDir    = $p_request->request->get("public_dir");
-			$basePath     = $p_request->getBasePath();
-			// ------------------------- DECLARE ---------------------------//
-
-			// FIXME
-//			if( $request->isXmlHttpRequest() == true )
-//			{
-			return $this->mediaManager->uploadFile( $p_request->files, $rootDir, $publicDir, $basePath, $folder, $path );
-//			}
-		}
-
-		/**
-		 * Upload a video.
-		 * @param \Symfony\Component\HttpFoundation\Request $p_request
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 */
-		public function uploadVideo(Request $p_request)
-		{
-			$path         = $p_request->request->get( "path" );
-			$folder       = $p_request->request->get( "folder" );
-            $rootDir      = $this->kernel->getProjectDir();
-			$publicDir    = $p_request->request->get("public_dir");
-			$basePath     = $p_request->getBasePath();
-			// ------------------------- DECLARE ---------------------------//
-
-			// FIXME
-//			if( $request->isXmlHttpRequest() == true )
-//			{
-			return $this->mediaManager->uploadVideo( $p_request->files, $rootDir, $publicDir, $basePath, $folder, $path );
-//			}
-		}
-
-	}
+        return $this->mediaManager->uploadVideo($request->files, $rootDir, $publicDir, $basePath, $folder, $path);
+    }
+}

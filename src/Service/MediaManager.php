@@ -1,354 +1,126 @@
 <?php
 
-	namespace KMS\FroalaEditorBundle\Service;
+namespace KMS\FroalaEditorBundle\Service;
 
-	use Symfony\Component\Finder\Finder;
-	use Symfony\Component\HttpFoundation\File\UploadedFile;
-	use Symfony\Component\HttpFoundation\FileBag;
-	use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\FileBag;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-	/**
-	 * Class MediaManager
-	 * @package KMS\FroalaEditorBundle\Service
-	 */
-	class MediaManager
-	{
+class MediaManager
+{
+    public static $allowedImageFileExtensions = ['gif', 'jpeg', 'jpg', 'png'];
+    public static $allowedImageFileMimeTypes = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png'];
 
-		// -------------------------------------------------------------//
-		// --------------------------- MEMBERS -------------------------//
-		// -------------------------------------------------------------//
+    public function uploadImage(FileBag $fileBag, string $rootDir, string $publicDir, string $basePath, string $configuredFolder, string $requestPath): JsonResponse
+    {
+        return $this->handleFileUpload($fileBag, $rootDir, $publicDir, $basePath, $configuredFolder, $requestPath, 'image');
+    }
 
-		// -------------------------------------------------------------//
-		// -------------------------- CONSTRUCTOR ----------------------//
-		// -------------------------------------------------------------//
+    public function deleteImage(string $imageSrc, string $rootDir, string $publicDir, string $configuredFolder): void
+    {
+        $folder = $this->obtainFolder($rootDir, $publicDir, $configuredFolder);
+        $arrExploded = explode('/', $imageSrc);
 
-		/**
-		 * Constructor.
-		 */
-		public function __construct()
-		{
-			// ------------------------- DECLARE ---------------------------//
-		}
+        $fileName = $arrExploded[\count($arrExploded) - 1];
+        unlink($folder . '/' . $fileName);
+    }
 
-		// -------------------------------------------------------------//
-		// --------------------------- METHODS -------------------------//
-		// -------------------------------------------------------------//
+    public function loadImages(string $rootDir, string $publicDir, string $basePath, string $configuredFolder, string $requestPath): JsonResponse
+    {
+        $response = new JsonResponse();
+        $arrImage = [];
+        $folder = $this->obtainFolder($rootDir, $publicDir, $configuredFolder);
+        $path = $this->obtainPath($basePath, $requestPath);
+        $finder = new Finder();
 
-		/**
-		 * Upload an image.
-		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
-		 * @param string                                    $p_rootDir
-		 * @param string                                    $p_publicDir
-		 * @param string                                    $p_basePath
-		 * @param string                                    $p_folder
-		 * @param string                                    $p_path
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 * @throws \Exception
-		 */
-		public function uploadImage( FileBag $p_file, $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
-		{
-			$arrExtension = array(
-				"gif",
-				"jpeg",
-				"jpg",
-				"png"
-			);
-			$folder       = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
-			$path         = $this->obtainPath( $p_basePath, $p_path );
-			$response     = new JsonResponse ();
-			// ------------------------- DECLARE ---------------------------//
+        $finder->files()->in($folder);
 
-			if( $p_file == null )
-			{
-				$response->setData( array(
-										"error" => "No file received."
-									) );
+        foreach ($finder as $file) {
+            if (!\in_array($file->getExtension(), static::$allowedImageFileExtensions, true)) {
+                continue;
+            }
+            $arrImage[] = ['url' => $path . $file->getFilename(), 'thumb' => $path . $file->getFilename()];
+        }
 
-				return $response;
-			}
+        $response->setData($arrImage);
 
-			$file = $p_file->get( "file" );
+        return $response;
+    }
 
-			if( $file == null )
-			{
-				$response->setData( array(
-										"error" => "No file received."
-									) );
+    public function uploadFile(FileBag $fileBag, string $rootDir, string $publicDir, string $basePath, string $configuredFolder, string $requestPath): JsonResponse
+    {
+        return $this->handleFileUpload($fileBag, $rootDir, $publicDir, $basePath, $configuredFolder, $requestPath);
+    }
 
-				return $response;
-			}
+    public function uploadVideo(FileBag $fileBag, string $rootDir, string $publicDir, string $basePath, string $configuredFolder, string $requestPath): JsonResponse
+    {
+        return $this->handleFileUpload($fileBag, $rootDir, $publicDir, $basePath, $configuredFolder, $requestPath);
+    }
 
-			if( $file->getSize() > UploadedFile::getMaxFilesize() )
-			{
-				$response->setData( array(
-										"error" => "File too big."
-									) );
+    /**
+     * Obtain the physical folder.
+     */
+    private function obtainFolder(string $rootDir, string $publicDir, string $folder): string
+    {
+        return sprintf('%s%s/%s', $rootDir, $publicDir, $folder);
+    }
 
-				return $response;
-			}
+    private function obtainPath(string $basePath, string $path): string
+    {
+        return $basePath . '/' . $path;
+    }
 
-			// Check image type.
-			$extension = $file->guessExtension();
-			$mime      = $file->getMimeType();
-			if( ( ( $mime == "image/gif" ) || //
-				  ( $mime == "image/jpeg" ) || //
-				  ( $mime == "image/pjpeg" ) || //
-				  ( $mime == "image/x-png" ) || //
-				  ( $mime == "image/png" ) ) && //
-				in_array( $extension, $arrExtension )
-			)
-			{
-				// Generates random name.
-				$name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
+    private function handleFileUpload(FileBag $fileBag, string $rootDir, string $publicDir, string $basePath, string $configuredFolder, string $requestPath, ?string $specificType = null): JsonResponse
+    {
+        $folder = $this->obtainFolder($rootDir, $publicDir, $configuredFolder);
+        $path = $this->obtainPath($basePath, $requestPath);
+        $response = new JsonResponse();
 
-				// Save file in the folder.
-				$file->move( $folder, $name );
+        if (null === $fileBag) {
+            $response->setData([
+                'error' => 'No file received.',
+            ]);
 
-				$response->setData( array(
-										"link" => $path . $name
-									) );
+            return $response;
+        }
 
-				return $response;
-			}
+        $file = $fileBag->get('file');
+        if (null === $file) {
+            $response->setData([
+                'error' => 'No file received.',
+            ]);
 
-			$response->setData( array(
-									"error" => "File not supported."
-								) );
+            return $response;
+        }
 
-			return $response;
-		}
+        if ($file->getSize() > UploadedFile::getMaxFilesize()) {
+            $response->setData([
+                'error' => 'File too big.',
+            ]);
 
-		/**
-		 * Delete an image.
-		 * @param string $p_imageSrc
-		 * @param string $p_rootDir
-		 * @param string $p_publicDir
-		 * @param string $p_folder
-		 */
-		public function deleteImage( $p_imageSrc, $p_rootDir, $p_publicDir, $p_folder )
-		{
-			$folder      = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
-			$arrExploded = explode( '/', $p_imageSrc );
-			// ------------------------- DECLARE ---------------------------//
+            return $response;
+        }
 
-			$fileName = $arrExploded [ count( $arrExploded ) - 1 ];
-			unlink( $folder . '/' . $fileName );
-		}
+        // Check image type.
+        if ('image' === $specificType && (!\in_array($file->guessExtension(), static::$allowedImageFileExtensions, true) || !\in_array($file->getMimeType(), static::$allowedImageFileMimeTypes, true))) {
+            $response->setData([
+                'error' => 'File not supported.',
+            ]);
 
-		/**
-		 * Load images.
-		 * @param string $p_rootDir
-		 * @param string $p_publicDir
-		 * @param string $p_basePath
-		 * @param string $p_folder
-		 * @param string $p_path
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 * @throws \Exception
-		 */
-		public function loadImages( $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
-		{
-			$response     = new JsonResponse ();
-			$arrImage     = array();
-			$folder       = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
-			$path         = $this->obtainPath( $p_basePath, $p_path );
-			$finder       = new Finder ();
-			$arrExtension = array(
-				"gif",
-				"jpeg",
-				"jpg",
-				"png"
-			);
-			// ------------------------- DECLARE ---------------------------//
+            return $response;
+        }
 
+        // Generates random name.
+        $name = sha1(uniqid(mt_rand(), true)) . '.' . $file->guessExtension();
 
-			$finder->files()->in( $folder );
+        // Save file in the folder.
+        $file->move($folder, $name);
 
-			foreach( $finder as $file )
-			{
-				if( ! in_array( $file->getExtension(), $arrExtension ) )
-				{
-					continue;
-				}
-				$arrImage [] = array( "url" => $path . $file->getFilename(), "thumb" => $path . $file->getFilename() );
-			}
+        $response->setData([
+            'link' => $path . $name,
+        ]);
 
-			$response->setData( $arrImage );
-
-			return $response;
-		}
-
-		/**
-		 * Upload an image.
-		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
-		 * @param string                                    $p_rootDir
-		 * @param string                                    $p_publicDir
-		 * @param string                                    $p_basePath
-		 * @param string                                    $p_folder
-		 * @param string                                    $p_path
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 * @throws \Exception
-		 */
-		public function uploadFile( FileBag $p_file, $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
-		{
-			$folder   = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
-			$path     = $this->obtainPath( $p_basePath, $p_path );
-			$response = new JsonResponse ();
-			// ------------------------- DECLARE ---------------------------//
-
-			if( $p_file == null )
-			{
-				$response->setData( array(
-										"error" => "No file received."
-									) );
-
-				return $response;
-			}
-
-			$file = $p_file->get( "file" );
-
-			if( $file == null )
-			{
-				$response->setData( array(
-										"error" => "No file received."
-									) );
-
-				return $response;
-			}
-
-			if( $file->getSize() > UploadedFile::getMaxFilesize() )
-			{
-				$response->setData( array(
-										"error" => "File too big."
-									) );
-
-				return $response;
-			}
-
-			// Generates random name.
-			$name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
-
-			// Save file in the folder.
-			$file->move( $folder, $name );
-
-			$response->setData( array(
-									"link" => $path . $name
-								) );
-
-			return $response;
-		}
-
-		/**
-		 * Upload a video.
-		 * @param \Symfony\Component\HttpFoundation\FileBag $p_file
-		 * @param string                                    $p_rootDir
-		 * @param string                                    $p_publicDir
-		 * @param string                                    $p_basePath
-		 * @param string                                    $p_folder
-		 * @param string                                    $p_path
-		 * @return \Symfony\Component\HttpFoundation\JsonResponse
-		 * @throws \Exception
-		 */
-		public function uploadVideo( FileBag $p_file, $p_rootDir, $p_publicDir, $p_basePath, $p_folder, $p_path )
-		{
-//			$arrExtension = array(
-//				"gif",
-//				"jpeg",
-//				"jpg",
-//				"png"
-//			);
-			$folder   = $this->obtainFolder( $p_rootDir, $p_publicDir, $p_folder );
-			$path     = $this->obtainPath( $p_basePath, $p_path );
-			$response = new JsonResponse ();
-			// ------------------------- DECLARE ---------------------------//
-
-			if( $p_file == null )
-			{
-				$response->setData( array(
-										"error" => "No file received."
-									) );
-
-				return $response;
-			}
-
-			$file = $p_file->get( "file" );
-
-			if( $file == null )
-			{
-				$response->setData( array(
-										"error" => "No file received."
-									) );
-
-				return $response;
-			}
-
-			if( $file->getSize() > UploadedFile::getMaxFilesize() )
-			{
-				$response->setData( array(
-										"error" => "File too big."
-									) );
-
-				return $response;
-			}
-
-			// Checks file type.
-			$extension = $file->guessExtension();
-			$mime      = $file->getMimeType();
-//			if( ( ( $mime == "image/gif" ) || //
-//				  ( $mime == "image/jpeg" ) || //
-//				  ( $mime == "image/pjpeg" ) || //
-//				  ( $mime == "image/x-png" ) || //
-//				  ( $mime == "image/png" ) ) && //
-//				in_array( $extension, $arrExtension )
-//			)
-//			{
-			// Generates random name.
-			$name = sha1( uniqid( mt_rand(), true ) ) . '.' . $file->guessExtension();
-
-			// Save file in the folder.
-			$file->move( $folder, $name );
-
-			$response->setData( array(
-									"link" => $path . $name
-								) );
-
-			return $response;
-//			}
-
-//			$response->setData( array(
-//									"error" => "File not supported."
-//								) );
-
-//			return $response;
-		}
-
-		// -------------------------------------------------------------//
-		// --------------------------- PRIVATE -------------------------//
-		// -------------------------------------------------------------//
-
-		/**
-		 * Obtain the physical folder.
-		 * @param string $p_rootDir
-		 * @param string $p_publicDir
-		 * @param string $p_folder
-		 * @return string
-		 */
-		private function obtainFolder( $p_rootDir, $p_publicDir, $p_folder )
-		{
-			// ------------------------- DECLARE ---------------------------//
-
-			return sprintf('%s%s/%s', $p_rootDir, $p_publicDir, $p_folder);
-		}
-
-		/**
-		 * Obtain the path.
-		 * @param string $p_basePath
-		 * @param string $p_path
-		 * @return string
-		 */
-		private function obtainPath( $p_basePath, $p_path )
-		{
-			// ------------------------- DECLARE ---------------------------//
-
-			return $p_basePath . '/' . $p_path;
-		}
-	}
+        return $response;
+    }
+}

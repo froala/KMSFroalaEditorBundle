@@ -1,217 +1,144 @@
 <?php
 
-	namespace KMS\FroalaEditorBundle\Service;
+namespace KMS\FroalaEditorBundle\Service;
 
-	use Doctrine\Inflector\CachedWordInflector;
-    use Doctrine\Inflector\Inflector;
-    use Doctrine\Inflector\RulesetInflector;
-    use Doctrine\Inflector\Rules\English;
+use Doctrine\Inflector\CachedWordInflector;
+use Doctrine\Inflector\Inflector;
+use Doctrine\Inflector\Rules\English;
+use Doctrine\Inflector\RulesetInflector;
 
-	/**
-	 * Class PluginProvider
-	 * @package KMS\FroalaEditorBundle\Service
-	 */
-	class PluginProvider
-	{
+class PluginProvider
+{
+    public const KEY_CSS = 'css';
+    public const KEY_FOLDER = 'css';
+    public const VALUE_PLUGINS = 'plugins';
+    public const VALUE_THIRD_PARTY = 'third_party';
 
-		//-------------------------------------------------------------//
-		//--------------------------- MEMBERS -------------------------//
-		//-------------------------------------------------------------//
+    /**
+     * @var Inflector
+     */
+    protected $inflector;
 
-		/**
-		 * Can be easier but can handle further configurations.
-		 * @const array
-		 */
-		private static $ARR_PLUGIN_CONFIG =
-			array(
-				// Plugins.
-				"align"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"char_counter"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"code_beautifier"    => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"code_view"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"colors"             => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"draggable"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"emoticons"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"entities"           => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"file"               => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"files_manager"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"font_family"        => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"font_size"          => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				//				"forms"        	   => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"fullscreen"         => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"help"               => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"image"              => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"image_manager"      => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"inline_class"       => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"inline_style"       => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"line_breaker"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"line_height"        => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"link"               => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"lists"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"paragraph_format"   => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"paragraph_style"    => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"print"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"quick_insert"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"quote"              => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"save"               => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"special_characters" => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"table"              => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"url"                => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"video"              => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
-				"word_paste"         => [ PluginProvider::KEY_CSS => 0, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_PLUGINS ],
+    /**
+     * Can be easier but can handle further configurations.
+     */
+    private static $ARR_PLUGIN_CONFIG =
+        [
+            // Plugins.
+            'align'               => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'char_counter'        => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'code_beautifier'     => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'code_view'           => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'colors'              => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'draggable'           => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'emoticons'           => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'entities'            => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'file'                => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'files_manager'       => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'font_family'         => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'font_size'           => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'fullscreen'          => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'help'                => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'image'               => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'image_manager'       => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'inline_class'        => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'inline_style'        => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'line_breaker'        => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'line_height'         => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'link'                => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'lists'               => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'paragraph_format'    => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'paragraph_style'     => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'print'               => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'quick_insert'        => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'quote'               => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'save'                => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'special_characters'  => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'table'               => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'url'                 => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'video'               => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_PLUGINS],
+            'word_paste'          => [self::KEY_CSS => 0, self::KEY_FOLDER => self::VALUE_PLUGINS],
 
-				// Third party.
-				"embedly"            => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
-				"spell_checker"      => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
-				"font_awesome"       => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
-				"image_tui"          => [ PluginProvider::KEY_CSS => 1, PluginProvider::KEY_FOLDER => PluginProvider::VALUE_THIRD_PARTY ],
-			);
+            // Third party.
+            'embedly'             => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_THIRD_PARTY],
+            'spell_checker'       => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_THIRD_PARTY],
+            'font_awesome'        => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_THIRD_PARTY],
+            'image_tui'           => [self::KEY_CSS => 1, self::KEY_FOLDER => self::VALUE_THIRD_PARTY],
+        ];
 
-		/**
-		 * Can be easier but can handle further configurations.
-		 * @const array
-		 */
-		private static $ARR_THIRD_PARTY_CONFIG =
-			array();
+    public function __construct()
+    {
+        $this->inflector = new Inflector(
+            new CachedWordInflector(new RulesetInflector(
+                English\Rules::getSingularRuleset()
+            )),
+            new CachedWordInflector(new RulesetInflector(
+                English\Rules::getPluralRuleset()
+            ))
+        );
+    }
 
-        /**
-         * @var Inflector
-         */
-		protected $inflector;
+    public function obtainArrPluginToInclude(array $enabledPlugins, array $disabledPlugins): array
+    {
+        $arrPluginName = array_keys(self::$ARR_PLUGIN_CONFIG);
 
-		/**
-		 * @const string
-		 */
-		const KEY_CSS = "css";
-		/**
-		 * @const string
-		 */
-		const KEY_FOLDER = "css";
-		/**
-		 * @const string
-		 */
-		const VALUE_PLUGINS = "plugins";
-		/**
-		 * @const string
-		 */
-		const VALUE_THIRD_PARTY = "third_party";
-
-
-		//-------------------------------------------------------------//
-		//------------------------- CONSTRUCTOR -----------------------//
-		//-------------------------------------------------------------//
-
-		/**
-		 * Constructor.
-		 */
-		public function __construct()
-		{
-            $this->inflector = new Inflector(
-                new CachedWordInflector(new RulesetInflector(
-                    English\Rules::getSingularRuleset()
-                )),
-                new CachedWordInflector(new RulesetInflector(
-                    English\Rules::getPluralRuleset()
-                ))
-            );
+        if (!empty($disabledPlugins)) {
+            return array_diff($arrPluginName, $disabledPlugins);
         }
 
-		//-------------------------------------------------------------//
-		//--------------------------- METHODS -------------------------//
-		//-------------------------------------------------------------//
+        if (!empty($enabledPlugins)) {
+            return array_intersect($arrPluginName, $enabledPlugins);
+        }
 
-		/**
-		 * @param array $p_pluginEnable
-		 * @param array $p_pluginDisable
-		 * @return array
-		 */
-		public function obtainArrPluginToInclude( $p_pluginEnable, $p_pluginDisable )
-		{
-			$arrPluginName = array_keys( PluginProvider::$ARR_PLUGIN_CONFIG );
-			//------------------------- DECLARE ---------------------------//
+        return $arrPluginName;
+    }
 
-			if( ! empty( $p_pluginDisable ) )
-			{
-				return array_diff( $arrPluginName, $p_pluginDisable );
-			}
-			else
-			{
-				if( ! empty( $p_pluginEnable ) )
-				{
-					return array_intersect( $arrPluginName, $p_pluginEnable );
-				}
-			}
+    /**
+     * Obtains array of JS files to include (all have one).
+     */
+    public function obtainArrPluginJS(array $plugins): array
+    {
+        $arrPlugin = [];
 
-			return $arrPluginName;
-		}
+        foreach ($plugins as $plugin) {
+            $arrPlugin[] = $this->obtainConfiguration($plugin, self::KEY_FOLDER) . '/' . $plugin;
+        }
 
-		/**
-		 * Obtains array of JS files to include (all have one).
-		 * @param array $p_arrPlugin
-		 * @return array
-		 */
-		public function obtainArrPluginJS( $p_arrPlugin )
-		{
-			$arrPlugin = array();
-			//------------------------- DECLARE ---------------------------//
+        return $arrPlugin;
+    }
 
-			foreach( $p_arrPlugin as $plugin )
-			{
-				$arrPlugin[] = $this->obtainConfiguration( $plugin, PluginProvider::KEY_FOLDER ) . "/" . $plugin;
-			}
+    /**
+     * Obtains array of CSS files to include (check in const).
+     */
+    public function obtainArrPluginCSS($plugins): array
+    {
+        $arrPlugin = [];
 
-			return $arrPlugin;
-		}
+        foreach ($plugins as $plugin) {
+            if ($this->obtainConfiguration($plugin, self::KEY_CSS) === 1) {
+                $arrPlugin[] = $this->obtainConfiguration($plugin, self::KEY_FOLDER) . '/' . $plugin;
+            }
+        }
 
-		/**
-		 * Obtains array of CSS files to include (check in const).
-		 * @param array $p_arrPlugin
-		 * @return array
-		 */
-		public function obtainArrPluginCSS( $p_arrPlugin )
-		{
-			$arrPlugin = array();
-			//------------------------- DECLARE ---------------------------//
+        return $arrPlugin;
+    }
 
-			foreach( $p_arrPlugin as $plugin )
-			{
-				if( $this->obtainConfiguration( $plugin, PluginProvider::KEY_CSS ) == 1 )
-				{
-					$arrPlugin[] = $this->obtainConfiguration( $plugin, PluginProvider::KEY_FOLDER ) . "/" . $plugin;
-				}
-			}
+    /**
+     * Obtains array of plugin to include (camelized).
+     */
+    public function obtainArrPluginCamelized(array $plugins): array
+    {
+        $arrPlugin = [];
 
-			return $arrPlugin;
-		}
+        foreach ($plugins as $plugin) {
+            $arrPlugin[] = $this->inflector->camelize($plugin);
+        }
 
-		/**
-		 * Obtains array of plugin to include (camelized).
-		 * @param array $p_arrPlugin
-		 * @return array
-		 */
-		public function obtainArrPluginCamelized( $p_arrPlugin )
-		{
-			$arrPlugin = array();
-			//------------------------- DECLARE ---------------------------//
+        return $arrPlugin;
+    }
 
-			foreach( $p_arrPlugin as $plugin )
-			{
-				$arrPlugin[] = $this->inflector->camelize( $plugin );
-			}
-
-			return $arrPlugin;
-		}
-
-		/**
-		 * @param string $p_plugin
-		 * @param string $p_key
-		 * @return mixed
-		 */
-		private function obtainConfiguration( $p_plugin, $p_key )
-		{
-			//------------------------- DECLARE ---------------------------//
-
-			return PluginProvider::$ARR_PLUGIN_CONFIG[ $p_plugin ][ $p_key ];
-		}
-
-	}
+    private function obtainConfiguration(string $plugin, string $key)
+    {
+        return self::$ARR_PLUGIN_CONFIG[$plugin][$key];
+    }
+}
