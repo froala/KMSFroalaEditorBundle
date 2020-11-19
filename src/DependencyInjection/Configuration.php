@@ -3,6 +3,7 @@
 namespace KMS\FroalaEditorBundle\DependencyInjection;
 
 use KMS\FroalaEditorBundle\Utility\UConfiguration;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -14,6 +15,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder(self::$NODE_ROOT);
+        /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
         // Add all available configuration nodes.
@@ -21,13 +23,17 @@ class Configuration implements ConfigurationInterface
         $this->addFroalaConfigTree($nodeBuilder);
 
         // "profiles" are treated separately as they repeat main option structures
+        /** @var ArrayNodeDefinition $profileSubTreeBuilder */
         $profileSubTreeBuilder = $nodeBuilder
             ->arrayNode('profiles')
             ->useAttributeAsKey('name')
-            ->prototype('array')
-            ->children();
-        $this->addFroalaConfigTree($profileSubTreeBuilder, false);
-        $profileSubTreeBuilder->end()->end();
+            ->prototype('array');
+        $childrenProfileSubTreeBuilder = $profileSubTreeBuilder->children();
+        $this->addFroalaConfigTree($childrenProfileSubTreeBuilder, false);
+        // End profiles' children node
+        $profileSubTreeBuilder->end();
+        // End profiles node
+        $profileSubTreeBuilder->end();
         $nodeBuilder->end();
 
         return $treeBuilder;

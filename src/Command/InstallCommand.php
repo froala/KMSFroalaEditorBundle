@@ -62,7 +62,7 @@ class InstallCommand extends Command
             $fileSystem->mkdir($outputPath);
 
             $zip = new \ZipArchive();
-            if (false === $zip->open($zipPath)) {
+            if (true !== $zip->open($zipPath)) {
                 throw new \RuntimeException(sprintf('Cannot open zip file "%s".', $zipPath));
             }
             for ($i = 0; $i < $zip->numFiles; ++$i) {

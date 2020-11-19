@@ -13,3 +13,4 @@ CHANGELOG FOR 4.X
 * Fix plugins CSS not loaded correctly
 * Don't load packaged Froala JS/CSS files
 * Setup php-cs-fixer
+* Setup phpstan

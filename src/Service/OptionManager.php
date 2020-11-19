@@ -44,27 +44,21 @@ class OptionManager
         $options['videoUploadFolder'] = trim($videoUploadFolder, '/') . '/';
 
         // Image folder and path.
-        if (false === isset($options['imageUploadPath']) ||
-            null === $options['imageUploadPath']
-        ) {
+        if (false === isset($options['imageUploadPath'])) {
             $options['imageUploadPath'] = $options['imageUploadFolder'];
         } else {
             $options['imageUploadPath'] = trim($options['imageUploadPath'], '/') . '/';
         }
 
         // File folder and path.
-        if (false === isset($options['fileUploadPath']) ||
-            null === $options['fileUploadPath']
-        ) {
+        if (false === isset($options['fileUploadPath'])) {
             $options['fileUploadPath'] = $options['fileUploadFolder'];
         } else {
             $options['fileUploadPath'] = trim($options['fileUploadPath'], '/') . '/';
         }
 
         // Video folder and path.
-        if (false === isset($options['videoUploadPath']) ||
-            null === $options['videoUploadPath']
-        ) {
+        if (false === isset($options['videoUploadPath'])) {
             $options['videoUploadPath'] = $options['videoUploadFolder'];
         } else {
             $options['videoUploadPath'] = trim($options['videoUploadPath'], '/') . '/';

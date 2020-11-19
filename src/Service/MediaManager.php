@@ -77,14 +77,6 @@ class MediaManager
         $path = $this->obtainPath($basePath, $requestPath);
         $response = new JsonResponse();
 
-        if (null === $fileBag) {
-            $response->setData([
-                'error' => 'No file received.',
-            ]);
-
-            return $response;
-        }
-
         $file = $fileBag->get('file');
         if (null === $file) {
             $response->setData([
@@ -112,7 +104,7 @@ class MediaManager
         }
 
         // Generates random name.
-        $name = sha1(uniqid(mt_rand(), true)) . '.' . $file->guessExtension();
+        $name = sha1(uniqid((string) mt_rand(), true)) . '.' . $file->guessExtension();
 
         // Save file in the folder.
         $file->move($folder, $name);
