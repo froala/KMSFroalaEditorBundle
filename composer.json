@@ -30,6 +30,13 @@
         "symfony/yaml": "^4.4|^5.0"
     },
     "autoload": {
-        "psr-4": { "KMS\\FroalaEditorBundle\\": "" }
+        "psr-4": {
+            "KMS\\FroalaEditorBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KMS\\FroalaEditorBundle\\Tests\\": "tests/"
+        }
     }
 }
