@@ -1,11 +1,17 @@
 CHANGELOG FOR 3.X
 =================
 
-3.1.1
+3.1.2
 -----
+
+* Remove "Change Froala options keys in FroalaEditorType" as it created a BC break
+
+3.1.1 (removed)
+---------------
 
 * Added configuration options for file manager plugin
 * Added support for PHP 8
+* Change Froala options keys in FroalaEditorType
 
 3.1.0
 -----
