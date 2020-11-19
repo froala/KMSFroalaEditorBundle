@@ -10,7 +10,7 @@ use Doctrine\Inflector\RulesetInflector;
 class PluginProvider
 {
     public const KEY_CSS = 'css';
-    public const KEY_FOLDER = 'css';
+    public const KEY_FOLDER = 'folder';
     public const VALUE_PLUGINS = 'plugins';
     public const VALUE_THIRD_PARTY = 'third_party';
 

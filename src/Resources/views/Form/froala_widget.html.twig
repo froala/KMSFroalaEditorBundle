@@ -10,7 +10,7 @@
     {% endif %}
 
     {% if froala_includeCSS %}
-        <link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/froala_editor.pkgd.min.css' ) }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/froala_editor.min.css' ) }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/froala_style.min.css' ) }}" />
 
         {% if froala_arrOption[ "theme" ] is defined %}
@@ -18,7 +18,7 @@
         {% endif %}
 
         {% for plugin in froala_arrPluginCSS %}
-            <link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/' ~ froala_plugin ~ '.min.css' ) }}" />
+            <link rel="stylesheet" type="text/css" href="{{ asset( froala_basePath ~ 'css/' ~ plugin ~ '.min.css' ) }}" />
         {% endfor %}
 
     {% endif %}
@@ -35,7 +35,7 @@
 
     {% if froala_includeJS %}
         <script type="text/javascript"  src="{{ asset( "bundles/kmsfroalaeditor/misc.js" ) }}"></script>
-        <script type="text/javascript"  src="{{ asset( froala_basePath ~ 'js/froala_editor.pkgd.min.js' ) }}"></script>
+        <script type="text/javascript"  src="{{ asset( froala_basePath ~ 'js/froala_editor.min.js' ) }}"></script>
 
         <!--[if lt IE 9]>
 		<script type="text/javascript" src="{{ asset( froala_basePath ~ 'js/froala_editor_ie8.min.js' ) }}"></script>
