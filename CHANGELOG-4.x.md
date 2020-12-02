@@ -5,6 +5,7 @@ CHANGELOG FOR 4.X
 -----
 
 * Escape form options/variables with "froala_" namespace
+* Add options related to FontAwesome third party plugin
 * Support for ajax loading
 * Add parameter types & return types everywhere possible
 * Fix Twig extension
