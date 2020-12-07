@@ -18,18 +18,33 @@
         "php": "^7.2 || ^8.0",
         "ext-zip": "*",
         "doctrine/inflector": "^1.4|^2.0",
-        "symfony/console": "^4.3|^5.0",
-        "symfony/framework-bundle": "^4.3|^5.0",
-        "symfony/form": "^4.3|^5.0",
-        "symfony/http-client": "^4.3|^5.0",
-        "symfony/twig-bundle": "^4.3|^5.0",
+        "symfony/asset": "^4.4|^5.0",
+        "symfony/console": "^4.4|^5.0",
+        "symfony/framework-bundle": "^4.4|^5.0",
+        "symfony/form": "^4.4|^5.0",
+        "symfony/http-client": "^4.4|^5.0",
+        "symfony/twig-bundle": "^4.4|^5.0",
         "twig/twig": "^1.1|^2.0|^3.0"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^4.3|^5.0",
-        "symfony/yaml": "^4.3|^5.0"
+        "friendsofphp/php-cs-fixer": "^2.16.7",
+        "phpstan/phpstan": "^0.12.56",
+        "symfony/phpunit-bridge": "^4.4|^5.0",
+        "symfony/yaml": "^4.4|^5.0"
+    },
+    "scripts": {
+        "cs:dry": "php-cs-fixer fix --diff --diff-format=udiff --dry-run --no-interaction --ansi",
+        "cs:fix": "php-cs-fixer fix --ansi",
+        "phpstan": "vendor/bin/phpstan analyse --ansi"
     },
     "autoload": {
-        "psr-4": { "KMS\\FroalaEditorBundle\\": "" }
+        "psr-4": {
+            "KMS\\FroalaEditorBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "KMS\\FroalaEditorBundle\\Tests\\": "tests/"
+        }
     }
 }

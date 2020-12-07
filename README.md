@@ -8,17 +8,24 @@
 
 ## Introduction
 
-This bundle aims to easily integrate & use the Froala editor in Symfony 4.3+/5.0+.
+This bundle aims to easily integrate & use the Froala editor in Symfony 4.4+/5.0+.
 
 If you want to use it with Symfony < 4.3, see [v2 docs](https://github.com/froala/KMSFroalaEditorBundle/tree/v2).
 v2.x is compatible with Symfony 2.x to 4.x, but some deprecations are not fixed and static files are integrated to the
 bundle.
 
-The changelog is available here: [CHANGELOG-3.x.md](CHANGELOG-3.x.md).
+[There's also a v3 version available](https://github.com/froala/KMSFroalaEditorBundle/tree/v3) compatible
+with Symfony 4.3+/5.0+ but the form type options are not prefixed with `froala_`, which is the major reason for a v4
+of the bundle.
+
+The changelogs are available here:
+
+* [CHANGELOG-4.x.md](CHANGELOG-4.x.md)
+* [CHANGELOG-3.x.md](https://github.com/froala/KMSFroalaEditorBundle/blob/v3/CHANGELOG-3.x.md).
 
 ## Table of Contents
 
-1. [Migration to Froala Editor bundle v3 from v2](#migration-to-froala-editor-bundle-v3-from-v2)
+1. [Migration to Froala Editor bundle v4 from v3](#migration-to-froala-editor-bundle-v4-from-v3)
 1. [Installation](#installation)
     1. [Step 1: Install the bundle using composer](#step-1-install-the-bundle-using-composer)
     1. [Step 2: Add the bundle to your bundles.php](#step-2-add-the-bundle-to-your-bundlesphp)
@@ -41,16 +48,27 @@ The changelog is available here: [CHANGELOG-3.x.md](CHANGELOG-3.x.md).
     1. [Webpack Encore configuration](#webpack-encore-configuration)
 1. [TODO](#todo)
 1. [Licence](#licence)
+1. [Contributing](#contributing)
 
-## Migration to Froala Editor bundle v3 from v2
+## Migration to Froala Editor bundle v4 from v3
 
-The Froala Editor bundle got a major upgrade from v2 to v3. It now supports only Symfony 4.3+ and requires PHP 7.2+.
+It now supports only Symfony 4.4+ & 5.0+.
 
-As the static files are no longer included (so you don't have to upgrade this bundle for each Froala release) you can
-import assets the way you need (using the install command described below or eg. from your public directory).
-See install steps below.
+If you somehow override/inherit a class from the bundle, be careful as some parameter & return types have been added.
 
-The Twig form widget is no more loaded automatically, see [step 4](#step-4-load-twig-form-widget) to see how to load it using configuration.
+All form type options must now be prefixed by `froala_`:
+
+```php
+// Before
+$builder->add('field', FroalaEditorType::class, [
+    'toolbarButtons' => [...],
+]);
+
+// After
+$builder->add('field', FroalaEditorType::class, [
+    'froala_toolbarButtons' => [...],
+]);
+```
 
 ## Installation
 
@@ -95,7 +113,6 @@ twig:
 #### Required
 
 First, you have to select your language, other settings are optional (see below).
-If you don't have this file you can create one.
 
 ```yaml
 # config/packages/kms_froala_editor.yaml 
@@ -103,74 +120,10 @@ kms_froala_editor:
     language: 'nl'
 ```
 
-
-### Step 6: Add Froala to your form
-
-Just add a Froala type in your form:
-
-```php
-use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
-
-$builder-add( 'yourField', FroalaEditorType::class,[
-                'mapped' => false,  
-                ]);
-```
-
-All configuration items can be overridden:
-
-```php
-$builder->add('yourField', FroalaEditorType::class, [
-    "language" => "fr",
-    "toolbarInline" => true,
-    "tableColors" => [ "#FFFFFF", "#FF0000" ],
-    "saveParams" => [ "id" => "myEditorField" ]
-]);
-```
-
-### Step 7: Install asset files
-
-To install the asset files, there is `froala:install` command that downloads the last version available of Froala Editor
-and puts it by default in the `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/` directory:
-
-```bash
-bin/console froala:install
-```
-
-There are a few arguments/options available:
-
-* First (and only) argument (optional): the absolute path where the files will be put after download.
-Defaults to `vendor/kms/froala-editor-bundle/Resources/public/froala_editor/`.
-* Option `tag`: the version of Froala that will be installed (eg. `v3.0.1`). Defaults to `master`.
-* Option `clear` (no value expected, disabled by default): Allow the command to clear a previous install if the path already exists.
-
-After you launched the install command, you have to link assets, eg.:
-
-```bash
-bin/console assets:install --symlink public
-```
-
-### Step 8: Display editor content
-
-#### Manually
-
-To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
-
-```twig
-<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
-<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
-```
-
-Also, you should make sure that you put the edited content inside an element that has the class fr-view:
-
-```twig
-<div class="fr-view">
-    {{ myContentHtml|raw }}
-</div>
-```
 #### Other options
 
 All Froala options ([list provided here](https://www.froala.com/wysiwyg-editor/docs/options)) are supported.
-Just add the option name with your value.
+Just add the option name (prefixed with `froala_` if it's in your form type) with your value.
 If you want to keep Froala default value, don't provide anything in your config file.
 For options which require an array, provide a value array.
 For options which require an object, provide a key/value array.
@@ -219,19 +172,72 @@ kms_froala_editor:
     customJS: "/custom/js/path"
 ```
 
+### Step 6: Add Froala to your form
+
+Just add a Froala type in your form:
+
+```php
+use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
+
+$builder->add('field', FroalaEditorType::class);
+```
+
+All configuration items can be overridden:
+
+```php
+$builder->add('field', FroalaEditorType::class, [
+    'froala_language'      => 'fr',
+    'froala_toolbarInline' => true,
+    'froala_tableColors'   => ['#FFFFFF', '#FF0000'],
+    'froala_saveParams'    => ['id' => 'myEditorField'],
+]);
+```
+
+### Step 7: Install asset files
+
+To install the asset files, there is `froala:install` command that downloads the last version available of Froala Editor
+and puts it by default in the `vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/` directory:
+
+```bash
+bin/console froala:install
+```
+
+There are a few arguments/options available:
+
+* First (and only) argument (optional): the absolute path where the files will be put after download.
+Defaults to `vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/`.
+* Option `tag`: the version of Froala that will be installed (eg. `v3.0.1`). Defaults to `master`.
+* Option `clear` (no value expected, disabled by default): Allow the command to clear a previous install if the path already exists.
+
+After you launched the install command, you have to link assets, eg.:
+
+```bash
+bin/console assets:install --symlink public
+```
+
+### Step 8: Display editor content
+
+#### Manually
+
+To preserve the look of the edited HTML outside of the editor you have to include the following CSS files:
+
+```twig
+<!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
+<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
+```
+
+Also, you should make sure that you put the edited content inside an element that has the class fr-view:
+
+```twig
+<div class="fr-view">
+    {{ myContentHtml|raw }}
+</div>
+```
 
 #### Using the Twig extension
 
-To use the Twig extension, you have to enable the PHP templating engine:
-
-```yaml
-# config/packages/kms_froala_editor.yaml
-framework:
-    templating:
-        engines: ['twig', 'php']
-```
-
-Then, simply call the display function (note that the front CSS file is not included if the parameter includeCSS is false):
+To use the Twig extension, simply call the display function (note that the front CSS file is not included
+if the parameter includeCSS is false):
 
 ```twig
 {{ froala_display(myContentHtml) }}
@@ -256,8 +262,8 @@ kms_froala_editor:
 ```php
 use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
 
-$builder->add('yourField', FroalaEditorType::class, [
-    'profile' => 'profile_1',
+$builder->add('field', FroalaEditorType::class, [
+    'froala_profile' => 'profile_1',
 ]);
 ```
 
@@ -405,3 +411,15 @@ Don't forget to import the generated Encore CSS/JS files in your HTML if needed.
 This bundle provides an integration of the WYSIWYG [Froala Editor](https://www.froala.com/wysiwyg-editor) commercial version.
 Please read the [Froala licence agreement](https://www.froala.com/wysiwyg-editor/terms) and go to the [pricing page](https://www.froala.com/wysiwyg-editor/pricing)
 if you don't have a licence.
+
+## Contributing
+
+Feel free to contribute, like sending [pull requests](https://github.com/froala/KMSFroalaEditorBundle/pulls) to add features/tests.
+
+Note there are a few helpers to maintain code quality, that you can run using these commands:
+
+```bash
+composer cs:dry # Code style check
+composer phpstan # Static analysis
+vendor/bin/simple-phpunit # Run tests
+```
