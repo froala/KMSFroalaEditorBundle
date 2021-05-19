@@ -17,7 +17,7 @@ class InstallCommand extends Command
         $this
             ->setName('froala:install')
             ->addArgument('path', InputArgument::OPTIONAL, 'Absolute path where to install Froala editor', \dirname(__DIR__) . '/Resources/public/froala_editor')
-            ->addOption('tag', null, InputOption::VALUE_REQUIRED, 'Froala editor tag to install (eg. "v3.0.0")', 'master')
+            ->addOption('tag', null, InputOption::VALUE_REQUIRED, 'Froala editor tag to install (eg. "v3.2.7")', 'master')
             ->addOption('clear', null, InputOption::VALUE_NONE, 'Allow the command to clear a previous install if the path already exists')
         ;
     }
