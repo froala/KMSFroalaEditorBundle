@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Leapt\FroalaEditorBundle\Controller;
 
 use Leapt\FroalaEditorBundle\Service\MediaManager;
@@ -10,20 +12,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class MediaController
 {
-    /**
-     * @var MediaManager
-     */
-    protected $mediaManager;
-
-    /**
-     * @var KernelInterface
-     */
-    protected $kernel;
-
-    public function __construct(MediaManager $mediaManager, KernelInterface $kernel)
+    public function __construct(private MediaManager $mediaManager, private KernelInterface $kernel)
     {
-        $this->mediaManager = $mediaManager;
-        $this->kernel = $kernel;
     }
 
     public function uploadImage(Request $request): JsonResponse

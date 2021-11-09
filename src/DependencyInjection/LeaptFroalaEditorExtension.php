@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Leapt\FroalaEditorBundle\DependencyInjection;
 
 use Leapt\FroalaEditorBundle\Utility\UConfiguration;
@@ -29,7 +31,7 @@ class LeaptFroalaEditorExtension extends Extension
                 false === $arrConfig[$option] ||
                 0 === $arrConfig[$option]
             ) {
-                $container->setParameter(Configuration::$NODE_ROOT . '.' . $option, $arrConfig[$option]);
+                $container->setParameter(Configuration::NODE_ROOT . '.' . $option, $arrConfig[$option]);
             }
         }
 
@@ -47,6 +49,6 @@ class LeaptFroalaEditorExtension extends Extension
             }
         }
 
-        $container->setParameter(Configuration::$NODE_ROOT . '.profiles', $parameterProfiles);
+        $container->setParameter(Configuration::NODE_ROOT . '.profiles', $parameterProfiles);
     }
 }
