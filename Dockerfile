@@ -45,7 +45,7 @@ RUN tar -xvf ${PackageName}-${PackageVersion}.tgz
 RUN rm -rf package/ ${PackageName}-${PackageVersion}.tgz
 
 
-RUN bin/console assets:install --symlink public
+#RUN bin/console assets:install --symlink public
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf

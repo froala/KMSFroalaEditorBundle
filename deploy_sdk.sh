@@ -129,8 +129,7 @@ function deploy(){
     cat docker-compose.yml
     echo "-------------------------------------------------"
     echo -e "\n"
-
-
+    
     # Remove the old docker-compose from deployment_server
     ssh -o "StrictHostKeyChecking no" -i  /tmp/sshkey.pem "${SSH_USER}"@"${DEPLOYMENT_SERVER}" "if [ -d /services/${SERVICE_NAME} ];  then rm -rf /services/${SERVICE_NAME}; fi && mkdir /services/${SERVICE_NAME}"
     
@@ -180,4 +179,3 @@ if [ "${EXISTING_DEPLOYMENTS_NR}" -ge "${MAX_DEPLOYMENTS_NR}" ]; then
     deploy && sleep 30
     echo "Deployment completed."
 fi
-
