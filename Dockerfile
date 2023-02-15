@@ -31,7 +31,7 @@ RUN chmod -R 777 /var/www/html/
 RUN composer install
 RUN a2enmod rewrite
 EXPOSE 80
-RUN php bin/console server:run froala:install
+#RUN php bin/console server:run froala:install
 
 # get the desired  sdk branch
 RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
@@ -45,7 +45,7 @@ RUN cp -a package/. vendor/kms/froala-editor-bundle/src/Resources/public/froala_
 RUN rm -rf package/ ${PackageName}-${PackageVersion}.tgz
 
 
-RUN bin/console assets:install --symlink public
+#RUN bin/console assets:install --symlink public
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
