@@ -31,7 +31,7 @@ RUN chmod -R 777 /var/www/html/
 RUN composer install
 RUN a2enmod rewrite
 EXPOSE 80
-RUN bin/console froala:install
+RUN php bin/console server:run froala:install
 
 # get the desired  sdk branch
 RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
