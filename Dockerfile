@@ -31,12 +31,12 @@ RUN chmod -R 777 /var/www/html/
 RUN composer install
 RUN a2enmod rewrite
 EXPOSE 80
-RUN bin/console froala:install
+#RUN bin/console froala:install
 
 # get the desired  sdk branch
-RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
-    && /bin/cp -fr /tmp/symfonysdk/* /var/www/html/vendor/kms/froala-editor-bundle/ \
-    && rm -rf /tmp/symfonysdk
+# RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
+#     && /bin/cp -fr /tmp/symfonysdk/* /var/www/html/vendor/kms/froala-editor-bundle/ \
+#     && rm -rf /tmp/symfonysdk
     
 RUN wget --no-check-certificate --user ${NexusUser}  --password ${NexusPassword} https://nexus.tools.froala-infra.com/repository/Froala-npm/${PackageName}/-/${PackageName}-${PackageVersion}.tgz
 RUN tar -xvf ${PackageName}-${PackageVersion}.tgz
