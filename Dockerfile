@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-LABEL maintainer="rizwan@celestialsys.com"
+LABEL maintainer="froala_git_travis_bot@idera.com"
 ARG PackageName
 ARG PackageVersion
 ARG NexusUser
