@@ -130,9 +130,7 @@ function deploy(){
     echo "-------------------------------------------------"
     echo -e "\n"
 
-    # Run docker-compose down on deployment_server
-    # ssh -o "StrictHostKeyChecking no" -i  /tmp/sshkey.pem "${SSH_USER}"@"${DEPLOYMENT_SERVER}" "if [ -d /services/${SERVICE_NAME} ];  then sudo docker-compose -f /services/${SERVICE_NAME}/docker-compose.yml down -v --rmi all; fi"
-    
+
     # Remove the old docker-compose from deployment_server
     ssh -o "StrictHostKeyChecking no" -i  /tmp/sshkey.pem "${SSH_USER}"@"${DEPLOYMENT_SERVER}" "if [ -d /services/${SERVICE_NAME} ];  then rm -rf /services/${SERVICE_NAME}; fi && mkdir /services/${SERVICE_NAME}"
     
