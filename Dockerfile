@@ -1,6 +1,6 @@
 FROM php:7.4-apache
 
-LABEL maintainer="froala_git_travis_bot@idera.com"
+LABEL maintainer="rizwan@celestialsys.com"
 ARG PackageName
 ARG PackageVersion
 ARG NexusUser
@@ -28,7 +28,7 @@ RUN docker-php-ext-install zip
 COPY . .
 RUN rm -f composer.lock
 RUN chmod -R 777 /var/www/html/
-RUN composer instal
+RUN composer install
 RUN a2enmod rewrite
 EXPOSE 80
 RUN bin/console froala:install
