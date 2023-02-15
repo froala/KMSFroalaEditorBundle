@@ -28,24 +28,24 @@ RUN docker-php-ext-install zip
 COPY . .
 RUN rm -f composer.lock
 RUN chmod -R 777 /var/www/html/
-RUN composer install
+RUN composer instal
 RUN a2enmod rewrite
 EXPOSE 80
-#RUN php bin/console server:run froala:install
+RUN php bin/console froala:install
 
 # get the desired  sdk branch
-# RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
-#     && /bin/cp -fr /tmp/symfonysdk/* /var/www/html/vendor/kms/froala-editor-bundle/ \
-#     && rm -rf /tmp/symfonysdk
+RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
+    && /bin/cp -fr /tmp/symfonysdk/* /var/www/html/vendor/kms/froala-editor-bundle/ \
+    && rm -rf /tmp/symfonysdk
     
 RUN wget --no-check-certificate --user ${NexusUser}  --password ${NexusPassword} https://nexus.tools.froala-infra.com/repository/Froala-npm/${PackageName}/-/${PackageName}-${PackageVersion}.tgz
 RUN tar -xvf ${PackageName}-${PackageVersion}.tgz
 
-# RUN cp -a package/. vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/
-# RUN rm -rf package/ ${PackageName}-${PackageVersion}.tgz
+RUN cp -a package/. vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/
+RUN rm -rf package/ ${PackageName}-${PackageVersion}.tgz
 
 
-#RUN bin/console assets:install --symlink public
+RUN bin/console assets:install --symlink public
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
