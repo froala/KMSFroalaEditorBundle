@@ -41,8 +41,8 @@ EXPOSE 80
 RUN wget --no-check-certificate --user ${NexusUser}  --password ${NexusPassword} https://nexus.tools.froala-infra.com/repository/Froala-npm/${PackageName}/-/${PackageName}-${PackageVersion}.tgz
 RUN tar -xvf ${PackageName}-${PackageVersion}.tgz
 
-RUN cp -a package/. vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/
-RUN rm -rf package/ ${PackageName}-${PackageVersion}.tgz
+# RUN cp -a package/. vendor/kms/froala-editor-bundle/src/Resources/public/froala_editor/
+# RUN rm -rf package/ ${PackageName}-${PackageVersion}.tgz
 
 
 #RUN bin/console assets:install --symlink public
