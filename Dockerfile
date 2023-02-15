@@ -28,10 +28,10 @@ RUN docker-php-ext-install zip
 COPY . .
 RUN rm -f composer.lock
 RUN chmod -R 777 /var/www/html/
-RUN composer instal
+RUN composer install
 RUN a2enmod rewrite
 EXPOSE 80
-RUN php bin/console froala:install
+RUN bin/console froala:install
 
 # get the desired  sdk branch
 RUN git clone --branch=${sdkBranch} https://${GitUsr}:${GitToken}@${sdkGitURL} /tmp/symfonysdk \
