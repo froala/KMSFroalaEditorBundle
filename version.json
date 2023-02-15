@@ -6,9 +6,5 @@
         "dev": "1",
         "qa": "2",
         "qe": "2",
-        "stg": "1",  
-        "comment-3": "froala-editor-sdk - set the branchname of  sdk git repo",
-        "symfony_sdk_name": "yii2-froala-editor",
-        "symfony_sdk_repo": "github.com/froala/KMSFroalaEditorBundle-mcs.git",
-        "symfony_sdk_branch": "devops"
+        "stg": "1"
 }
